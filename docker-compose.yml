@@ -1,32 +1,35 @@
 # version: '3.9'
 services:
-  db:
-    image: postgres:latest
-    volumes: 
-    - db_data:/var/lib/postgresql/data
-    restart: always
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DATABASE: etnair_db
-    networks:
-      - etnair_network
-      - db_network
   api:
-    depends_on:
-      - db
-    image: node:latest
+    image: node
+    working_dir: /api
+    command: node api.js
+    volumes:
+      - ./api:/api
     ports: 
       - "3000:3000"
-    restart: always
     environment:
       API_DB_HOST: db
       API_DB_USER: user
       API_DB_PASSWORD: password
-      API_DB_NAME: enair_db
+      API_DB_NAME: etnair_db
+    depends_on:
+      - db
     networks:
       - etnair_network
-    command: ["./wait-for-it.sh", "db:5432", "--", "npm", "start"]
+  db:
+    image: postgres
+    volumes: 
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: etnair_db
+    networks:
+      - etnair_network
+      - db_network
+
 volumes:
   db_data:
 networks:
