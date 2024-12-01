@@ -69,7 +69,10 @@ CREATE TABLE "Reservation" (
   "user_id" integer UNIQUE NOT NULL,
   "advert_id" integer UNIQUE NOT NULL,
   "created_at" timestamp NOT NULL,
-  "updated_at" timestamp NOT NULL
+  "updated_at" timestamp NOT NULL,
+  CONSTRAINT UC_StartDate UNIQUE (id, start_date),
+  CONSTRAINT UC_EndDate UNIQUE (id, end_date),
+  CONSTRAINT check_start_end_date CHECK (start_date <= end_date)
 );
 
 CREATE TABLE "Review" (
@@ -119,3 +122,27 @@ ALTER TABLE "Review" ADD FOREIGN KEY ("user_id") REFERENCES "User" ("id");
 ALTER TABLE "Address" ADD FOREIGN KEY ("advert_id") REFERENCES "Advert" ("id");
 
 ALTER TABLE "Address" ADD FOREIGN KEY ("reservation_id") REFERENCES "Reservation" ("id");
+
+/* CREATE OR REPLACE FUNCTION prevent_date_overlap()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Vérifie les chevauchements
+    IF EXISTS (
+        SELECT 1
+        FROM Reservation
+        WHERE (
+            NEW.start_date <= end_date
+            AND NEW.end_date >= start_date
+        )
+    ) THEN
+        RAISE EXCEPTION 'Dates invalides';
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_prevent_date_overlap
+BEFORE INSERT OR UPDATE ON Reservation
+FOR EACH ROW
+EXECUTE FUNCTION prevent_date_overlap(); */
