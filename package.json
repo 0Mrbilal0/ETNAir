@@ -1,0 +1,11 @@
+{
+  "name": "etnair",
+  "version": "1.0.0",
+  "description": "Project ETNA",
+  "main": "index.ts",
+  "scripts": {
+    "start": "npm start ./api && npm start ./client"
+  },
+  "author": "itchir_b",
+  "license": "ISC"
+}
