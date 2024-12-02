@@ -132,3 +132,6 @@ dist
 
 # Database datas
 data
+
+# MacOs files
+.DS_Store
