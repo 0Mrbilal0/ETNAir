@@ -5,6 +5,9 @@ import { getAllUsers, GetUserById, getAllAdverts, getAdvertsById } from './Contr
 export const router = Router();
 
 router.get("/utilisateurs", getAllUsers);
+router.post("/utilisateurs", (req, res) => {
+    res.status(201).json({message: "User created"})
+});
 router.get("/utilisateurs/:id", GetUserById);
 
 router.get("/annonces", getAllAdverts);
