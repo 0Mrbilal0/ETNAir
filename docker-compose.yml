@@ -1,30 +1,39 @@
-version: '3.7'
-
+# version: '3.9'
 services:
-  ETNAIR-postgres:
-    image: postgres:latest
-    container_name: Database
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: rootRoot
-      POSTGRES_DB: ETNAIR
-    expose:
-      - '5432'
-      - '8080'
-    ports:
-      - '5432:5432'
-      - '8080:8080'
-    networks:
-      - backend
+  api:
+    image: node
+    working_dir: /api
+    command: node api.js
     volumes:
-      - './data/postgresql:/var/lib/postgresql/data'
-      - './sql/:/home/app/'
-    command: ["postgres", "-c", "log_statement=all", "-c", "log_destination=stderr", "-p", "5432"]
-    
-networks:
-  backend:
-    driver: bridge
+      - ./api:/api
+    ports: 
+      - "3000:3000"
+    environment:
+      API_DB_HOST: db
+      API_DB_USER: user
+      API_DB_PASSWORD: password
+      API_DB_NAME: etnair_db
+    depends_on:
+      - db
+    networks:
+      - etnair_network
+  db:
+    image: postgres
+    volumes: 
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: etnair_db
+    networks:
+      - etnair_network
+      - db_network
 
 volumes:
-  postgresql_data:
-    driver: local
+  db_data:
+networks:
+  etnair_network:
+    driver: bridge
+  db_network:
+    driver: bridge
