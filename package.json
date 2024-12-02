@@ -4,7 +4,7 @@
   "description": "Project ETNA",
   "main": "index.ts",
   "scripts": {
-    "start": "npm start ./api && npm start ./client"
+    "start": "npm start ./api && npm start"
   },
   "author": "itchir_b",
   "license": "ISC"
