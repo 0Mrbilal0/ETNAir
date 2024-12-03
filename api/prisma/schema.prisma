@@ -5,10 +5,68 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+        provider = "prisma-client-js"
+        previewFeatures = ["prismaSchemaFolder"]
+        output = "../src/Models"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+        provider = "postgresql"
+        url      = env("DATABASE_URL")
 }
+
+model Users {
+        id           String    @id @default(cuid())
+        email        String    @unique
+        name         String
+        password     String
+        about_me     String?
+        phone_number String    @unique
+        user_type    String    @default("client")
+        createdAt    DateTime  @default(now())
+        updatedAt    DateTime  @updatedAt
+        Adverts      Adverts[]
+}
+
+model Adverts {
+        id             String           @id @default(cuid())
+        title          String
+        nb_person      Int
+        price          Float
+        available_date DateTime
+        type           String
+        userId         String
+        createdAt      DateTime         @default(now())
+        updatedAt      DateTime         @updatedAt
+        user           Users            @relation(fields: [userId], references: [id])
+        Picture        Picture[]
+        Caracteristics Caracteristics[]
+        Adress         Adress[]
+}
+
+model Picture {
+        id       String  @id @default(cuid())
+        url      String
+        advertId String
+        advert   Adverts @relation(fields: [advertId], references: [id])
+}
+
+model Caracteristics {
+        id          String  @id @default(cuid())
+        nb_bedroom  Int
+        nb_bathroom Int
+        description String
+        advertId    String
+        advert      Adverts @relation(fields: [advertId], references: [id])
+}
+
+model Adress {
+        id       String  @id @default(cuid())
+        city     String
+        country  String
+        street   String
+        zip_code String
+        advertId String
+        advert   Adverts @relation(fields: [advertId], references: [id])
+}
+

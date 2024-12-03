@@ -1,0 +1,12 @@
+model Users {
+        id           String    @id @default(cuid())
+        email        String    @unique
+        name         String
+        password     String
+        about_me     String?
+        phone_number String    @unique
+        user_type    String    @default("client")
+        createdAt    DateTime  @default(now())
+        updatedAt    DateTime  @updatedAt
+        Adverts      Adverts[]
+}

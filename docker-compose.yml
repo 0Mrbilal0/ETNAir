@@ -3,10 +3,10 @@ services:
   api:
     image: node
     working_dir: /api
-    command: node api.js
+    command: npm run dev
     volumes:
       - ./api:/api
-    ports: 
+    ports:
       - "3000:3000"
     environment:
       API_DB_HOST: db
@@ -19,9 +19,11 @@ services:
       - etnair_network
   db:
     image: postgres
-    volumes: 
+    volumes:
       - db_data:/var/lib/postgresql/data
     restart: always
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
