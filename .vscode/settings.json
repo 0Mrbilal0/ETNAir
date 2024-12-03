@@ -6,9 +6,9 @@
             "port": 5432,
             "driver": "PostgreSQL",
             "name": "etnair",
-            "database": "ETNAIR",
-            "username": "root",
-            "password": "rootRoot"
+            "database": "etnair_db",
+            "username": "user",
+            "password": "password"
         }
     ]
 }

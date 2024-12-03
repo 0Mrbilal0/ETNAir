@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 
 app.use('/api_doc', serve, setup(parseDocument(readFileSync("./openapi.yml").toString())));
 app.use('/', router)
+app.use(express.json());
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })

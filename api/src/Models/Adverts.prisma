@@ -1,0 +1,15 @@
+model Adverts {
+        id             String           @id @default(cuid())
+        title          String
+        nb_person      Int
+        price          Float
+        available_date DateTime
+        type           String
+        userId         String
+        createdAt      DateTime         @default(now())
+        updatedAt      DateTime         @updatedAt
+        user           Users            @relation(fields: [userId], references: [id])
+        Picture        Picture[]
+        Caracteristics Caracteristics[]
+        Adress         Adress[]
+}

@@ -10,9 +10,12 @@
   "author": "etnair-elite",
   "license": "MIT",
   "dependencies": {
+    "@prisma/adapter-pg": "^6.0.1",
+    "@prisma/client": "^6.0.1",
     "bcrypt": "^5.1.1",
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1",
     "prisma": "^6.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
@@ -24,6 +27,6 @@
     "@types/node": "^22.10.1",
     "@types/swagger-ui-express": "^4.1.7",
     "dotenv": "^16.4.5",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
   }
 }
