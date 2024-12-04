@@ -1,0 +1,28 @@
+
+
+model Picture {
+        id       String  @id @default(cuid())
+        url      String
+        advertId String
+        advert   Adverts @relation(fields: [advertId], references: [id])
+}
+
+model Caracteristics {
+        id          String  @id @default(cuid())
+        nb_bedroom  Int
+        nb_bathroom Int
+        description String
+        advertId    String
+        advert      Adverts @relation(fields: [advertId], references: [id])
+}
+
+model Adress {
+        id       String  @id @default(cuid())
+        city     String
+        country  String
+        street   String
+        zip_code String
+        advertId String
+        advert   Adverts @relation(fields: [advertId], references: [id])
+}
+
