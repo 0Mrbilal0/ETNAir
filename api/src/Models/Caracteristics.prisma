@@ -1,0 +1,8 @@
+model Caracteristics {
+        id          String  @id @default(cuid())
+        nb_bedroom  Int
+        nb_bathroom Int
+        description String
+        advertId    String
+        advert      Adverts @relation(fields: [advertId], references: [id])
+}
