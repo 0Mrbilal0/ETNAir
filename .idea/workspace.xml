@@ -4,24 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a54337d5-02be-4d83-ab58-cd2898265caf" name="Changes" comment="CONTINUE WITH PRISMA CONFIGURATION" />
+    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="co" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="itchir-b/etn-17-db-prisma" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2pkgwcEXRfwhbVHWtDlwVa1Ym7S" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2pkk5VPbJEGse9JYC087Nbzv6Qz" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -33,22 +31,15 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "last_opened_file_path": "C:/Users/bilal/Documents/etna/ETNAir",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Users\\bilal\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\bilal\Documents\etna\ETNAir\api\src\Models" />
-    </key>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -59,29 +50,28 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a54337d5-02be-4d83-ab58-cd2898265caf" name="Changes" comment="" />
-      <created>1733315726974</created>
+      <changelist id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="" />
+      <created>1733317279163</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1733315726974</updated>
-      <workItem from="1733315728387" duration="53000" />
-      <workItem from="1733315787872" duration="642000" />
+      <updated>1733317279163</updated>
+      <workItem from="1733317280472" duration="1539000" />
     </task>
-    <task id="LOCAL-00001" summary="CONTINUE WITH PRISMA CONFIGURATION">
+    <task id="LOCAL-00001" summary="co">
       <option name="closed" value="true" />
-      <created>1733316276564</created>
+      <created>1733317913181</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1733316276564</updated>
+      <updated>1733317913181</updated>
     </task>
-    <task id="LOCAL-00002" summary="CONTINUE WITH PRISMA CONFIGURATION">
+    <task id="LOCAL-00002" summary="co">
       <option name="closed" value="true" />
-      <created>1733316287014</created>
+      <created>1733317929442</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1733316287014</updated>
+      <updated>1733317929442</updated>
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
@@ -90,7 +80,7 @@
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="CONTINUE WITH PRISMA CONFIGURATION" />
-    <option name="LAST_COMMIT_MESSAGE" value="CONTINUE WITH PRISMA CONFIGURATION" />
+    <MESSAGE value="co" />
+    <option name="LAST_COMMIT_MESSAGE" value="co" />
   </component>
 </project>
