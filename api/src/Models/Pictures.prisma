@@ -1,0 +1,6 @@
+model Picture {
+  id       String  @id @default(cuid())
+  url      String
+  advertId String
+  advert   Adverts @relation(fields: [advertId], references: [id])
+}
