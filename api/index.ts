@@ -1,0 +1,12 @@
+import express from 'express';
+import {router} from './src/Routes/routes';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use('/', router)
+app.listen(port, () => {
+  console.log(`http://localhost:${port}`)
+})
