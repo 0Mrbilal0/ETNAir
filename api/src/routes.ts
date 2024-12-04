@@ -1,8 +1,3 @@
-import express from 'express';
-import { Router } from 'express';
-import { getAllUsers, GetUserById, getAllAdverts, getAdvertsById } from './Controller/UserController';
-
-export const router = Router();
 
 router.get("/utilisateurs", getAllUsers);
 router.post("/utilisateurs", (req, res) => {
