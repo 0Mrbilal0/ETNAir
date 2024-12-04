@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getAllUsers, createUser, getUserById, updateUserById, deleteUserById } from '../Controller/UserController';
-import { getAllAdverts, getAdvertsById } from '../Controller/AdvertController';
+import { getAllAdverts, createAdvert, getAdvertsById, updateAdvertById, deleteAdvertById} from '../Controller/AdvertController';
 
 export const router = Router();
 
@@ -22,9 +22,17 @@ router.delete("/utilisateurs/:id", deleteUserById);
 // Get all adverts
 router.get("/annonces", getAllAdverts);
 
+// Create a new advert
+router.post("/annonces", createAdvert);
+
 // Get advert by id
 router.get("/annonces/:id", getAdvertsById);
 
+// Update advert by id
+router.put("/annonces/:id", updateAdvertById);
+
+// Delete advert by id
+router.delete("/annonces/:id", deleteAdvertById);
 
 // 404 route
 router.get("/*", (req, res) => {

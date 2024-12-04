@@ -41,8 +41,9 @@ async function createUser(req: Request, res: Response ) {
  */
 async function getUserById(req: Request, res: Response ) {
     const id = req.params.id;
+    if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
     const user = users.find(user => user.id === parseInt(id));
-    if (user === undefined ) res.status(404).json({message: "Not Found"});
+    if (user === undefined ) res.status(404).json({message: "User Not Found"});
     res.json(user);
 }
 
@@ -55,7 +56,7 @@ async function updateUserById(req: Request, res: Response ) {
     const id = req.params.id;
     if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
     const userId = users.findIndex(user => user.id === parseInt(id));
-    if (users[userId] === undefined ) res.status(404).json({message: "Not Found"});
+    if (users[userId] === undefined ) res.status(404).json({message: "User Not Found"});
     users[userId] = { id: parseInt(id), ...req.body };
     res.sendStatus(200);
 }
@@ -67,8 +68,9 @@ async function updateUserById(req: Request, res: Response ) {
  */
 async function deleteUserById(req: Request, res: Response ) {
     const id = req.params.id;
+    if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
     const userId = users.findIndex(user => user.id === parseInt(id));
-    if (users[userId] === undefined ) res.status(404).json({message: "Not Found"});
+    if (users[userId] === undefined ) res.status(404).json({message: "User Not Found"});
     users.splice(userId, 1);
     res.sendStatus(204);
 }
