@@ -11,8 +11,6 @@ servers:
 tags:
   - name: user
     description: user related route
-
-tags:
   - name: ads
     description: ads related route
 paths:

@@ -4,6 +4,15 @@ import { getAllAdverts, createAdvert, getAdvertsById, updateAdvertById, deleteAd
 
 export const router = Router();
 
+// Ping pong route
+router.get("/", (req, res) => {
+    res.status(200).json({message: "Ping Pong"});
+})
+
+/**
+ *  Users routes
+ */
+
 // Get all users
 router.get("/utilisateurs", getAllUsers);
 
@@ -18,6 +27,10 @@ router.put("/utilisateurs/:id", updateUserById);
 
 // Delete user by id
 router.delete("/utilisateurs/:id", deleteUserById);
+
+/**
+ *  Adverts routes
+ */
 
 // Get all adverts
 router.get("/annonces", getAllAdverts);

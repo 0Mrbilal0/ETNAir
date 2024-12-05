@@ -1,17 +1,7 @@
 import { Request, Response } from 'express';
-
-const adverts = [
-    {
-        id: 1,
-        title: "Advert 1",
-        description: "Description 1"
-    },
-    {
-        id: 2,
-        title: "Advert 2",
-        description: "Description 2"
-    }
-]
+import {PrismaClient, Advert} from "../Models/generated/prisma-client-js";
+import logger from "../../logger";
+const prisma = new PrismaClient()
 
 /**
  * Get all adverts 
@@ -19,7 +9,8 @@ const adverts = [
  * @param res: Response 
  */
 async function getAllAdverts(req: Request, res: Response ) {
-    res.json(adverts)
+    const createAdvert: Advert[] = await prisma.advert.findMany();
+    res.status(200).json(createAdvert)
 }
 
 /**
@@ -28,10 +19,11 @@ async function getAllAdverts(req: Request, res: Response ) {
  * @param res: Response 
  */
 async function createAdvert(req: Request, res: Response ) {
-    const newAdvert = req.body;
-    adverts.push(newAdvert);
-    console.log(req.body);
-    res.status(201).json({message: "Advert created"})
+    const newAdvert: Advert = await prisma.advert.create({
+        data: req.body
+    });
+    logger.info(newAdvert);
+    res.status(201).json({message: "Advert created"});
 }
 
 /**
@@ -42,10 +34,12 @@ async function createAdvert(req: Request, res: Response ) {
 async function getAdvertsById(req: Request, res: Response ) {
     const id = req.params.id;
     if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
-    const advert = adverts.find(advert => advert.id === parseInt(id));
+    const advert = await prisma.advert.findUnique({
+        where: { id: parseInt(id) }
+    });
     if (advert === undefined ) res.status(404).json({message: "Advert Not Found"});
-    res.json(advert)
-}
+    res.status(200).json(advert)
+};
 
 /**
  * Update advert's informations by id
@@ -55,11 +49,14 @@ async function getAdvertsById(req: Request, res: Response ) {
 async function updateAdvertById(req: Request, res: Response ) {
     const id = req.params.id;
     if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
-    const advertId = adverts.findIndex(advert => advert.id === parseInt(id));
-    if (adverts[advertId] === undefined ) res.status(404).json({message: "Advert Not Found"});
-    adverts[advertId] = { id: parseInt(id), ...req.body };
-    res.sendStatus(200);
-}
+    const advert = await prisma.advert.update({
+        where: { id: parseInt(id) },
+        data: req.body
+    });
+    if (advert === undefined ) res.status(404).json({message: "Advert Not Found"});
+    logger.info(advert);
+    res.status(200).json({message: "Advert Updated"});
+};
 
 /**
  * Delete advert by id
@@ -69,10 +66,12 @@ async function updateAdvertById(req: Request, res: Response ) {
 async function deleteAdvertById(req: Request, res: Response ) {
     const id = req.params.id;
     if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
-    const advertId = adverts.findIndex(advert => advert.id === parseInt(id));
-    if (adverts[advertId] === undefined ) res.status(404).json({message: "Advert Not Found"});
-    adverts.splice(advertId, 1);
-    res.sendStatus(200);
-}
+    const advert = await prisma.advert.delete({
+        where: { id: parseInt(id) }
+    });
+    if (advert === undefined ) res.status(404).json({message: "Advert Not Found"});
+    logger.info(advert);
+    res.status(204).json({message: "Advert Deleted"});
+};
 
 export { getAllAdverts, createAdvert, getAdvertsById, updateAdvertById, deleteAdvertById }
