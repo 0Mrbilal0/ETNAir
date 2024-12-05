@@ -1,0 +1,71 @@
+// This is your Prisma Adress.prisma file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["prismaSchemaFolder"]
+  output          = "./generated/prisma-client-js"
+}
+
+model Adress {
+  id       Int    @id @default(autoincrement())
+  city     String
+  country  String
+  street   String
+  zip_code String
+  advertId Int
+  advert   Advert @relation(fields: [advertId], references: [id])
+}
+
+model Advert {
+  id             Int             @id @default(autoincrement())
+  title          String
+  nb_person      Int
+  price          Float
+  available_date DateTime
+  type           String
+  userId         Int
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  user           User            @relation(fields: [userId], references: [id])
+  Picture        Picture[]
+  Caracteristic  Caracteristic[]
+  Adress         Adress[]
+}
+
+model Caracteristic {
+  id          Int    @id @default(autoincrement())
+  nb_bedroom  Int
+  nb_bathroom Int
+  description String
+  advertId    Int
+  advert      Advert @relation(fields: [advertId], references: [id])
+}
+
+model Picture {
+  id       Int    @id @default(autoincrement())
+  url      String
+  advertId Int
+  advert   Advert @relation(fields: [advertId], references: [id])
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  name         String
+  password     String
+  about_me     String?
+  phone_number String   @unique
+  user_type    String   @default("client")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  Advert       Advert[]
+}

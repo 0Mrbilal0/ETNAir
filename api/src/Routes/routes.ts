@@ -36,5 +36,5 @@ router.delete("/annonces/:id", deleteAdvertById);
 
 // 404 route
 router.get("/*", (req, res) => {
-    res.status(404).json({message: "Not Found"})
+    res.status(404).json({message: "Not Found"});
 });

@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="co" />
+    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="co">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Controller/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Controller/UserController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Models/Adress.prisma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Models/Adverts.prisma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Models/Caracteristics.prisma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Models/Pictures.prisma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Models/Users.prisma" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Models/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Routes/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,9 +30,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2pkk5VPbJEGse9JYC087Nbzv6Qz" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -27,19 +41,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;itchir-b/etn-17-db-prisma&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bilal\Documents\etna\ETNAir\api\src\Models" />
+      <recent name="C:\Users\bilal\Documents\etna\ETNAir\api" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -56,6 +77,10 @@
       <option name="presentableId" value="Default" />
       <updated>1733317279163</updated>
       <workItem from="1733317280472" duration="1539000" />
+      <workItem from="1733319194329" duration="14448000" />
+      <workItem from="1733385298802" duration="3294000" />
+      <workItem from="1733389897632" duration="3175000" />
+      <workItem from="1733394489866" duration="478000" />
     </task>
     <task id="LOCAL-00001" summary="co">
       <option name="closed" value="true" />

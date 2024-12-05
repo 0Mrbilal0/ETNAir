@@ -1,4 +1,7 @@
 import { Request, Response } from 'express';
+import {PrismaClient, User} from "../Models/generated/prisma-client-js";
+import logger from "../../logger";
+const prisma = new PrismaClient()
 
 const users = [
     {
@@ -16,22 +19,24 @@ const users = [
 /**
  * Get all users 
  * @param req: Request
- * @param res: Response 
+ * @param res: Response
  */
 async function getAllUsers(req: Request, res: Response ) {
+    const users = await prisma.user.findMany();
     res.json(users)
 }
 
 /**
  * Create a new user
  * @param req: Request
- * @param res: Response 
+ * @param res: Response
  */
 async function createUser(req: Request, res: Response ) {
-    const newUser = req.body;
-    users.push(newUser);
-    console.log(req.body);
-    res.status(201).json({message: "User created"})
+    const newUser: User = req.body;
+    const createUser = await prisma.user.create({
+        data: newUser
+    });
+    res.status(201).json(createUser)
 }
 
 /**
@@ -50,14 +55,16 @@ async function getUserById(req: Request, res: Response ) {
 /**
  * Update user's informations by id
  * @param req: Request
- * @param res: Response 
+ * @param res: Response
  */
 async function updateUserById(req: Request, res: Response ) {
     const id = req.params.id;
     if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
-    const userId = users.findIndex(user => user.id === parseInt(id));
-    if (users[userId] === undefined ) res.status(404).json({message: "User Not Found"});
-    users[userId] = { id: parseInt(id), ...req.body };
+    const updatedUser = await prisma.user.update({
+        where: { id: parseInt(id) },
+        data: req.body
+    });
+    logger.info(updatedUser);
     res.sendStatus(200);
 }
 
