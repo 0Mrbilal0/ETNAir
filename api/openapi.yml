@@ -108,6 +108,74 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Advert'
+    post:
+      tags:
+        - ads
+      description: create advert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Advert"
+      responses:
+      201:
+        description: Advert created
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Advert"
+  /annonces/{id}:
+    parameters:
+        - name: id
+          in: path
+          description: Ad id
+          required: true
+          schema:
+            type: integer
+    get:
+      tags:
+        - ads
+      description: an ad
+      responses:
+        200:
+          description: Return an ad
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Advert'
+        404:
+          description: Return a not found error
+    put:
+      tags:
+        - ads
+      description: Update ad
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Advert"
+      responses:
+      200:
+        description: Advert updated
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Advert"
+    delete:
+      tags:
+        - ads
+      description: an advert
+      responses:
+        204:
+          description: Advert deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Advert'
+        404:
+          description: Return a not found error
 
 
 components:
