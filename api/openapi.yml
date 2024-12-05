@@ -9,9 +9,12 @@ servers:
   description: Serveur de développement
 
 tags:
-  - name: location
-    description: renting
+  - name: user
+    description: user related route
 
+tags:
+  - name: ads
+    description: ads related route
 paths:
   /utilisateurs:
     get:
@@ -93,6 +96,19 @@ paths:
                 $ref: '#/components/schemas/User'
         404:
           description: Return a not found error
+  /annonces:
+    get:
+      tags:
+        - ads
+      description: All ad
+      responses:
+        200:
+          description: Return all the ads of the database
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Advert'
+
 
 components:
   schemas:
@@ -108,3 +124,19 @@ components:
       additionalProperties: false
       required:
         - id
+        - name
+        - age
+    Advert:
+      type: object
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+        description:
+          type: string
+      additionalProperties: false
+      required:
+        - id
+        - name
+        - age
