@@ -69,7 +69,10 @@ CREATE TABLE "Reservation" (
   "user_id" integer UNIQUE NOT NULL,
   "advert_id" integer UNIQUE NOT NULL,
   "created_at" timestamp NOT NULL,
-  "updated_at" timestamp NOT NULL
+  "updated_at" timestamp NOT NULL,
+  CONSTRAINT UC_StartDate UNIQUE (id, start_date),
+  CONSTRAINT UC_EndDate UNIQUE (id, end_date),
+  CONSTRAINT check_start_end_date CHECK (start_date <= end_date)
 );
 
 CREATE TABLE "Review" (
