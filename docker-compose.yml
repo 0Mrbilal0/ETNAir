@@ -1,0 +1,39 @@
+# version: '3.9'
+services:
+  api:
+    image: node
+    working_dir: /api
+    command: node api.js
+    volumes:
+      - ./api:/api
+    ports: 
+      - "3000:3000"
+    environment:
+      API_DB_HOST: db
+      API_DB_USER: user
+      API_DB_PASSWORD: password
+      API_DB_NAME: etnair_db
+    depends_on:
+      - db
+    networks:
+      - etnair_network
+  db:
+    image: postgres
+    volumes: 
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: etnair_db
+    networks:
+      - etnair_network
+      - db_network
+
+volumes:
+  db_data:
+networks:
+  etnair_network:
+    driver: bridge
+  db_network:
+    driver: bridge
