@@ -1,9 +1,0 @@
-model Adress {
-  id       String  @id @default(cuid())
-  city     String
-  country  String
-  street   String
-  zip_code String
-  advertId String
-  advert   Adverts @relation(fields: [advertId], references: [id])
-}
