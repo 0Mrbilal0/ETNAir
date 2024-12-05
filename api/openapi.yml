@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: ETNAir
-  description: Location pas cher
+  description: Rental site
   version: 0.0.1
 
 servers:
@@ -9,5 +9,102 @@ servers:
   description: Serveur de développement
 
 tags:
-  - name: pokemon
-    description: api de pokemons
+  - name: location
+    description: renting
+
+paths:
+  /utilisateurs:
+    get:
+      tags:
+        - user
+      description: All users
+      responses:
+        200:
+          description: Return all the users of the database
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    post:
+      tags:
+        - user
+      description: create user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+      201:
+        description: User created
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+  /utilisateurs/{id}:
+    parameters:
+        - name: id
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: integer
+    get:
+      tags:
+        - user
+      description: a user
+      responses:
+        200:
+          description: Return a user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Return a not found error
+    put:
+      tags:
+        - user
+      description: Update user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+      200:
+        description: User updated
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+    delete:
+      tags:
+        - user
+      description: a user
+      responses:
+        204:
+          description: User deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Return a not found error
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        age:
+          type: number
+      additionalProperties: false
+      required:
+        - id
