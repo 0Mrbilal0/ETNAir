@@ -1,6 +1,7 @@
 import {Request, Response} from 'express';
-import { PrismaClient, User } from "../Models/generated/prisma-client-js";
-const prisma = new PrismaClient()
+import {Prisma, PrismaClient, User} from "../Models/generated/prisma-client-js";
+import logger from "../../logger";
+const prisma = new PrismaClient();
 
 /**
  * Get all users
@@ -9,8 +10,8 @@ const prisma = new PrismaClient()
  */
 async function getAllUsers(req: Request, res: Response) {
     const users = await prisma.user.findMany();
-    console.log(req.body)
-    res.json(users)
+    logger.info(req.body);
+    res.status(200).json(users);
 }
 
 /**
@@ -20,12 +21,19 @@ async function getAllUsers(req: Request, res: Response) {
  */
 async function createUser(req: Request, res: Response) {
     const newUser: User = req.body;
-    console.log("create User")
-    console.log(req.body)
-    const createUser = await prisma.user.create({
-        data: newUser
-    });
-    res.status(200).json(createUser);
+    try {
+        const createUser = await prisma.user.create({
+            data: newUser
+        });
+        logger.info("User Created");
+        res.status(200).json(createUser);
+    } catch (e) {
+        if (e instanceof Prisma.PrismaClientKnownRequestError) {
+            if (e.code === 'P2002') {
+                res.status(409).json({message: "Duplicate phone number or email"});
+            }
+        }
+    }
 }
 
 /**
@@ -40,7 +48,7 @@ async function getUserById(req: Request, res: Response) {
         where: {id: parseInt(id)}
     })
     if (user === undefined) res.status(404).json({message: "User Not Found"});
-    // logger.info(user)
+    logger.info(user)
     res.status(200).json(user);
 }
 
@@ -56,7 +64,7 @@ async function updateUserById(req: Request, res: Response) {
         where: {id: parseInt(id)},
         data: req.body
     });
-    // logger.info(updatedUser);
+    logger.info(updatedUser);
     res.status(200).json({message: "User Updated"});
 }
 
@@ -66,12 +74,12 @@ async function updateUserById(req: Request, res: Response) {
  * @param res: Response
  */
 async function deleteUserById(req: Request, res: Response) {
-    const id = req.params.id;
-    if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
-    const userId = await prisma.user.delete({
-        where: {id: parseInt(id)}
+    if (isNaN(parseInt(req.params.id))) res.status(400).json({message: "Bad Request"});
+    const userId: number = Number(req.params.id);
+    const user = await prisma.user.delete({
+        where: {id: userId}
     });
-    // logger.info(userId);
+    logger.info(user);
     res.status(204).json({message: "User Deleted"});
 }
 

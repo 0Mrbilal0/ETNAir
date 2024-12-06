@@ -126,6 +126,11 @@ exports.Prisma.AdressScalarFieldEnum = {
   advertId: 'advertId'
 };
 
+exports.Prisma.RelationLoadStrategy = {
+  query: 'query',
+  join: 'join'
+};
+
 exports.Prisma.AdvertScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -178,7 +183,17 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Types = exports.$Enums.Types = {
+  HOUSE: 'HOUSE',
+  APARTMENT: 'APARTMENT',
+  CASTLE: 'CASTLE',
+  TINY_HOUSE: 'TINY_HOUSE'
+};
 
+exports.UserType = exports.$Enums.UserType = {
+  ADMIN: 'ADMIN',
+  CLIENT: 'CLIENT'
+};
 
 exports.Prisma.ModelName = {
   Adress: 'Adress',

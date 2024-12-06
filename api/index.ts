@@ -5,16 +5,16 @@ import dotenv from 'dotenv';
 import { parseDocument } from 'yaml';
 import { readFileSync } from 'fs';
 dotenv.config();
-const port = process.env.PORT || 3000;
+const app = express();
 
 //TOI TU RESTE LA ET TU BOUGE PAS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-const app = express();
+app.use(express.json());
 // -------------------------------------------------------------------
 
-app.use(express.json());
+const port = process.env.PORT || 3000;
 app.use('/', router)
-
 app.use('/api_doc', serve, setup(parseDocument(readFileSync("./openapi.yml").toString())));
+
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })

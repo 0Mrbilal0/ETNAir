@@ -40,6 +40,37 @@ export type Picture = $Result.DefaultSelection<Prisma.$PicturePayload>
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Types: {
+  HOUSE: 'HOUSE',
+  APARTMENT: 'APARTMENT',
+  CASTLE: 'CASTLE',
+  TINY_HOUSE: 'TINY_HOUSE'
+};
+
+export type Types = (typeof Types)[keyof typeof Types]
+
+
+export const UserType: {
+  ADMIN: 'ADMIN',
+  CLIENT: 'CLIENT'
+};
+
+export type UserType = (typeof UserType)[keyof typeof UserType]
+
+}
+
+export type Types = $Enums.Types
+
+export const Types: typeof $Enums.Types
+
+export type UserType = $Enums.UserType
+
+export const UserType: typeof $Enums.UserType
+
+/**
  * ##  Prisma Client ʲˢ
  * 
  * Type-safe database client for TypeScript & Node.js
@@ -1523,7 +1554,7 @@ export namespace Prisma {
   type AdressGetPayload<S extends boolean | null | undefined | AdressDefaultArgs> = $Result.GetResult<Prisma.$AdressPayload, S>
 
   type AdressCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<AdressFindManyArgs, 'select' | 'include' | 'distinct'> & {
+    Omit<AdressFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
       select?: AdressCountAggregateInputType | true
     }
 
@@ -1936,6 +1967,7 @@ export namespace Prisma {
      * Filter, which Adress to fetch.
      */
     where: AdressWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -1954,6 +1986,7 @@ export namespace Prisma {
      * Filter, which Adress to fetch.
      */
     where: AdressWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2002,6 +2035,7 @@ export namespace Prisma {
      * Filter by unique combinations of Adresses.
      */
     distinct?: AdressScalarFieldEnum | AdressScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2050,6 +2084,7 @@ export namespace Prisma {
      * Filter by unique combinations of Adresses.
      */
     distinct?: AdressScalarFieldEnum | AdressScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2093,6 +2128,7 @@ export namespace Prisma {
      */
     skip?: number
     distinct?: AdressScalarFieldEnum | AdressScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2111,6 +2147,7 @@ export namespace Prisma {
      * The data needed to create a Adress.
      */
     data: XOR<AdressCreateInput, AdressUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2163,6 +2200,7 @@ export namespace Prisma {
      * Choose, which Adress to update.
      */
     where: AdressWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2203,6 +2241,7 @@ export namespace Prisma {
      * In case the Adress was found with the provided `where` argument, update it with this data.
      */
     update: XOR<AdressUpdateInput, AdressUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2221,6 +2260,7 @@ export namespace Prisma {
      * Filter which Adress to delete.
      */
     where: AdressWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2280,7 +2320,7 @@ export namespace Prisma {
     nb_person: number | null
     price: number | null
     available_date: Date | null
-    type: string | null
+    type: $Enums.Types | null
     userId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2292,7 +2332,7 @@ export namespace Prisma {
     nb_person: number | null
     price: number | null
     available_date: Date | null
-    type: string | null
+    type: $Enums.Types | null
     userId: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2455,7 +2495,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date
-    type: string
+    type: $Enums.Types
     userId: number
     createdAt: Date
     updatedAt: Date
@@ -2547,7 +2587,7 @@ export namespace Prisma {
       nb_person: number
       price: number
       available_date: Date
-      type: string
+      type: $Enums.Types
       userId: number
       createdAt: Date
       updatedAt: Date
@@ -2558,7 +2598,7 @@ export namespace Prisma {
   type AdvertGetPayload<S extends boolean | null | undefined | AdvertDefaultArgs> = $Result.GetResult<Prisma.$AdvertPayload, S>
 
   type AdvertCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<AdvertFindManyArgs, 'select' | 'include' | 'distinct'> & {
+    Omit<AdvertFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
       select?: AdvertCountAggregateInputType | true
     }
 
@@ -2953,7 +2993,7 @@ export namespace Prisma {
     readonly nb_person: FieldRef<"Advert", 'Int'>
     readonly price: FieldRef<"Advert", 'Float'>
     readonly available_date: FieldRef<"Advert", 'DateTime'>
-    readonly type: FieldRef<"Advert", 'String'>
+    readonly type: FieldRef<"Advert", 'Types'>
     readonly userId: FieldRef<"Advert", 'Int'>
     readonly createdAt: FieldRef<"Advert", 'DateTime'>
     readonly updatedAt: FieldRef<"Advert", 'DateTime'>
@@ -2977,6 +3017,7 @@ export namespace Prisma {
      * Filter, which Advert to fetch.
      */
     where: AdvertWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2995,6 +3036,7 @@ export namespace Prisma {
      * Filter, which Advert to fetch.
      */
     where: AdvertWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3043,6 +3085,7 @@ export namespace Prisma {
      * Filter by unique combinations of Adverts.
      */
     distinct?: AdvertScalarFieldEnum | AdvertScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3091,6 +3134,7 @@ export namespace Prisma {
      * Filter by unique combinations of Adverts.
      */
     distinct?: AdvertScalarFieldEnum | AdvertScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3134,6 +3178,7 @@ export namespace Prisma {
      */
     skip?: number
     distinct?: AdvertScalarFieldEnum | AdvertScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3152,6 +3197,7 @@ export namespace Prisma {
      * The data needed to create a Advert.
      */
     data: XOR<AdvertCreateInput, AdvertUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3204,6 +3250,7 @@ export namespace Prisma {
      * Choose, which Advert to update.
      */
     where: AdvertWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3244,6 +3291,7 @@ export namespace Prisma {
      * In case the Advert was found with the provided `where` argument, update it with this data.
      */
     update: XOR<AdvertUpdateInput, AdvertUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3262,6 +3310,7 @@ export namespace Prisma {
      * Filter which Advert to delete.
      */
     where: AdvertWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3604,7 +3653,7 @@ export namespace Prisma {
   type CaracteristicGetPayload<S extends boolean | null | undefined | CaracteristicDefaultArgs> = $Result.GetResult<Prisma.$CaracteristicPayload, S>
 
   type CaracteristicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<CaracteristicFindManyArgs, 'select' | 'include' | 'distinct'> & {
+    Omit<CaracteristicFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
       select?: CaracteristicCountAggregateInputType | true
     }
 
@@ -4016,6 +4065,7 @@ export namespace Prisma {
      * Filter, which Caracteristic to fetch.
      */
     where: CaracteristicWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4034,6 +4084,7 @@ export namespace Prisma {
      * Filter, which Caracteristic to fetch.
      */
     where: CaracteristicWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4082,6 +4133,7 @@ export namespace Prisma {
      * Filter by unique combinations of Caracteristics.
      */
     distinct?: CaracteristicScalarFieldEnum | CaracteristicScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4130,6 +4182,7 @@ export namespace Prisma {
      * Filter by unique combinations of Caracteristics.
      */
     distinct?: CaracteristicScalarFieldEnum | CaracteristicScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4173,6 +4226,7 @@ export namespace Prisma {
      */
     skip?: number
     distinct?: CaracteristicScalarFieldEnum | CaracteristicScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4191,6 +4245,7 @@ export namespace Prisma {
      * The data needed to create a Caracteristic.
      */
     data: XOR<CaracteristicCreateInput, CaracteristicUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4243,6 +4298,7 @@ export namespace Prisma {
      * Choose, which Caracteristic to update.
      */
     where: CaracteristicWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4283,6 +4339,7 @@ export namespace Prisma {
      * In case the Caracteristic was found with the provided `where` argument, update it with this data.
      */
     update: XOR<CaracteristicUpdateInput, CaracteristicUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4301,6 +4358,7 @@ export namespace Prisma {
      * Filter which Caracteristic to delete.
      */
     where: CaracteristicWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4553,7 +4611,7 @@ export namespace Prisma {
   type PictureGetPayload<S extends boolean | null | undefined | PictureDefaultArgs> = $Result.GetResult<Prisma.$PicturePayload, S>
 
   type PictureCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<PictureFindManyArgs, 'select' | 'include' | 'distinct'> & {
+    Omit<PictureFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
       select?: PictureCountAggregateInputType | true
     }
 
@@ -4963,6 +5021,7 @@ export namespace Prisma {
      * Filter, which Picture to fetch.
      */
     where: PictureWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4981,6 +5040,7 @@ export namespace Prisma {
      * Filter, which Picture to fetch.
      */
     where: PictureWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -5029,6 +5089,7 @@ export namespace Prisma {
      * Filter by unique combinations of Pictures.
      */
     distinct?: PictureScalarFieldEnum | PictureScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -5077,6 +5138,7 @@ export namespace Prisma {
      * Filter by unique combinations of Pictures.
      */
     distinct?: PictureScalarFieldEnum | PictureScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -5120,6 +5182,7 @@ export namespace Prisma {
      */
     skip?: number
     distinct?: PictureScalarFieldEnum | PictureScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -5138,6 +5201,7 @@ export namespace Prisma {
      * The data needed to create a Picture.
      */
     data: XOR<PictureCreateInput, PictureUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -5190,6 +5254,7 @@ export namespace Prisma {
      * Choose, which Picture to update.
      */
     where: PictureWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -5230,6 +5295,7 @@ export namespace Prisma {
      * In case the Picture was found with the provided `where` argument, update it with this data.
      */
     update: XOR<PictureUpdateInput, PictureUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -5248,6 +5314,7 @@ export namespace Prisma {
      * Filter which Picture to delete.
      */
     where: PictureWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -5302,7 +5369,7 @@ export namespace Prisma {
     password: string | null
     about_me: string | null
     phone_number: string | null
-    user_type: string | null
+    user_type: $Enums.UserType | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5314,7 +5381,7 @@ export namespace Prisma {
     password: string | null
     about_me: string | null
     phone_number: string | null
-    user_type: string | null
+    user_type: $Enums.UserType | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5471,7 +5538,7 @@ export namespace Prisma {
     password: string
     about_me: string | null
     phone_number: string
-    user_type: string
+    user_type: $Enums.UserType
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -5551,7 +5618,7 @@ export namespace Prisma {
       password: string
       about_me: string | null
       phone_number: string
-      user_type: string
+      user_type: $Enums.UserType
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -5561,7 +5628,7 @@ export namespace Prisma {
   type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
   type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct'> & {
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
       select?: UserCountAggregateInputType | true
     }
 
@@ -5954,7 +6021,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly about_me: FieldRef<"User", 'String'>
     readonly phone_number: FieldRef<"User", 'String'>
-    readonly user_type: FieldRef<"User", 'String'>
+    readonly user_type: FieldRef<"User", 'UserType'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -5977,6 +6044,7 @@ export namespace Prisma {
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -5995,6 +6063,7 @@ export namespace Prisma {
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -6043,6 +6112,7 @@ export namespace Prisma {
      * Filter by unique combinations of Users.
      */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -6091,6 +6161,7 @@ export namespace Prisma {
      * Filter by unique combinations of Users.
      */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -6134,6 +6205,7 @@ export namespace Prisma {
      */
     skip?: number
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -6152,6 +6224,7 @@ export namespace Prisma {
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -6200,6 +6273,7 @@ export namespace Prisma {
      * Choose, which User to update.
      */
     where: UserWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -6240,6 +6314,7 @@ export namespace Prisma {
      * In case the User was found with the provided `where` argument, update it with this data.
      */
     update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -6258,6 +6333,7 @@ export namespace Prisma {
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -6329,6 +6405,14 @@ export namespace Prisma {
   };
 
   export type AdressScalarFieldEnum = (typeof AdressScalarFieldEnum)[keyof typeof AdressScalarFieldEnum]
+
+
+  export const RelationLoadStrategy: {
+    query: 'query',
+    join: 'join'
+  };
+
+  export type RelationLoadStrategy = (typeof RelationLoadStrategy)[keyof typeof RelationLoadStrategy]
 
 
   export const AdvertScalarFieldEnum: {
@@ -6464,6 +6548,34 @@ export namespace Prisma {
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Types'
+   */
+  export type EnumTypesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Types'>
+    
+
+
+  /**
+   * Reference to a field of type 'Types[]'
+   */
+  export type ListEnumTypesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Types[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserType'
+   */
+  export type EnumUserTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserType'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserType[]'
+   */
+  export type ListEnumUserTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserType[]'>
+    
   /**
    * Deep Input Types
    */
@@ -6540,7 +6652,7 @@ export namespace Prisma {
     nb_person?: IntFilter<"Advert"> | number
     price?: FloatFilter<"Advert"> | number
     available_date?: DateTimeFilter<"Advert"> | Date | string
-    type?: StringFilter<"Advert"> | string
+    type?: EnumTypesFilter<"Advert"> | $Enums.Types
     userId?: IntFilter<"Advert"> | number
     createdAt?: DateTimeFilter<"Advert"> | Date | string
     updatedAt?: DateTimeFilter<"Advert"> | Date | string
@@ -6575,7 +6687,7 @@ export namespace Prisma {
     nb_person?: IntFilter<"Advert"> | number
     price?: FloatFilter<"Advert"> | number
     available_date?: DateTimeFilter<"Advert"> | Date | string
-    type?: StringFilter<"Advert"> | string
+    type?: EnumTypesFilter<"Advert"> | $Enums.Types
     userId?: IntFilter<"Advert"> | number
     createdAt?: DateTimeFilter<"Advert"> | Date | string
     updatedAt?: DateTimeFilter<"Advert"> | Date | string
@@ -6611,7 +6723,7 @@ export namespace Prisma {
     nb_person?: IntWithAggregatesFilter<"Advert"> | number
     price?: FloatWithAggregatesFilter<"Advert"> | number
     available_date?: DateTimeWithAggregatesFilter<"Advert"> | Date | string
-    type?: StringWithAggregatesFilter<"Advert"> | string
+    type?: EnumTypesWithAggregatesFilter<"Advert"> | $Enums.Types
     userId?: IntWithAggregatesFilter<"Advert"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Advert"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Advert"> | Date | string
@@ -6731,7 +6843,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     about_me?: StringNullableFilter<"User"> | string | null
     phone_number?: StringFilter<"User"> | string
-    user_type?: StringFilter<"User"> | string
+    user_type?: EnumUserTypeFilter<"User"> | $Enums.UserType
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     Advert?: AdvertListRelationFilter
@@ -6760,7 +6872,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     about_me?: StringNullableFilter<"User"> | string | null
-    user_type?: StringFilter<"User"> | string
+    user_type?: EnumUserTypeFilter<"User"> | $Enums.UserType
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     Advert?: AdvertListRelationFilter
@@ -6793,7 +6905,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     about_me?: StringNullableWithAggregatesFilter<"User"> | string | null
     phone_number?: StringWithAggregatesFilter<"User"> | string
-    user_type?: StringWithAggregatesFilter<"User"> | string
+    user_type?: EnumUserTypeWithAggregatesFilter<"User"> | $Enums.UserType
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -6862,7 +6974,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAdvertInput
@@ -6877,7 +6989,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -6891,7 +7003,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAdvertNestedInput
@@ -6906,7 +7018,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6921,7 +7033,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -6932,7 +7044,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6943,7 +7055,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7045,7 +7157,7 @@ export namespace Prisma {
     password: string
     about_me?: string | null
     phone_number: string
-    user_type?: string
+    user_type?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
     Advert?: AdvertCreateNestedManyWithoutUserInput
@@ -7058,7 +7170,7 @@ export namespace Prisma {
     password: string
     about_me?: string | null
     phone_number: string
-    user_type?: string
+    user_type?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
     Advert?: AdvertUncheckedCreateNestedManyWithoutUserInput
@@ -7070,7 +7182,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     about_me?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number?: StringFieldUpdateOperationsInput | string
-    user_type?: StringFieldUpdateOperationsInput | string
+    user_type?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Advert?: AdvertUpdateManyWithoutUserNestedInput
@@ -7083,7 +7195,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     about_me?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number?: StringFieldUpdateOperationsInput | string
-    user_type?: StringFieldUpdateOperationsInput | string
+    user_type?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Advert?: AdvertUncheckedUpdateManyWithoutUserNestedInput
@@ -7096,7 +7208,7 @@ export namespace Prisma {
     password: string
     about_me?: string | null
     phone_number: string
-    user_type?: string
+    user_type?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7107,7 +7219,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     about_me?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number?: StringFieldUpdateOperationsInput | string
-    user_type?: StringFieldUpdateOperationsInput | string
+    user_type?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7119,7 +7231,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     about_me?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number?: StringFieldUpdateOperationsInput | string
-    user_type?: StringFieldUpdateOperationsInput | string
+    user_type?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7248,6 +7360,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type EnumTypesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Types | EnumTypesFieldRefInput<$PrismaModel>
+    in?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
+    not?: NestedEnumTypesFilter<$PrismaModel> | $Enums.Types
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -7363,6 +7482,16 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumTypesWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Types | EnumTypesFieldRefInput<$PrismaModel>
+    in?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
+    not?: NestedEnumTypesWithAggregatesFilter<$PrismaModel> | $Enums.Types
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTypesFilter<$PrismaModel>
+    _max?: NestedEnumTypesFilter<$PrismaModel>
+  }
+
   export type CaracteristicCountOrderByAggregateInput = {
     id?: SortOrder
     nb_bedroom?: SortOrder
@@ -7444,6 +7573,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type EnumUserTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserType | EnumUserTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserTypeFilter<$PrismaModel> | $Enums.UserType
+  }
+
   export type AdvertListRelationFilter = {
     every?: AdvertWhereInput
     some?: AdvertWhereInput
@@ -7519,6 +7655,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumUserTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserType | EnumUserTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserTypeWithAggregatesFilter<$PrismaModel> | $Enums.UserType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserTypeFilter<$PrismaModel>
+    _max?: NestedEnumUserTypeFilter<$PrismaModel>
   }
 
   export type AdvertCreateNestedOneWithoutAdressInput = {
@@ -7605,6 +7751,10 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type EnumTypesFieldUpdateOperationsInput = {
+    set?: $Enums.Types
   }
 
   export type UserUpdateOneRequiredWithoutAdvertNestedInput = {
@@ -7745,6 +7895,10 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type EnumUserTypeFieldUpdateOperationsInput = {
+    set?: $Enums.UserType
+  }
+
   export type AdvertUpdateManyWithoutUserNestedInput = {
     create?: XOR<AdvertCreateWithoutUserInput, AdvertUncheckedCreateWithoutUserInput> | AdvertCreateWithoutUserInput[] | AdvertUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AdvertCreateOrConnectWithoutUserInput | AdvertCreateOrConnectWithoutUserInput[]
@@ -7853,6 +8007,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedEnumTypesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Types | EnumTypesFieldRefInput<$PrismaModel>
+    in?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
+    not?: NestedEnumTypesFilter<$PrismaModel> | $Enums.Types
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -7883,6 +8044,16 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumTypesWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Types | EnumTypesFieldRefInput<$PrismaModel>
+    in?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
+    not?: NestedEnumTypesWithAggregatesFilter<$PrismaModel> | $Enums.Types
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTypesFilter<$PrismaModel>
+    _max?: NestedEnumTypesFilter<$PrismaModel>
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -7895,6 +8066,13 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumUserTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserType | EnumUserTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserTypeFilter<$PrismaModel> | $Enums.UserType
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7925,12 +8103,22 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumUserTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserType | EnumUserTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserTypeWithAggregatesFilter<$PrismaModel> | $Enums.UserType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserTypeFilter<$PrismaModel>
+    _max?: NestedEnumUserTypeFilter<$PrismaModel>
+  }
+
   export type AdvertCreateWithoutAdressInput = {
     title: string
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAdvertInput
@@ -7944,7 +8132,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7973,7 +8161,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAdvertNestedInput
@@ -7987,7 +8175,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8001,7 +8189,7 @@ export namespace Prisma {
     password: string
     about_me?: string | null
     phone_number: string
-    user_type?: string
+    user_type?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8013,7 +8201,7 @@ export namespace Prisma {
     password: string
     about_me?: string | null
     phone_number: string
-    user_type?: string
+    user_type?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8107,7 +8295,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     about_me?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number?: StringFieldUpdateOperationsInput | string
-    user_type?: StringFieldUpdateOperationsInput | string
+    user_type?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8119,7 +8307,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     about_me?: NullableStringFieldUpdateOperationsInput | string | null
     phone_number?: StringFieldUpdateOperationsInput | string
-    user_type?: StringFieldUpdateOperationsInput | string
+    user_type?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8209,7 +8397,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAdvertInput
@@ -8223,7 +8411,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8252,7 +8440,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAdvertNestedInput
@@ -8266,7 +8454,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8279,7 +8467,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAdvertInput
@@ -8293,7 +8481,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8322,7 +8510,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAdvertNestedInput
@@ -8336,7 +8524,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8349,7 +8537,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
     Picture?: PictureCreateNestedManyWithoutAdvertInput
@@ -8363,7 +8551,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
     Picture?: PictureUncheckedCreateNestedManyWithoutAdvertInput
@@ -8406,7 +8594,7 @@ export namespace Prisma {
     nb_person?: IntFilter<"Advert"> | number
     price?: FloatFilter<"Advert"> | number
     available_date?: DateTimeFilter<"Advert"> | Date | string
-    type?: StringFilter<"Advert"> | string
+    type?: EnumTypesFilter<"Advert"> | $Enums.Types
     userId?: IntFilter<"Advert"> | number
     createdAt?: DateTimeFilter<"Advert"> | Date | string
     updatedAt?: DateTimeFilter<"Advert"> | Date | string
@@ -8495,7 +8683,7 @@ export namespace Prisma {
     nb_person: number
     price: number
     available_date: Date | string
-    type: string
+    type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8505,7 +8693,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Picture?: PictureUpdateManyWithoutAdvertNestedInput
@@ -8519,7 +8707,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Picture?: PictureUncheckedUpdateManyWithoutAdvertNestedInput
@@ -8533,7 +8721,7 @@ export namespace Prisma {
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

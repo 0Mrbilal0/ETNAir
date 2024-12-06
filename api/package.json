@@ -4,8 +4,7 @@
   "description": "api",
   "main": "index.ts",
   "scripts": {
-    "dev": "nodemon index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.ts"
   },
   "author": "etnair-elite",
   "license": "MIT",
