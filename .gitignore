@@ -144,4 +144,14 @@ data
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
-workspace.xml
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
