@@ -4,33 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="co">
-      <change afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/query_engine-windows.dll.node.tmp11240" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/query_engine-windows.dll.node.tmp20392" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/query_engine-windows.dll.node.tmp27568" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/migrations/20241206085238_add_advert_type_enum/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/migrations/20241206091627_add_index_advert/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/migrations/20241206101938_add_cascade_user_delete/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/migrations/20241206102853_update_type_of_user_type/migration.sql" afterDir="false" />
+    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="feat: :sparkles: Add prisma">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Controller/AdvertController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Controller/AdvertController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Controller/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Controller/UserController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/edge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index-browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/wasm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,12 +31,12 @@
     "assignee": "0Mrbilal0"
   }
 }]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:0Mrbilal0/ETNAir.git",
-    "accountId": "1e08b428-798b-4f63-a4e5-1d392c9b7356"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:0Mrbilal0/ETNAir.git&quot;,
+    &quot;accountId&quot;: &quot;1e08b428-798b-4f63-a4e5-1d392c9b7356&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -63,24 +53,36 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Node.js.dev.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "itchir-b/etn-17-db-prisma",
+    "git-widget-placeholder": "itchir-b/etn-33-front",
+    "last_opened_file_path": "C:/Users/bilal/Documents/etna/ETNAir/client",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\client\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\bilal\Documents\etna\ETNAir\api\src\Models" />
-      <recent name="C:\Users\bilal\Documents\etna\ETNAir\api" />
-    </key>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -98,11 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1733317279163</updated>
       <workItem from="1733317280472" duration="1539000" />
-      <workItem from="1733319194329" duration="14448000" />
-      <workItem from="1733385298802" duration="3294000" />
-      <workItem from="1733389897632" duration="3175000" />
-      <workItem from="1733394489866" duration="478000" />
-      <workItem from="1733473935561" duration="13149000" />
+      <workItem from="1733496342571" duration="3084000" />
     </task>
     <task id="LOCAL-00001" summary="co">
       <option name="closed" value="true" />

@@ -11,5 +11,8 @@
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.0"
+  },
+  "dependencies": {
+    "vite": "^6.0.3"
   }
 }
