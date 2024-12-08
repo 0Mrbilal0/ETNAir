@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-api
+  namespace: node-api-server
+  labels:
+    app: node-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-api
+  template:
+    metadata:
+      labels:
+        app: node-api
+    spec:
+      containers:
+      - name: node-api
+        image: khelifil/etnair-api
+        ports:
+        - containerPort: 3000
+        env:
+        - name: POSTGRES_HOST
+          value: "postgresql.postgresql-server.svc.cluster.local"
+        - name: POSTGRES_USER
+          value: "etnair_user"
+        - name: POSTGRES_PASSWORD
+          value: "etnair_pass"
+        - name: POSTGRES_DB
+          value: "etnair_db"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-api
+  namespace: node-api-server
+spec:
+  type: ClusterIP
+  selector:
+    app: node-api
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000 
