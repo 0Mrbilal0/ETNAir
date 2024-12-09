@@ -82,14 +82,14 @@ async function createUser(req: Request, res: Response) {
 
         // Send informations about the created user to the client
         logger.info("User Created");
-        res.status(200).json(createUser);
-
+        res.status(200).json({message: "User Created"});
     } catch (e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
             if (e.code === 'P2002') {
                 res.status(409).json({ message: "Duplicate phone number or email" });
             }
         }
+        res.status(500).json({message: "Internal Server Error"});
     }
 }
 
