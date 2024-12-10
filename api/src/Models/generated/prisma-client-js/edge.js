@@ -184,7 +184,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\src\\Models\\generated\\prisma-client-js",
+      "value": "/Users/charmant/Documents/ETNA/CodeToWork/Semaine8/ETNAir/api/src/Models/generated/prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -193,7 +193,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
@@ -201,7 +201,7 @@ const config = {
       "relationJoins",
       "prismaSchemaFolder"
     ],
-    "sourceFilePath": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\src\\Models\\schema.prisma",
+    "sourceFilePath": "/Users/charmant/Documents/ETNA/CodeToWork/Semaine8/ETNAir/api/src/Models/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
