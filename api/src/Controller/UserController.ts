@@ -1,7 +1,11 @@
 import {Request, Response} from 'express';
 import {Prisma, PrismaClient, User} from "../Models/generated/prisma-client-js";
 import logger from "../../logger";
+import * as bcrypt from 'bcrypt';
+
+
 const prisma = new PrismaClient();
+const saltRounds = 12;
 
 /**
  * Get all users
@@ -22,6 +26,9 @@ async function getAllUsers(req: Request, res: Response) {
 async function createUser(req: Request, res: Response) {
     const newUser: User = req.body;
     try {
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hashedPassword = await bcrypt.hash(newUser.password, salt);
+        newUser.password = hashedPassword;
         const createUser = await prisma.user.create({
             data: newUser
         });
@@ -50,6 +57,20 @@ async function getUserById(req: Request, res: Response) {
     if (user === undefined) res.status(404).json({message: "User Not Found"});
     logger.info(user)
     res.status(200).json(user);
+}
+
+async function loginUser(req: Request, res: Response){
+    const { email, password } = req.body;
+    const account = await prisma.user.findUnique({
+        where: {email: email}
+    });
+
+    const  goodPassword = await bcrypt.compare(password, account?.password!);
+    if (goodPassword === false) {
+        throw new Error("User not found");
+    } else {
+        res.status(200).json({message: "User found"});
+    }
 }
 
 /**
@@ -83,4 +104,4 @@ async function deleteUserById(req: Request, res: Response) {
     res.status(204).json({message: "User Deleted"});
 }
 
-export {getAllUsers, createUser, getUserById, updateUserById, deleteUserById}
+export {getAllUsers, createUser, getUserById, updateUserById, loginUser, deleteUserById}

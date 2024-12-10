@@ -185,7 +185,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\src\\Models\\generated\\prisma-client-js",
+      "value": "/Users/charmant/Documents/ETNA/CodeToWork/Semaine8/ETNAir/api/src/Models/generated/prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -194,7 +194,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
@@ -202,7 +202,7 @@ const config = {
       "relationJoins",
       "prismaSchemaFolder"
     ],
-    "sourceFilePath": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\src\\Models\\schema.prisma",
+    "sourceFilePath": "/Users/charmant/Documents/ETNA/CodeToWork/Semaine8/ETNAir/api/src/Models/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -263,8 +263,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "src/Models/generated/prisma-client-js/query_engine-windows.dll.node")
+path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
+path.join(process.cwd(), "src/Models/generated/prisma-client-js/libquery_engine-darwin-arm64.dylib.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/Models/generated/prisma-client-js/schema.prisma")
