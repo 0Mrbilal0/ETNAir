@@ -11,7 +11,7 @@ import {
     PopoverPanel,
 } from '@headlessui/react'
 import {
-    ArrowPathIcon,
+    // ArrowPathIcon,
     Bars3Icon,
     ChartPieIcon,
     CursorArrowRaysIcon,
@@ -22,11 +22,10 @@ import {
 import {ChevronDownIcon} from '@heroicons/react/20/solid'
 
 const products = [
-    {name: 'Home', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon},
-    {name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon},
-    {name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon},
-    {name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon},
-    {name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon},
+    {name: 'House', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon},
+    {name: 'Castle', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon},
+    {name: 'Appartement', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon},
+    {name: 'Tiny-House', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon},
 ]
 
 export default function Example() {
@@ -100,10 +99,11 @@ export default function Example() {
                         Company
                     </a>
                 </PopoverGroup>
-                <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="#" className="text-sm/6 font-semibold text-gray-900">
-                        Log in <span aria-hidden="true">&rarr;</span>
+                <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:align-center gap-5">
+                    <a href="#" className="text-sm/6 font-semibold text-gray-900 text-lg align-text-bottom">
+                        Log in
                     </a>
+                    <img src="/Light_Mode_Icon.svg"/>
                 </div>
             </nav>
             <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden h-full z-50">
@@ -135,7 +135,7 @@ export default function Example() {
                                 <Disclosure as="div" className="-mx-3">
                                     <DisclosureButton
                                         className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                                        Product
+                                        Rentals
                                         <ChevronDownIcon aria-hidden="true"
                                                          className="size-5 flex-none group-data-[open]:rotate-180"/>
                                     </DisclosureButton>
@@ -180,7 +180,7 @@ export default function Example() {
                                 </a>
                             </div>
                         </div>
-                        <img src="/Light_Mode_Icon.svg" className="self-end w-10"/>
+                        <img src="/Light_Mode_Icon.svg" className="self-end w-7"/>
                     </div>
                 </DialogPanel>
             </Dialog>
