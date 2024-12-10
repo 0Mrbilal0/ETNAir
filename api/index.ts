@@ -13,6 +13,7 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000;
 app.use('/', router)
+
 app.use('/api_doc', serve, setup(parseDocument(readFileSync("./openapi.yml").toString())));
 
 app.listen(port, () => {

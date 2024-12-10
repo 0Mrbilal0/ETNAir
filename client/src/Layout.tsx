@@ -7,7 +7,7 @@ function Layout() {
     return (
         <section id="layout">
             <Navbar />
-            <section className="content">
+            <section className="p-5">
                 <Outlet/>
             </section>
             <Footer/>
