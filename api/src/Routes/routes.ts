@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getAllUsers, createUser, getUserById, updateUserById, deleteUserById } from '../Controller/UserController';
-import { getAllAdverts, createAdvert, getAdvertsById, updateAdvertById, deleteAdvertById} from '../Controller/AdvertController';
+import { getAllAdverts, createAdvert, getAdvertsById, updateAdvertById, deleteAdvertById} from '../Controller/RentalController';
 
 export const router = Router();
 

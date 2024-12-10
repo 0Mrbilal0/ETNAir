@@ -123,7 +123,7 @@ exports.Prisma.AdressScalarFieldEnum = {
   country: 'country',
   street: 'street',
   zip_code: 'zip_code',
-  advertId: 'advertId'
+  rentalId: 'rentalId'
 };
 
 exports.Prisma.RelationLoadStrategy = {
@@ -131,7 +131,7 @@ exports.Prisma.RelationLoadStrategy = {
   join: 'join'
 };
 
-exports.Prisma.AdvertScalarFieldEnum = {
+exports.Prisma.RentalScalarFieldEnum = {
   id: 'id',
   title: 'title',
   nb_person: 'nb_person',
@@ -148,13 +148,13 @@ exports.Prisma.CaracteristicScalarFieldEnum = {
   nb_bedroom: 'nb_bedroom',
   nb_bathroom: 'nb_bathroom',
   description: 'description',
-  advertId: 'advertId'
+  rentalId: 'rentalId'
 };
 
 exports.Prisma.PictureScalarFieldEnum = {
   id: 'id',
   url: 'url',
-  advertId: 'advertId'
+  rentalId: 'rentalId'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -197,7 +197,7 @@ exports.UserType = exports.$Enums.UserType = {
 
 exports.Prisma.ModelName = {
   Adress: 'Adress',
-  Advert: 'Advert',
+  Rental: 'Rental',
   Caracteristic: 'Caracteristic',
   Picture: 'Picture',
   User: 'User'
