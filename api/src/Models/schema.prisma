@@ -21,11 +21,11 @@ model Adress {
   country  String
   street   String
   zip_code String
-  advertId Int
-  advert   Advert @relation(fields: [advertId], references: [id], onDelete: Cascade)
+  rentalId Int
+  rental   Rental @relation(fields: [rentalId], references: [id], onDelete: Cascade)
 }
 
-model Advert {
+model Rental {
   id             Int             @id @default(autoincrement())
   title          String
   nb_person      Int
@@ -48,15 +48,15 @@ model Caracteristic {
   nb_bedroom  Int
   nb_bathroom Int
   description String
-  advertId    Int
-  advert      Advert @relation(fields: [advertId], references: [id], onDelete: Cascade)
+  rentalId    Int
+  rental      Rental @relation(fields: [rentalId], references: [id], onDelete: Cascade)
 }
 
 model Picture {
   id       Int    @id @default(autoincrement())
   url      String
-  advertId Int
-  advert   Advert @relation(fields: [advertId], references: [id], onDelete: Cascade)
+  rentalId Int
+  rental   Rental @relation(fields: [rentalId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -69,7 +69,7 @@ model User {
   user_type    UserType @default(CLIENT)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  Advert       Advert[]
+  Rental       Rental[]
 }
 
 enum Types {
