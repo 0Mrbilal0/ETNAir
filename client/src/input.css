@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --light-background: #FFF8F3;
+    --light-on-background: #1F1B15;
+    --light-background-variant: #E2D9CF;
+    --light-on-background-variant: #4E4538;
+    --light-primary: #876212;
+    --light-on-primary: #FFFFFF;
+    --light-secondary: #CE9D2A;
+    --light-on-secondary: #231800;
+    --light-tertiary: #5F6F29;
+    --light-on-tertiary: #FFFFFF;
+
+    --dark-background: #16130D;
+    --dark-on-background: #EAE1D7;
+    --dark-background-variant: #3D3832;
+    --dark-on-background-variant: #D2C5B2;
+    --dark-primary: #694A00;
+    --dark-on-primary: #FFECD1;
+    --dark-secondary: #B78913;
+    --dark-on-secondary: #000000;
+    --dark-tertiary: #465511;
+    --dark-on-tertiary: #E4F7A2;
+}
+
 #layout {
     display: grid;
     grid-template-columns: 1fr;
