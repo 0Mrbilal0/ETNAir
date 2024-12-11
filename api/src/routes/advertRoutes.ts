@@ -1,24 +1,24 @@
 import { Router } from 'express';
-import { getAllAdverts, createAdvert, getAdvertsById, updateAdvertById, deleteAdvertById} from '../controller/AdvertController';
+import { getAllRentals, createRental, getRentalsById, updateRentalById, deleteRentalById} from '../controller/RentalController';
 
 const verifyToken = require('../middleware/authMiddleware');
 
 export const advertRouter = Router();
 
 // Get all adverts
-advertRouter.get("/rentals", getAllAdverts);
+advertRouter.get("/rentals", getAllRentals);
 
 // Create a new advert
-advertRouter.post("/rentals", verifyToken, createAdvert);
+advertRouter.post("/rentals", verifyToken, createRental);
 
 // Get advert by id
-advertRouter.get("/rentals/:id", getAdvertsById);
+advertRouter.get("/rentals/:id", getRentalsById);
 
 // Update advert by id
-advertRouter.put("/rentals/:id", verifyToken,updateAdvertById);
+advertRouter.put("/rentals/:id", verifyToken,updateRentalById);
 
 // Delete advert by id
-advertRouter.delete("/rentals/:id", verifyToken, deleteAdvertById);
+advertRouter.delete("/rentals/:id", verifyToken, deleteRentalById);
 
 // 404 route
 advertRouter.get("/*", (req, res) => {
