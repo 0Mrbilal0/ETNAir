@@ -1,22 +1,24 @@
 import { Router } from 'express';
 import { getAllAdverts, createAdvert, getAdvertsById, updateAdvertById, deleteAdvertById} from '../controller/AdvertController';
 
+const verifyToken = require('../middleware/authMiddleware');
+
 export const advertRouter = Router();
 
 // Get all adverts
-advertRouter.get("/annonces", getAllAdverts);
+advertRouter.get("/rentals", getAllAdverts);
 
 // Create a new advert
-advertRouter.post("/annonces", createAdvert);
+advertRouter.post("/rentals", verifyToken, createAdvert);
 
 // Get advert by id
-advertRouter.get("/annonces/:id", getAdvertsById);
+advertRouter.get("/rentals/:id", getAdvertsById);
 
 // Update advert by id
-advertRouter.put("/annonces/:id", updateAdvertById);
+advertRouter.put("/rentals/:id", verifyToken,updateAdvertById);
 
 // Delete advert by id
-advertRouter.delete("/annonces/:id", deleteAdvertById);
+advertRouter.delete("/rentals/:id", verifyToken, deleteAdvertById);
 
 // 404 route
 advertRouter.get("/*", (req, res) => {

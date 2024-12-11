@@ -2,17 +2,18 @@ import { Router, Request } from 'express';
 import { getAllUsers, createUser, getUserById, updateUserById, loginUser, deleteUserById } from '../controller/UserController';
 
 export const userRouter = Router();
+const verifyToken = require('../middleware/authMiddleware');
 
 // Ping pong route
 userRouter.get("/", (req, res) => {
-    res.redirect("/auth");
+    res.send("Ping Pong");
 })
 
 // Get all users
-userRouter.get("/utilisateurs", getAllUsers);
+userRouter.get("/auth", verifyToken, getAllUsers);
 
 // Get user by id
-userRouter.get("/auth/:id", getUserById);
+userRouter.get("/auth/:id", verifyToken, getUserById);
 
 // Create a new user
 userRouter.post("/auth/register", createUser);
@@ -21,7 +22,7 @@ userRouter.post("/auth/register", createUser);
 userRouter.post("/auth/login", loginUser);
 
 // Update user by id
-userRouter.put("/auth/:id", updateUserById);
+userRouter.put("/auth/:id", verifyToken, updateUserById);
 
 // Delete user by id
-userRouter.delete("/auth/:id", deleteUserById);
+userRouter.delete("/auth/:id", verifyToken, deleteUserById);
