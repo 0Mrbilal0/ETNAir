@@ -1,10 +1,11 @@
 import {Request, Response} from 'express';
+import {JwtPayload} from "jsonwebtoken";
 import {Prisma, PrismaClient, User} from "../Models/generated/prisma-client-js";
 import logger from "../../logger";
 import * as bcrypt from 'bcrypt';
 
-
 const prisma = new PrismaClient();
+const jwt = require('jsonwebtoken');
 const saltRounds = 12;
 
 /**
@@ -62,15 +63,21 @@ async function getUserById(req: Request, res: Response) {
 
 async function loginUser(req: Request, res: Response){
     const { email, password } = req.body;
+
     const account = await prisma.user.findUnique({
         where: {email: email}
     });
 
-    const  goodPassword = await bcrypt.compare(password, account?.password!);
+    if (account === null) res.status(404).json({message: "Wrong email"});
+
+    const  goodPassword = await bcrypt.compare(password, account!.password!);
+
     if (goodPassword === false) {
-        throw new Error("User not found");
+        res.status(401).json({message: "Wrong password"});
     } else {
-        res.status(200).json({message: "User found"});
+        const token = jwt.sign({id: account!.id}, process.env.JWT_SECRET, {expiresIn: '1h'}) as JwtPayload;
+        res.cookie('token', token, {httpOnly: true});
+        res.status(200).json({message: "Logged In"});
     }
 }
 
