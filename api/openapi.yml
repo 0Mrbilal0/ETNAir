@@ -5,16 +5,16 @@ info:
   version: 0.0.1
 
 servers:
-- url: http://localhost:3000
-  description: Serveur de développement
+  - url: http://localhost:3000
+    description: Serveur de développement
 
 tags:
   - name: user
     description: user related route
-  - name: ads
-    description: ads related route
+  - name: rentals
+    description: rentals related route
 paths:
-  /utilisateurs:
+  /auth:
     get:
       tags:
         - user
@@ -25,7 +25,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
     post:
       tags:
         - user
@@ -43,14 +43,14 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/User"
-  /utilisateurs/{id}:
+  /auth/{id}:
     parameters:
-        - name: id
-          in: path
-          description: User id
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        description: User id
+        required: true
+        schema:
+          type: integer
     get:
       tags:
         - user
@@ -61,7 +61,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
         404:
           description: Return a not found error
     put:
@@ -91,10 +91,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
         404:
           description: Return a not found error
-  /annonces:
+  /rentals:
     get:
       tags:
         - ads
@@ -105,7 +105,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Advert'
+                $ref: "#/components/schemas/Advert"
     post:
       tags:
         - ads
@@ -123,14 +123,14 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Advert"
-  /annonces/{id}:
+  /rentals/{id}:
     parameters:
-        - name: id
-          in: path
-          description: Ad id
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        description: Ad id
+        required: true
+        schema:
+          type: integer
     get:
       tags:
         - ads
@@ -141,7 +141,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Advert'
+                $ref: "#/components/schemas/Advert"
         404:
           description: Return a not found error
     put:
@@ -171,10 +171,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Advert'
+                $ref: "#/components/schemas/Advert"
         404:
           description: Return a not found error
-
 
 components:
   schemas:
