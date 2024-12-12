@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';
+import {Request, Response} from 'express';
+import {PrismaClient, Rental, Prisma, Address, Caracteristic} from "../Models/generated/prisma-client-js";
 import logger from "../../logger";
 import { Advert, Prisma, PrismaClient } from "../Models/generated/prisma-client-js";
 
@@ -15,9 +16,15 @@ interface CustomRequest extends Request {
  */
 async function getAllRentals(req: Request, res: Response) {
     try {
-        // Get all rentals from the database and send them to the client
-        const allRentals: Advert[] = await prisma.advert.findMany();
-        res.status(200).json(allRentals);
+        const createRental: Rental[] = await prisma.rental.findMany({
+            relationLoadStrategy: "join",
+            include: {
+                caracteristic: true,
+                address: true
+            }
+        });
+        if (createRental === undefined) res.status(404).json({message: "Rentals Not Found"});
+        res.status(200).json(createRental)
     } catch (e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
             res.status(400).json({ message: "Bad Request" });

@@ -38,7 +38,7 @@ export default function Example() {
                     <a href="#" className="-m-1.5 p-1.5">
                         <span className="sr-only">Your Company</span>
                         <img
-                            alt=""
+                            alt="logo light"
                             src="/Logo_Lightmode.svg"
                             className="w-20 h-auto"
                         />
