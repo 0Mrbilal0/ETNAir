@@ -1,7 +1,6 @@
-import { Router } from 'express';
 import { getAllAdverts, createAdvert, getAdvertsById, updateAdvertById, deleteAdvertById} from '../controller/AdvertController';
-
-const verifyToken = require('../middleware/authMiddleware');
+import { verifyToken } from '../middleware/authMiddleware';
+import { Router } from 'express';
 
 export const advertRouter = Router();
 

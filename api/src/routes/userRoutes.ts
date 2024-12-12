@@ -1,8 +1,8 @@
 import { Router, Request } from 'express';
 import { getAllUsers, createUser, getUserById, updateUserById, loginUser, deleteUserById } from '../controller/UserController';
-
+import { body } from 'express-validator';
+import { verifyToken } from '../middleware/authMiddleware';
 export const userRouter = Router();
-const verifyToken = require('../middleware/authMiddleware');
 
 // Ping pong route
 userRouter.get("/", (req, res) => {
