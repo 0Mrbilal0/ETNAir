@@ -1,7 +1,7 @@
-import { Router, Request } from 'express';
-import { getAllUsers, createUser, getUserById, updateUserById, loginUser, deleteUserById } from '../controller/UserController';
+import { Router } from 'express';
 import { body } from 'express-validator';
-import { verifyToken } from '../middleware/authMiddleware';
+import { createUser, deleteUserById, getAllUsers, getUserById, loginUser, updateUserById } from '../Controller/UserController';
+import { verifyToken } from '../Middleware/authMiddleware';
 export const userRouter = Router();
 
 // Ping pong route

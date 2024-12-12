@@ -1,6 +1,6 @@
-import {Request, Response} from 'express';
-import {PrismaClient, Advert, Prisma} from "../Models/generated/prisma-client-js";
+import { Request, Response } from 'express';
 import logger from "../../logger";
+import { Advert, Prisma, PrismaClient } from "../Models/generated/prisma-client-js";
 
 const prisma = new PrismaClient()
 
@@ -84,4 +84,5 @@ async function deleteRentalById(req: Request, res: Response) {
     res.status(204).json({message: "Rental Deleted"});
 };
 
-export {getAllRentals, getRentalsById, createRental, updateRentalById, deleteRentalById}
+export { createRental, deleteRentalById, getAllRentals, getRentalsById, updateRentalById };
+
