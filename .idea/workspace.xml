@@ -4,32 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="Update: 🤐 .gitignore">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="feat(Navbar): :sparkles: Add Navbar without all routes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/@types/UserDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/@types/UserDTO.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Controller/AdvertController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Controller/RentalController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Controller/RentalController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Controller/RentalController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/Controller/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Controller/UserController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/edge.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index-browser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/edge-esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/edge-esm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/edge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/index-browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/library.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/react-native.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/react-native.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/wasm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/schema.prisma" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/wasm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/migrations/migration_lock.toml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/migrations/migration_lock.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/Models/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/schema.prisma" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/Routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Routes/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/Header/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Header/Navbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Components/Home/Content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Home/Content.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/input.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/input.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/output.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/output.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/axios/Requests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/axios/Requests.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +90,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "itchir-b/etn-36-navbar",
-    "last_opened_file_path": "C:/Users/bilal/Documents/etna/ETNAir/client",
+    "last_opened_file_path": "C:/Users/bilal/Documents/etna/ETNAir/api/@types",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -105,6 +102,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bilal\Documents\etna\ETNAir\api\@types" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
@@ -157,7 +159,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733317929442</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat(Navbar): :sparkles: Add Navbar without all routes">
+      <option name="closed" value="true" />
+      <created>1733828311864</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733828311864</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat(Navbar): :sparkles: Add Navbar without all routes">
+      <option name="closed" value="true" />
+      <created>1733828318516</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733828318516</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,17 +184,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="co" />
     <MESSAGE value="Update:  .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update:  .gitignore" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/client/src/Components/Home/Content.tsx</url>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat(Navbar): :sparkles: Add Navbar without all routes" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Navbar): :sparkles: Add Navbar without all routes" />
   </component>
 </project>

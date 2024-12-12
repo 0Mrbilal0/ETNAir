@@ -52,9 +52,8 @@ async function createUser(req: Request, res: Response) {
  */
 async function getUserById(req: Request, res: Response) {
     const id = req.params.id;
-    if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
     const user = await prisma.user.findUnique({
-        where: {id: parseInt(id)}
+        where: {id: id}
     })
     if (user === undefined) res.status(404).json({message: "User Not Found"});
     logger.info(user)
@@ -88,9 +87,8 @@ async function loginUser(req: Request, res: Response){
  */
 async function updateUserById(req: Request, res: Response) {
     const id = req.params.id;
-    if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
     const updatedUser = await prisma.user.update({
-        where: {id: parseInt(id)},
+        where: {id: id},
         data: req.body
     });
     logger.info(updatedUser);
@@ -104,7 +102,7 @@ async function updateUserById(req: Request, res: Response) {
  */
 async function deleteUserById(req: Request, res: Response) {
     if (isNaN(parseInt(req.params.id))) res.status(400).json({message: "Bad Request"});
-    const userId: number = Number(req.params.id);
+    const userId: string = String(req.params.id);
     const user = await prisma.user.delete({
         where: {id: userId}
     });

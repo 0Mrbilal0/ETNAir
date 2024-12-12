@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getAllUsers, createUser, getUserById, updateUserById, deleteUserById } from '../Controller/UserController';
-import { getAllAdverts, createAdvert, getAdvertsById, updateAdvertById, deleteAdvertById} from '../Controller/RentalController';
+import { getAllRentals, createRental, getRentalsById, updateRentalById, deleteRentalById} from '../Controller/RentalController';
 
 export const router = Router();
 
@@ -29,23 +29,23 @@ router.put("/utilisateurs/:id", updateUserById);
 router.delete("/utilisateurs/:id", deleteUserById);
 
 /**
- *  Adverts routes
+ *  Rentals routes
  */
 
 // Get all adverts
-router.get("/annonces", getAllAdverts);
+router.get("/annonces", getAllRentals);
 
 // Create a new advert
-router.post("/annonces", createAdvert);
+router.post("/annonces", createRental);
 
 // Get advert by id
-router.get("/annonces/:id", getAdvertsById);
+router.get("/annonces/:id", getRentalsById);
 
 // Update advert by id
-router.put("/annonces/:id", updateAdvertById);
+router.put("/annonces/:id", updateRentalById);
 
 // Delete advert by id
-router.delete("/annonces/:id", deleteAdvertById);
+router.delete("/annonces/:id", deleteRentalById);
 
 // 404 route
 router.get("/*", (req, res) => {
