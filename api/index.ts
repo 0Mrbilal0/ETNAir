@@ -20,3 +20,4 @@ app.use('/', advertRouter);
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })
+export {app};
