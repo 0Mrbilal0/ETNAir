@@ -25,6 +25,13 @@ cd api/
 npm install
 ````
 
+###  Config the database 
+
+```bash
+npx prisma generate
+npx prisma migrate dev
+````
+
 ### Launching the project
 
 ```bash
