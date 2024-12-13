@@ -5,14 +5,14 @@ import { Advert, Prisma, PrismaClient } from "../Models/generated/prisma-client-
 const prisma = new PrismaClient()
 
 /**
- * Get all rentals
+ * Get all rentals from the database
  * @param req: Request
  * @param res: Response
  */
 async function getAllRentals(req: Request, res: Response) {
     try {
+        // Get all rentals from the database and send them to the client
         const allRentals: Advert[] = await prisma.advert.findMany();
-        if (allRentals === undefined) res.status(404).json({message: "Rentals Not Found"});
         res.status(200).json(allRentals)
     } catch (e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
@@ -23,17 +23,19 @@ async function getAllRentals(req: Request, res: Response) {
 }
 
 /**
- * Get advert by id
+ * Give informations about a rental by its id
  * @param req: Request
  * @param res: Response
  */
 async function getRentalsById(req: Request, res: Response) {
+    // Get the id from the request parameters
     const id = req.params.id;
-    if (isNaN(parseInt(id))) res.status(400).json({message: "Bad Request"});
-    const rental = await prisma.advert.findUnique({
-        where: {id: parseInt(id)}
-    });
-    if (rental === undefined) res.status(404).json({message: "Rental Not Found"});
+
+    // Check if the rental exists
+    const rental = await prisma.advert.findUnique({ where: { id: parseInt(id) } });
+    if (rental === null) res.status(404).json({ message: "Rental Not Found" });
+
+    // If the rental is found, send it to the client
     res.status(200).json(rental)
 };
 
@@ -43,46 +45,62 @@ async function getRentalsById(req: Request, res: Response) {
  * @param res: Response
  */
 async function createRental(req: Request, res: Response) {
-    console.log(req.body);
-    const newRental: Advert = await prisma.advert.create({
-        data: req.body
+    // Get the rental's information from the request body
+    const newRental: Advert = req.body;
+
+    // Create the rental
+    const createRental: Advert = await prisma.advert.create({
+        data: newRental
     });
-    logger.info(newRental);
+
+    // Send informations about the created rental to the client
+    logger.info(createRental);
     res.status(201).json({message: "Rental created"});
 }
 
 /**
- * Update rental's informations by id
+ * Update rental's informations by its id
  * @param req: Request
  * @param res: Response
  */
 async function updateRentalById(req: Request, res: Response) {
-    if (isNaN(parseInt(req.params.id))) res.status(400).json({message: "Bad Request"});
+    // Get the id from the request parameters
     const rentalId: number = Number(req.params.id);
+
+    // Check if the rental exists
+    if (isNaN(rentalId)) res.status(400).json({message: "The rental was not found."});
+
+    // If the rental exists, update it
     const rental = await prisma.advert.update({
         where: {id: rentalId},
         data: req.body
     });
-    if (rental === undefined) res.status(404).json({message: "Rental Not Found"});
+
+    // Send information about the updated rental to the client
     logger.info(rental);
     res.status(200).json({message: "Rental Updated"});
 };
 
 /**
- * Delete rental by id
+ * Delete a rental by its id
  * @param req: Request
  * @param res: Response
  */
 async function deleteRentalById(req: Request, res: Response) {
-    if (isNaN(parseInt(req.params.id))) res.status(400).json({message: "Bad Request"});
+    // Get the id from the request parameters
     const rentalId: number = Number(req.params.id);
-    const rental = await prisma.advert.delete({
+
+    // Check if the rental exists
+    if (isNaN(rentalId)) res.status(400).json({message: "Bad Request"});
+
+    // If the rental exists, delete it
+    const deleteRental = await prisma.advert.delete({
         where: {id: rentalId}
     });
-    if (rental === undefined) res.status(404).json({message: "Rental Not Found"});
-    logger.info(rental);
+
+    // Send information about the deleted rental to the client
+    logger.info(deleteRental);
     res.status(204).json({message: "Rental Deleted"});
 };
 
 export { createRental, deleteRentalById, getAllRentals, getRentalsById, updateRentalById };
-

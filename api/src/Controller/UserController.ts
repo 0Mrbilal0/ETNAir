@@ -4,9 +4,10 @@ import { validationResult } from 'express-validator';
 import * as jwt from 'jsonwebtoken';
 import { JwtPayload } from "jsonwebtoken";
 import logger from "../../logger";
-import { Prisma, PrismaClient, User } from "../Models/generated/prisma-client-js";
+import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
+const jwt = require('jsonwebtoken');
 const saltRounds = 12;
 
 /**
