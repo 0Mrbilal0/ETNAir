@@ -1,11 +1,12 @@
-import {Request, Response} from 'express';
-import {JwtPayload} from "jsonwebtoken";
-import {Prisma, PrismaClient, User} from "../Models/generated/prisma-client-js";
-import logger from "../../logger";
 import * as bcrypt from 'bcrypt';
+import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
+import * as jwt from 'jsonwebtoken';
+import { JwtPayload } from "jsonwebtoken";
+import logger from "../../logger";
+import { Prisma, PrismaClient, User } from "../Models/generated/prisma-client-js";
 
 const prisma = new PrismaClient();
-const jwt = require('jsonwebtoken');
 const saltRounds = 12;
 
 /**

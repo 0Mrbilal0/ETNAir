@@ -1,6 +1,5 @@
 import { getAllRentals, createRental, getRentalsById, updateRentalById, deleteRentalById } from '../Controller/RentalController';
 import { verifyToken } from '../Middleware/authMiddleware';
-import { Router } from 'express';
 
 export const rentalRouter = Router();
 
