@@ -3,8 +3,8 @@ import express from 'express';
 import { readFileSync } from 'fs';
 import { serve, setup } from 'swagger-ui-express';
 import { parseDocument } from 'yaml';
-import { rentalRouter } from './src/Routes/rentalRoutes';
-import { userRouter } from './src/Routes/userRoutes';
+import { rentalRouter } from './src/Routes/RentalRoutes';
+import { userRouter } from './src/Routes/UserRoutes';
 dotenv.config();
 const app = express();
 

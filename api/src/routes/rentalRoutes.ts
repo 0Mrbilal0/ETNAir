@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { createRental, deleteRentalById, getAllRentals, getRentalsById, updateRentalById } from '../Controller/RentalController';
 import { verifyToken } from '../Middleware/authMiddleware';
 import { checkData } from '../Middleware/validatorMiddleware';
-import { rentalSchema } from '../Schema/rentalSchema';
+import { rentalSchema } from '../Schema/RentalSchema';
 
 export const rentalRouter = Router();
 
