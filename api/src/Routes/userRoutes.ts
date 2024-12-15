@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { createUser, deleteUserById, getAllUsers, getUserById, loginUser, updateUserById } from '../Controller/UserController';
-import { verifyToken } from '../Middleware/authMiddleware';
-import { checkData } from '../Middleware/validatorMiddleware';
+import { verifyToken } from '../Middleware/AuthMiddleware';
+import { checkData } from '../Middleware/ValidatorMiddleware';
 import { loginSchema } from '../Schema/LoginSchema';
 import { userSchema } from '../Schema/UserSchema';
 export const userRouter = Router();
