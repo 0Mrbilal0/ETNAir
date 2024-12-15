@@ -1,7 +1,9 @@
 import { Router } from 'express';
-import { body } from 'express-validator';
 import { createUser, deleteUserById, getAllUsers, getUserById, loginUser, updateUserById } from '../Controller/UserController';
 import { verifyToken } from '../Middleware/authMiddleware';
+import { checkData } from '../Middleware/validatorMiddleware';
+import { loginSchema } from '../Schema/LoginSchema';
+import { userSchema } from '../Schema/UserSchema';
 export const userRouter = Router();
 
 // Ping pong route
@@ -10,19 +12,19 @@ userRouter.get("/", (req, res) => {
 })
 
 // Get all users
-userRouter.get("/auth", verifyToken, getAllUsers);
+userRouter.get("/users", verifyToken, getAllUsers);
 
 // Get user by id
-userRouter.get("/auth/:id", verifyToken, getUserById);
+userRouter.get("/user", verifyToken, getUserById);
 
 // Create a new user
-userRouter.post("/auth/register", createUser);
+userRouter.post("/auth/register", userSchema, checkData, createUser);
 
 // Login user
-userRouter.post("/auth/login", loginUser);
+userRouter.post("/auth/login", loginSchema, checkData, loginUser);
 
 // Update user by id
-userRouter.put("/auth/:id", verifyToken, updateUserById);
+userRouter.put("/user", verifyToken, userSchema, checkData, updateUserById);
 
 // Delete user by id
-userRouter.delete("/auth/:id", verifyToken, deleteUserById);
+userRouter.delete("/user", verifyToken, deleteUserById);

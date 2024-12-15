@@ -14,6 +14,7 @@ export const verifyToken = (req: CustomRequest, res: Response, next: NextFunctio
     }
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET!) as jwt.JwtPayload;
+
         (req as CustomRequest).userId = decoded.userId; // Injecte userId dans la requête
         next();
     } catch (err) {
