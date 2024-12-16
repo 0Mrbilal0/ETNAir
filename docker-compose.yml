@@ -3,7 +3,7 @@ services:
   api:
     image: node
     working_dir: /api
-    command: node api.js
+#    command: node api.js
     volumes:
       - ./api:/api
 #    ports:

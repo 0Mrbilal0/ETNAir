@@ -185,7 +185,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/charmant/Documents/ETNA/CodeToWork/Semaine8/ETNAir/api/src/Models/generated/prisma-client-js",
+      "value": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\src\\Models\\generated\\prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -194,18 +194,20 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [
-      "relationJoins"
+      "relationJoins",
+      "omitApi"
     ],
-    "sourceFilePath": "/Users/charmant/Documents/ETNA/CodeToWork/Semaine8/ETNAir/api/src/Models/schema.prisma",
+    "sourceFilePath": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\src\\Models\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../../../.env"
   },
   "relativePath": "../..",
   "clientVersion": "6.0.1",
@@ -214,7 +216,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": true,
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -223,8 +225,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"relationJoins\"]\n  output          = \"./generated/prisma-client-js\"\n}\n\nmodel Rental {\n  id              String         @id @default(uuid())\n  title           String\n  nb_person       Int\n  price           Float\n  available_date  DateTime\n  type            Types\n  userId          String\n  adressId        String         @unique\n  caracteristicId String?        @unique\n  createdAt       DateTime       @default(now())\n  updatedAt       DateTime       @updatedAt\n  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)\n  caracteristic   Caracteristic? @relation(fields: [caracteristicId], references: [id], onDelete: Cascade)\n  address         Address        @relation(fields: [adressId], references: [id], onDelete: Cascade)\n  picture         Picture[]\n}\n\nmodel Address {\n  id       String   @id @default(uuid())\n  city     String\n  country  String\n  street   String\n  zip_code String\n  rental   Rental[]\n}\n\nmodel Caracteristic {\n  id          String   @id @default(uuid())\n  nb_bedroom  Int?\n  nb_bathroom Int\n  description String\n  rental      Rental[]\n}\n\nmodel Picture {\n  id       String @id @default(uuid())\n  url      String\n  rentalId String\n  rental   Rental @relation(fields: [rentalId], references: [id], onDelete: Cascade)\n}\n\nmodel User {\n  id           String   @id @default(uuid())\n  email        String   @unique\n  name         String\n  password     String\n  about_me     String?\n  phone_number String   @unique\n  user_type    UserType @default(CLIENT)\n  createdAt    DateTime @default(now())\n  updatedAt    DateTime @updatedAt\n  Rental       Rental[]\n}\n\nenum Types {\n  HOUSE\n  APARTMENT\n  CASTLE\n  TINY_HOUSE\n}\n\nenum UserType {\n  ADMIN\n  CLIENT\n}\n",
-  "inlineSchemaHash": "9a344ea2d90efabfcec3c0be92b40a8e66f7079d513aa45f1846acffe51fdc5c",
+  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"relationJoins\", \"omitApi\"]\n  output          = \"./generated/prisma-client-js\"\n}\n\nmodel Rental {\n  id              String         @id @default(uuid())\n  title           String\n  nb_person       Int\n  price           Float\n  available_date  DateTime\n  type            Types\n  userId          String\n  adressId        String         @unique\n  caracteristicId String?        @unique\n  createdAt       DateTime       @default(now())\n  updatedAt       DateTime       @updatedAt\n  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)\n  caracteristic   Caracteristic? @relation(fields: [caracteristicId], references: [id], onDelete: Cascade)\n  address         Address        @relation(fields: [adressId], references: [id], onDelete: Cascade)\n  picture         Picture[]\n}\n\nmodel Address {\n  id       String   @id @default(uuid())\n  city     String\n  country  String\n  street   String\n  zip_code String\n  rental   Rental[]\n}\n\nmodel Caracteristic {\n  id          String   @id @default(uuid())\n  nb_bedroom  Int?\n  nb_bathroom Int\n  description String\n  rental      Rental[]\n}\n\nmodel Picture {\n  id       String @id @default(uuid())\n  url      String\n  rentalId String\n  rental   Rental @relation(fields: [rentalId], references: [id], onDelete: Cascade)\n}\n\nmodel User {\n  id           String   @id @default(uuid())\n  email        String   @unique\n  name         String\n  password     String\n  about_me     String?\n  phone_number String   @unique\n  user_type    UserType @default(CLIENT)\n  createdAt    DateTime @default(now())\n  updatedAt    DateTime @updatedAt\n  Rental       Rental[]\n}\n\nenum Types {\n  HOUSE\n  APARTMENT\n  CASTLE\n  TINY_HOUSE\n}\n\nenum UserType {\n  ADMIN\n  CLIENT\n}\n",
+  "inlineSchemaHash": "69d23f05fed761368f108bc4e449916e1db990248362e6fdeb8e3fce9b1b29f3",
   "copyEngine": true
 }
 
@@ -262,8 +264,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
-path.join(process.cwd(), "src/Models/generated/prisma-client-js/libquery_engine-darwin-arm64.dylib.node")
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "src/Models/generated/prisma-client-js/query_engine-windows.dll.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/Models/generated/prisma-client-js/schema.prisma")

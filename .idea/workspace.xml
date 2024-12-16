@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="feat(Navbar): :sparkles: Add Navbar without all routes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/edge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index-browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/edge-esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/edge-esm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/edge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/index-browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/library.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/react-native.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/react-native.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/runtime/wasm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/wasm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/Home/Content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Components/Home/Content.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="Update authMiddleware structure and add advanced search functionality." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,6 +67,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;itchir-b/etn-36-navbar&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.11.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.10.2&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/bilal/Documents/etna/ETNAir/api/@types&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -91,7 +76,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.blarc.ai.commits.intellij.plugin.settings.AppSettingsConfigurable&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -115,6 +100,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -136,6 +125,9 @@
       <workItem from="1733317280472" duration="1539000" />
       <workItem from="1733496342571" duration="3084000" />
       <workItem from="1733733532526" duration="16605000" />
+      <workItem from="1734037111459" duration="1233000" />
+      <workItem from="1734077096096" duration="26009000" />
+      <workItem from="1734337179562" duration="7969000" />
     </task>
     <task id="LOCAL-00001" summary="co">
       <option name="closed" value="true" />
@@ -169,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733828318516</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Update authMiddleware structure and add advanced search functionality.">
+      <option name="closed" value="true" />
+      <created>1734352386565</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1734352386565</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,6 +179,7 @@
     <MESSAGE value="co" />
     <MESSAGE value="Update:  .gitignore" />
     <MESSAGE value="feat(Navbar): :sparkles: Add Navbar without all routes" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(Navbar): :sparkles: Add Navbar without all routes" />
+    <MESSAGE value="Update authMiddleware structure and add advanced search functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update authMiddleware structure and add advanced search functionality." />
   </component>
 </project>
