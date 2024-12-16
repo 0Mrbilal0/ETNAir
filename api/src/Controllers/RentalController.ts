@@ -85,7 +85,7 @@ async function updateRentalById(req: Request, res: Response) {
     if (rental === undefined) res.status(404).json({message: "Rental Not Found"});
     logger.info(rental);
     res.status(200).json({message: "Rental Updated"});
-};
+}
 
 /**
  * Delete rental by id
@@ -101,6 +101,6 @@ async function deleteRentalById(req: Request, res: Response) {
     if (rental === undefined) res.status(404).json({message: "Rental Not Found"});
     logger.info(rental);
     res.status(204).json({message: "Rental Deleted"});
-};
+}
 
 export {getAllRentals, createRental, getRentalsById, updateRentalById, deleteRentalById}
