@@ -10,6 +10,8 @@ interface UserDTO {
     updated_at: Date
 }
 
+
+
 enum userTypes {
     "admin",
     "client"

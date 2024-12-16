@@ -117,20 +117,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.AdressScalarFieldEnum = {
-  id: 'id',
-  city: 'city',
-  country: 'country',
-  street: 'street',
-  zip_code: 'zip_code',
-  rentalId: 'rentalId'
-};
-
-exports.Prisma.RelationLoadStrategy = {
-  query: 'query',
-  join: 'join'
-};
-
 exports.Prisma.RentalScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -139,16 +125,30 @@ exports.Prisma.RentalScalarFieldEnum = {
   available_date: 'available_date',
   type: 'type',
   userId: 'userId',
+  adressId: 'adressId',
+  caracteristicId: 'caracteristicId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RelationLoadStrategy = {
+  query: 'query',
+  join: 'join'
+};
+
+exports.Prisma.AddressScalarFieldEnum = {
+  id: 'id',
+  city: 'city',
+  country: 'country',
+  street: 'street',
+  zip_code: 'zip_code'
 };
 
 exports.Prisma.CaracteristicScalarFieldEnum = {
   id: 'id',
   nb_bedroom: 'nb_bedroom',
   nb_bathroom: 'nb_bathroom',
-  description: 'description',
-  rentalId: 'rentalId'
+  description: 'description'
 };
 
 exports.Prisma.PictureScalarFieldEnum = {
@@ -196,8 +196,8 @@ exports.UserType = exports.$Enums.UserType = {
 };
 
 exports.Prisma.ModelName = {
-  Adress: 'Adress',
   Rental: 'Rental',
+  Address: 'Address',
   Caracteristic: 'Caracteristic',
   Picture: 'Picture',
   User: 'User'

@@ -14,15 +14,15 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Adress
- * 
- */
-export type Adress = $Result.DefaultSelection<Prisma.$AdressPayload>
-/**
  * Model Rental
  * 
  */
 export type Rental = $Result.DefaultSelection<Prisma.$RentalPayload>
+/**
+ * Model Address
+ * 
+ */
+export type Address = $Result.DefaultSelection<Prisma.$AddressPayload>
 /**
  * Model Caracteristic
  * 
@@ -77,8 +77,8 @@ export const UserType: typeof $Enums.UserType
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Adresses
- * const adresses = await prisma.adress.findMany()
+ * // Fetch zero or more Rentals
+ * const rentals = await prisma.rental.findMany()
  * ```
  *
  * 
@@ -98,8 +98,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Adresses
-   * const adresses = await prisma.adress.findMany()
+   * // Fetch zero or more Rentals
+   * const rentals = await prisma.rental.findMany()
    * ```
    *
    * 
@@ -191,19 +191,11 @@ export class PrismaClient<
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
 
-  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs, $Utils.Call<Prisma.TypeMapCb, {
+    extArgs: ExtArgs
+  }>, ClientOptions>
 
       /**
-   * `prisma.adress`: Exposes CRUD operations for the **Adress** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Adresses
-    * const adresses = await prisma.adress.findMany()
-    * ```
-    */
-  get adress(): Prisma.AdressDelegate<ExtArgs>;
-
-  /**
    * `prisma.rental`: Exposes CRUD operations for the **Rental** model.
     * Example usage:
     * ```ts
@@ -211,7 +203,17 @@ export class PrismaClient<
     * const rentals = await prisma.rental.findMany()
     * ```
     */
-  get rental(): Prisma.RentalDelegate<ExtArgs>;
+  get rental(): Prisma.RentalDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.address`: Exposes CRUD operations for the **Address** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Addresses
+    * const addresses = await prisma.address.findMany()
+    * ```
+    */
+  get address(): Prisma.AddressDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.caracteristic`: Exposes CRUD operations for the **Caracteristic** model.
@@ -221,7 +223,7 @@ export class PrismaClient<
     * const caracteristics = await prisma.caracteristic.findMany()
     * ```
     */
-  get caracteristic(): Prisma.CaracteristicDelegate<ExtArgs>;
+  get caracteristic(): Prisma.CaracteristicDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.picture`: Exposes CRUD operations for the **Picture** model.
@@ -231,7 +233,7 @@ export class PrismaClient<
     * const pictures = await prisma.picture.findMany()
     * ```
     */
-  get picture(): Prisma.PictureDelegate<ExtArgs>;
+  get picture(): Prisma.PictureDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -241,7 +243,7 @@ export class PrismaClient<
     * const users = await prisma.user.findMany()
     * ```
     */
-  get user(): Prisma.UserDelegate<ExtArgs>;
+  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -682,8 +684,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Adress: 'Adress',
     Rental: 'Rental',
+    Address: 'Address',
     Caracteristic: 'Caracteristic',
     Picture: 'Picture',
     User: 'User'
@@ -702,80 +704,10 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "adress" | "rental" | "caracteristic" | "picture" | "user"
+      modelProps: "rental" | "address" | "caracteristic" | "picture" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      Adress: {
-        payload: Prisma.$AdressPayload<ExtArgs>
-        fields: Prisma.AdressFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.AdressFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdressPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.AdressFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdressPayload>
-          }
-          findFirst: {
-            args: Prisma.AdressFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdressPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.AdressFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdressPayload>
-          }
-          findMany: {
-            args: Prisma.AdressFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdressPayload>[]
-          }
-          create: {
-            args: Prisma.AdressCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdressPayload>
-          }
-          createMany: {
-            args: Prisma.AdressCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.AdressCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdressPayload>[]
-          }
-          delete: {
-            args: Prisma.AdressDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdressPayload>
-          }
-          update: {
-            args: Prisma.AdressUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdressPayload>
-          }
-          deleteMany: {
-            args: Prisma.AdressDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.AdressUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.AdressUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdressPayload>
-          }
-          aggregate: {
-            args: Prisma.AdressAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAdress>
-          }
-          groupBy: {
-            args: Prisma.AdressGroupByArgs<ExtArgs>
-            result: $Utils.Optional<AdressGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.AdressCountArgs<ExtArgs>
-            result: $Utils.Optional<AdressCountAggregateOutputType> | number
-          }
-        }
-      }
       Rental: {
         payload: Prisma.$RentalPayload<ExtArgs>
         fields: Prisma.RentalFieldRefs
@@ -843,6 +775,76 @@ export namespace Prisma {
           count: {
             args: Prisma.RentalCountArgs<ExtArgs>
             result: $Utils.Optional<RentalCountAggregateOutputType> | number
+          }
+        }
+      }
+      Address: {
+        payload: Prisma.$AddressPayload<ExtArgs>
+        fields: Prisma.AddressFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AddressFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AddressFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          findFirst: {
+            args: Prisma.AddressFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AddressFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          findMany: {
+            args: Prisma.AddressFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>[]
+          }
+          create: {
+            args: Prisma.AddressCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          createMany: {
+            args: Prisma.AddressCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AddressCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>[]
+          }
+          delete: {
+            args: Prisma.AddressDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          update: {
+            args: Prisma.AddressUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          deleteMany: {
+            args: Prisma.AddressDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AddressUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AddressUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AddressPayload>
+          }
+          aggregate: {
+            args: Prisma.AddressAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAddress>
+          }
+          groupBy: {
+            args: Prisma.AddressGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AddressGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AddressCountArgs<ExtArgs>
+            result: $Utils.Optional<AddressCountAggregateOutputType> | number
           }
         }
       }
@@ -1123,8 +1125,29 @@ export namespace Prisma {
       timeout?: number
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
+    /**
+     * Global configuration for omitting model fields by default.
+     * 
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   omit: {
+     *     user: {
+     *       password: true
+     *     }
+     *   }
+     * })
+     * ```
+     */
+    omit?: Prisma.GlobalOmitConfig
   }
-
+  export type GlobalOmitConfig = {
+    rental?: RentalOmit
+    address?: AddressOmit
+    caracteristic?: CaracteristicOmit
+    picture?: PictureOmit
+    user?: UserOmit
+  }
 
   /* Types for Logging */
   export type LogLevel = 'info' | 'query' | 'warn' | 'error'
@@ -1217,15 +1240,11 @@ export namespace Prisma {
    */
 
   export type RentalCountOutputType = {
-    Picture: number
-    Caracteristic: number
-    Adress: number
+    picture: number
   }
 
   export type RentalCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Picture?: boolean | RentalCountOutputTypeCountPictureArgs
-    Caracteristic?: boolean | RentalCountOutputTypeCountCaracteristicArgs
-    Adress?: boolean | RentalCountOutputTypeCountAdressArgs
+    picture?: boolean | RentalCountOutputTypeCountPictureArgs
   }
 
   // Custom InputTypes
@@ -1246,18 +1265,66 @@ export namespace Prisma {
     where?: PictureWhereInput
   }
 
+
   /**
-   * RentalCountOutputType without action
+   * Count Type AddressCountOutputType
    */
-  export type RentalCountOutputTypeCountCaracteristicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CaracteristicWhereInput
+
+  export type AddressCountOutputType = {
+    rental: number
+  }
+
+  export type AddressCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    rental?: boolean | AddressCountOutputTypeCountRentalArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AddressCountOutputType without action
+   */
+  export type AddressCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AddressCountOutputType
+     */
+    select?: AddressCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * RentalCountOutputType without action
+   * AddressCountOutputType without action
    */
-  export type RentalCountOutputTypeCountAdressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AdressWhereInput
+  export type AddressCountOutputTypeCountRentalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RentalWhereInput
+  }
+
+
+  /**
+   * Count Type CaracteristicCountOutputType
+   */
+
+  export type CaracteristicCountOutputType = {
+    rental: number
+  }
+
+  export type CaracteristicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    rental?: boolean | CaracteristicCountOutputTypeCountRentalArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CaracteristicCountOutputType without action
+   */
+  export type CaracteristicCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CaracteristicCountOutputType
+     */
+    select?: CaracteristicCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CaracteristicCountOutputType without action
+   */
+  export type CaracteristicCountOutputTypeCountRentalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RentalWhereInput
   }
 
 
@@ -1297,998 +1364,6 @@ export namespace Prisma {
    */
 
   /**
-   * Model Adress
-   */
-
-  export type AggregateAdress = {
-    _count: AdressCountAggregateOutputType | null
-    _avg: AdressAvgAggregateOutputType | null
-    _sum: AdressSumAggregateOutputType | null
-    _min: AdressMinAggregateOutputType | null
-    _max: AdressMaxAggregateOutputType | null
-  }
-
-  export type AdressAvgAggregateOutputType = {
-    id: number | null
-    rentalId: number | null
-  }
-
-  export type AdressSumAggregateOutputType = {
-    id: number | null
-    rentalId: number | null
-  }
-
-  export type AdressMinAggregateOutputType = {
-    id: number | null
-    city: string | null
-    country: string | null
-    street: string | null
-    zip_code: string | null
-    rentalId: number | null
-  }
-
-  export type AdressMaxAggregateOutputType = {
-    id: number | null
-    city: string | null
-    country: string | null
-    street: string | null
-    zip_code: string | null
-    rentalId: number | null
-  }
-
-  export type AdressCountAggregateOutputType = {
-    id: number
-    city: number
-    country: number
-    street: number
-    zip_code: number
-    rentalId: number
-    _all: number
-  }
-
-
-  export type AdressAvgAggregateInputType = {
-    id?: true
-    rentalId?: true
-  }
-
-  export type AdressSumAggregateInputType = {
-    id?: true
-    rentalId?: true
-  }
-
-  export type AdressMinAggregateInputType = {
-    id?: true
-    city?: true
-    country?: true
-    street?: true
-    zip_code?: true
-    rentalId?: true
-  }
-
-  export type AdressMaxAggregateInputType = {
-    id?: true
-    city?: true
-    country?: true
-    street?: true
-    zip_code?: true
-    rentalId?: true
-  }
-
-  export type AdressCountAggregateInputType = {
-    id?: true
-    city?: true
-    country?: true
-    street?: true
-    zip_code?: true
-    rentalId?: true
-    _all?: true
-  }
-
-  export type AdressAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Adress to aggregate.
-     */
-    where?: AdressWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Adresses to fetch.
-     */
-    orderBy?: AdressOrderByWithRelationInput | AdressOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: AdressWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Adresses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Adresses.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Adresses
-    **/
-    _count?: true | AdressCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: AdressAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: AdressSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: AdressMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: AdressMaxAggregateInputType
-  }
-
-  export type GetAdressAggregateType<T extends AdressAggregateArgs> = {
-        [P in keyof T & keyof AggregateAdress]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateAdress[P]>
-      : GetScalarType<T[P], AggregateAdress[P]>
-  }
-
-
-
-
-  export type AdressGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AdressWhereInput
-    orderBy?: AdressOrderByWithAggregationInput | AdressOrderByWithAggregationInput[]
-    by: AdressScalarFieldEnum[] | AdressScalarFieldEnum
-    having?: AdressScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: AdressCountAggregateInputType | true
-    _avg?: AdressAvgAggregateInputType
-    _sum?: AdressSumAggregateInputType
-    _min?: AdressMinAggregateInputType
-    _max?: AdressMaxAggregateInputType
-  }
-
-  export type AdressGroupByOutputType = {
-    id: number
-    city: string
-    country: string
-    street: string
-    zip_code: string
-    rentalId: number
-    _count: AdressCountAggregateOutputType | null
-    _avg: AdressAvgAggregateOutputType | null
-    _sum: AdressSumAggregateOutputType | null
-    _min: AdressMinAggregateOutputType | null
-    _max: AdressMaxAggregateOutputType | null
-  }
-
-  type GetAdressGroupByPayload<T extends AdressGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<AdressGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof AdressGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], AdressGroupByOutputType[P]>
-            : GetScalarType<T[P], AdressGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type AdressSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    city?: boolean
-    country?: boolean
-    street?: boolean
-    zip_code?: boolean
-    rentalId?: boolean
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["adress"]>
-
-  export type AdressSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    city?: boolean
-    country?: boolean
-    street?: boolean
-    zip_code?: boolean
-    rentalId?: boolean
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["adress"]>
-
-  export type AdressSelectScalar = {
-    id?: boolean
-    city?: boolean
-    country?: boolean
-    street?: boolean
-    zip_code?: boolean
-    rentalId?: boolean
-  }
-
-  export type AdressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }
-  export type AdressIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }
-
-  export type $AdressPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Adress"
-    objects: {
-      rental: Prisma.$RentalPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      city: string
-      country: string
-      street: string
-      zip_code: string
-      rentalId: number
-    }, ExtArgs["result"]["adress"]>
-    composites: {}
-  }
-
-  type AdressGetPayload<S extends boolean | null | undefined | AdressDefaultArgs> = $Result.GetResult<Prisma.$AdressPayload, S>
-
-  type AdressCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<AdressFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
-      select?: AdressCountAggregateInputType | true
-    }
-
-  export interface AdressDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Adress'], meta: { name: 'Adress' } }
-    /**
-     * Find zero or one Adress that matches the filter.
-     * @param {AdressFindUniqueArgs} args - Arguments to find a Adress
-     * @example
-     * // Get one Adress
-     * const adress = await prisma.adress.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends AdressFindUniqueArgs>(args: SelectSubset<T, AdressFindUniqueArgs<ExtArgs>>): Prisma__AdressClient<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one Adress that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {AdressFindUniqueOrThrowArgs} args - Arguments to find a Adress
-     * @example
-     * // Get one Adress
-     * const adress = await prisma.adress.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends AdressFindUniqueOrThrowArgs>(args: SelectSubset<T, AdressFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AdressClient<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first Adress that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdressFindFirstArgs} args - Arguments to find a Adress
-     * @example
-     * // Get one Adress
-     * const adress = await prisma.adress.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends AdressFindFirstArgs>(args?: SelectSubset<T, AdressFindFirstArgs<ExtArgs>>): Prisma__AdressClient<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first Adress that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdressFindFirstOrThrowArgs} args - Arguments to find a Adress
-     * @example
-     * // Get one Adress
-     * const adress = await prisma.adress.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends AdressFindFirstOrThrowArgs>(args?: SelectSubset<T, AdressFindFirstOrThrowArgs<ExtArgs>>): Prisma__AdressClient<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more Adresses that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdressFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Adresses
-     * const adresses = await prisma.adress.findMany()
-     * 
-     * // Get first 10 Adresses
-     * const adresses = await prisma.adress.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const adressWithIdOnly = await prisma.adress.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends AdressFindManyArgs>(args?: SelectSubset<T, AdressFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a Adress.
-     * @param {AdressCreateArgs} args - Arguments to create a Adress.
-     * @example
-     * // Create one Adress
-     * const Adress = await prisma.adress.create({
-     *   data: {
-     *     // ... data to create a Adress
-     *   }
-     * })
-     * 
-     */
-    create<T extends AdressCreateArgs>(args: SelectSubset<T, AdressCreateArgs<ExtArgs>>): Prisma__AdressClient<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many Adresses.
-     * @param {AdressCreateManyArgs} args - Arguments to create many Adresses.
-     * @example
-     * // Create many Adresses
-     * const adress = await prisma.adress.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends AdressCreateManyArgs>(args?: SelectSubset<T, AdressCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Adresses and returns the data saved in the database.
-     * @param {AdressCreateManyAndReturnArgs} args - Arguments to create many Adresses.
-     * @example
-     * // Create many Adresses
-     * const adress = await prisma.adress.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Adresses and only return the `id`
-     * const adressWithIdOnly = await prisma.adress.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends AdressCreateManyAndReturnArgs>(args?: SelectSubset<T, AdressCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a Adress.
-     * @param {AdressDeleteArgs} args - Arguments to delete one Adress.
-     * @example
-     * // Delete one Adress
-     * const Adress = await prisma.adress.delete({
-     *   where: {
-     *     // ... filter to delete one Adress
-     *   }
-     * })
-     * 
-     */
-    delete<T extends AdressDeleteArgs>(args: SelectSubset<T, AdressDeleteArgs<ExtArgs>>): Prisma__AdressClient<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one Adress.
-     * @param {AdressUpdateArgs} args - Arguments to update one Adress.
-     * @example
-     * // Update one Adress
-     * const adress = await prisma.adress.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends AdressUpdateArgs>(args: SelectSubset<T, AdressUpdateArgs<ExtArgs>>): Prisma__AdressClient<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more Adresses.
-     * @param {AdressDeleteManyArgs} args - Arguments to filter Adresses to delete.
-     * @example
-     * // Delete a few Adresses
-     * const { count } = await prisma.adress.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends AdressDeleteManyArgs>(args?: SelectSubset<T, AdressDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Adresses.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdressUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Adresses
-     * const adress = await prisma.adress.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends AdressUpdateManyArgs>(args: SelectSubset<T, AdressUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Adress.
-     * @param {AdressUpsertArgs} args - Arguments to update or create a Adress.
-     * @example
-     * // Update or create a Adress
-     * const adress = await prisma.adress.upsert({
-     *   create: {
-     *     // ... data to create a Adress
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Adress we want to update
-     *   }
-     * })
-     */
-    upsert<T extends AdressUpsertArgs>(args: SelectSubset<T, AdressUpsertArgs<ExtArgs>>): Prisma__AdressClient<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of Adresses.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdressCountArgs} args - Arguments to filter Adresses to count.
-     * @example
-     * // Count the number of Adresses
-     * const count = await prisma.adress.count({
-     *   where: {
-     *     // ... the filter for the Adresses we want to count
-     *   }
-     * })
-    **/
-    count<T extends AdressCountArgs>(
-      args?: Subset<T, AdressCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], AdressCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Adress.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdressAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends AdressAggregateArgs>(args: Subset<T, AdressAggregateArgs>): Prisma.PrismaPromise<GetAdressAggregateType<T>>
-
-    /**
-     * Group by Adress.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdressGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends AdressGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AdressGroupByArgs['orderBy'] }
-        : { orderBy?: AdressGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, AdressGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdressGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Adress model
-   */
-  readonly fields: AdressFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Adress.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__AdressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    rental<T extends RentalDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RentalDefaultArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Adress model
-   */ 
-  interface AdressFieldRefs {
-    readonly id: FieldRef<"Adress", 'Int'>
-    readonly city: FieldRef<"Adress", 'String'>
-    readonly country: FieldRef<"Adress", 'String'>
-    readonly street: FieldRef<"Adress", 'String'>
-    readonly zip_code: FieldRef<"Adress", 'String'>
-    readonly rentalId: FieldRef<"Adress", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Adress findUnique
-   */
-  export type AdressFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-    /**
-     * Filter, which Adress to fetch.
-     */
-    where: AdressWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Adress findUniqueOrThrow
-   */
-  export type AdressFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-    /**
-     * Filter, which Adress to fetch.
-     */
-    where: AdressWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Adress findFirst
-   */
-  export type AdressFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-    /**
-     * Filter, which Adress to fetch.
-     */
-    where?: AdressWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Adresses to fetch.
-     */
-    orderBy?: AdressOrderByWithRelationInput | AdressOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Adresses.
-     */
-    cursor?: AdressWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Adresses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Adresses.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Adresses.
-     */
-    distinct?: AdressScalarFieldEnum | AdressScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Adress findFirstOrThrow
-   */
-  export type AdressFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-    /**
-     * Filter, which Adress to fetch.
-     */
-    where?: AdressWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Adresses to fetch.
-     */
-    orderBy?: AdressOrderByWithRelationInput | AdressOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Adresses.
-     */
-    cursor?: AdressWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Adresses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Adresses.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Adresses.
-     */
-    distinct?: AdressScalarFieldEnum | AdressScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Adress findMany
-   */
-  export type AdressFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-    /**
-     * Filter, which Adresses to fetch.
-     */
-    where?: AdressWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Adresses to fetch.
-     */
-    orderBy?: AdressOrderByWithRelationInput | AdressOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Adresses.
-     */
-    cursor?: AdressWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Adresses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Adresses.
-     */
-    skip?: number
-    distinct?: AdressScalarFieldEnum | AdressScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Adress create
-   */
-  export type AdressCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Adress.
-     */
-    data: XOR<AdressCreateInput, AdressUncheckedCreateInput>
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Adress createMany
-   */
-  export type AdressCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Adresses.
-     */
-    data: AdressCreateManyInput | AdressCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Adress createManyAndReturn
-   */
-  export type AdressCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many Adresses.
-     */
-    data: AdressCreateManyInput | AdressCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Adress update
-   */
-  export type AdressUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Adress.
-     */
-    data: XOR<AdressUpdateInput, AdressUncheckedUpdateInput>
-    /**
-     * Choose, which Adress to update.
-     */
-    where: AdressWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Adress updateMany
-   */
-  export type AdressUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Adresses.
-     */
-    data: XOR<AdressUpdateManyMutationInput, AdressUncheckedUpdateManyInput>
-    /**
-     * Filter which Adresses to update
-     */
-    where?: AdressWhereInput
-  }
-
-  /**
-   * Adress upsert
-   */
-  export type AdressUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Adress to update in case it exists.
-     */
-    where: AdressWhereUniqueInput
-    /**
-     * In case the Adress found by the `where` argument doesn't exist, create a new Adress with this data.
-     */
-    create: XOR<AdressCreateInput, AdressUncheckedCreateInput>
-    /**
-     * In case the Adress was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<AdressUpdateInput, AdressUncheckedUpdateInput>
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Adress delete
-   */
-  export type AdressDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-    /**
-     * Filter which Adress to delete.
-     */
-    where: AdressWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Adress deleteMany
-   */
-  export type AdressDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Adresses to delete
-     */
-    where?: AdressWhereInput
-  }
-
-  /**
-   * Adress without action
-   */
-  export type AdressDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Rental
    */
 
@@ -2301,39 +1376,39 @@ export namespace Prisma {
   }
 
   export type RentalAvgAggregateOutputType = {
-    id: number | null
     nb_person: number | null
     price: number | null
-    userId: number | null
   }
 
   export type RentalSumAggregateOutputType = {
-    id: number | null
     nb_person: number | null
     price: number | null
-    userId: number | null
   }
 
   export type RentalMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     title: string | null
     nb_person: number | null
     price: number | null
     available_date: Date | null
     type: $Enums.Types | null
-    userId: number | null
+    userId: string | null
+    adressId: string | null
+    caracteristicId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type RentalMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     title: string | null
     nb_person: number | null
     price: number | null
     available_date: Date | null
     type: $Enums.Types | null
-    userId: number | null
+    userId: string | null
+    adressId: string | null
+    caracteristicId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2346,6 +1421,8 @@ export namespace Prisma {
     available_date: number
     type: number
     userId: number
+    adressId: number
+    caracteristicId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2353,17 +1430,13 @@ export namespace Prisma {
 
 
   export type RentalAvgAggregateInputType = {
-    id?: true
     nb_person?: true
     price?: true
-    userId?: true
   }
 
   export type RentalSumAggregateInputType = {
-    id?: true
     nb_person?: true
     price?: true
-    userId?: true
   }
 
   export type RentalMinAggregateInputType = {
@@ -2374,6 +1447,8 @@ export namespace Prisma {
     available_date?: true
     type?: true
     userId?: true
+    adressId?: true
+    caracteristicId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2386,6 +1461,8 @@ export namespace Prisma {
     available_date?: true
     type?: true
     userId?: true
+    adressId?: true
+    caracteristicId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2398,6 +1475,8 @@ export namespace Prisma {
     available_date?: true
     type?: true
     userId?: true
+    adressId?: true
+    caracteristicId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2490,13 +1569,15 @@ export namespace Prisma {
   }
 
   export type RentalGroupByOutputType = {
-    id: number
+    id: string
     title: string
     nb_person: number
     price: number
     available_date: Date
     type: $Enums.Types
-    userId: number
+    userId: string
+    adressId: string
+    caracteristicId: string | null
     createdAt: Date
     updatedAt: Date
     _count: RentalCountAggregateOutputType | null
@@ -2528,12 +1609,14 @@ export namespace Prisma {
     available_date?: boolean
     type?: boolean
     userId?: boolean
+    adressId?: boolean
+    caracteristicId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Picture?: boolean | Rental$PictureArgs<ExtArgs>
-    Caracteristic?: boolean | Rental$CaracteristicArgs<ExtArgs>
-    Adress?: boolean | Rental$AdressArgs<ExtArgs>
+    caracteristic?: boolean | Rental$caracteristicArgs<ExtArgs>
+    address?: boolean | AddressDefaultArgs<ExtArgs>
+    picture?: boolean | Rental$pictureArgs<ExtArgs>
     _count?: boolean | RentalCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["rental"]>
 
@@ -2545,9 +1628,13 @@ export namespace Prisma {
     available_date?: boolean
     type?: boolean
     userId?: boolean
+    adressId?: boolean
+    caracteristicId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    caracteristic?: boolean | Rental$caracteristicArgs<ExtArgs>
+    address?: boolean | AddressDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["rental"]>
 
   export type RentalSelectScalar = {
@@ -2558,37 +1645,44 @@ export namespace Prisma {
     available_date?: boolean
     type?: boolean
     userId?: boolean
+    adressId?: boolean
+    caracteristicId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
+  export type RentalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "nb_person" | "price" | "available_date" | "type" | "userId" | "adressId" | "caracteristicId" | "createdAt" | "updatedAt", ExtArgs["result"]["rental"]>
   export type RentalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Picture?: boolean | Rental$PictureArgs<ExtArgs>
-    Caracteristic?: boolean | Rental$CaracteristicArgs<ExtArgs>
-    Adress?: boolean | Rental$AdressArgs<ExtArgs>
+    caracteristic?: boolean | Rental$caracteristicArgs<ExtArgs>
+    address?: boolean | AddressDefaultArgs<ExtArgs>
+    picture?: boolean | Rental$pictureArgs<ExtArgs>
     _count?: boolean | RentalCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RentalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    caracteristic?: boolean | Rental$caracteristicArgs<ExtArgs>
+    address?: boolean | AddressDefaultArgs<ExtArgs>
   }
 
   export type $RentalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Rental"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      Picture: Prisma.$PicturePayload<ExtArgs>[]
-      Caracteristic: Prisma.$CaracteristicPayload<ExtArgs>[]
-      Adress: Prisma.$AdressPayload<ExtArgs>[]
+      caracteristic: Prisma.$CaracteristicPayload<ExtArgs> | null
+      address: Prisma.$AddressPayload<ExtArgs>
+      picture: Prisma.$PicturePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       title: string
       nb_person: number
       price: number
       available_date: Date
       type: $Enums.Types
-      userId: number
+      userId: string
+      adressId: string
+      caracteristicId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["rental"]>
@@ -2598,11 +1692,11 @@ export namespace Prisma {
   type RentalGetPayload<S extends boolean | null | undefined | RentalDefaultArgs> = $Result.GetResult<Prisma.$RentalPayload, S>
 
   type RentalCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<RentalFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
+    Omit<RentalFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
       select?: RentalCountAggregateInputType | true
     }
 
-  export interface RentalDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface RentalDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Rental'], meta: { name: 'Rental' } }
     /**
      * Find zero or one Rental that matches the filter.
@@ -2615,7 +1709,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends RentalFindUniqueArgs>(args: SelectSubset<T, RentalFindUniqueArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends RentalFindUniqueArgs>(args: SelectSubset<T, RentalFindUniqueArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find one Rental that matches the filter or throw an error with `error.code='P2025'` 
@@ -2629,7 +1723,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends RentalFindUniqueOrThrowArgs>(args: SelectSubset<T, RentalFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends RentalFindUniqueOrThrowArgs>(args: SelectSubset<T, RentalFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find the first Rental that matches the filter.
@@ -2644,7 +1738,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends RentalFindFirstArgs>(args?: SelectSubset<T, RentalFindFirstArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends RentalFindFirstArgs>(args?: SelectSubset<T, RentalFindFirstArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find the first Rental that matches the filter or
@@ -2660,7 +1754,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends RentalFindFirstOrThrowArgs>(args?: SelectSubset<T, RentalFindFirstOrThrowArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends RentalFindFirstOrThrowArgs>(args?: SelectSubset<T, RentalFindFirstOrThrowArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find zero or more Rentals that matches the filter.
@@ -2678,7 +1772,7 @@ export namespace Prisma {
      * const rentalWithIdOnly = await prisma.rental.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends RentalFindManyArgs>(args?: SelectSubset<T, RentalFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends RentalFindManyArgs>(args?: SelectSubset<T, RentalFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findMany", ClientOptions>>
 
     /**
      * Create a Rental.
@@ -2692,7 +1786,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends RentalCreateArgs>(args: SelectSubset<T, RentalCreateArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends RentalCreateArgs>(args: SelectSubset<T, RentalCreateArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Create many Rentals.
@@ -2730,7 +1824,7 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends RentalCreateManyAndReturnArgs>(args?: SelectSubset<T, RentalCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends RentalCreateManyAndReturnArgs>(args?: SelectSubset<T, RentalCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
 
     /**
      * Delete a Rental.
@@ -2744,7 +1838,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends RentalDeleteArgs>(args: SelectSubset<T, RentalDeleteArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends RentalDeleteArgs>(args: SelectSubset<T, RentalDeleteArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Update one Rental.
@@ -2761,7 +1855,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends RentalUpdateArgs>(args: SelectSubset<T, RentalUpdateArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends RentalUpdateArgs>(args: SelectSubset<T, RentalUpdateArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Delete zero or more Rentals.
@@ -2813,7 +1907,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends RentalUpsertArgs>(args: SelectSubset<T, RentalUpsertArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends RentalUpsertArgs>(args: SelectSubset<T, RentalUpsertArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
 
 
     /**
@@ -2953,12 +2047,12 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__RentalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__RentalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    Picture<T extends Rental$PictureArgs<ExtArgs> = {}>(args?: Subset<T, Rental$PictureArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findMany"> | Null>
-    Caracteristic<T extends Rental$CaracteristicArgs<ExtArgs> = {}>(args?: Subset<T, Rental$CaracteristicArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findMany"> | Null>
-    Adress<T extends Rental$AdressArgs<ExtArgs> = {}>(args?: Subset<T, Rental$AdressArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdressPayload<ExtArgs>, T, "findMany"> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    caracteristic<T extends Rental$caracteristicArgs<ExtArgs> = {}>(args?: Subset<T, Rental$caracteristicArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    address<T extends AddressDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddressDefaultArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    picture<T extends Rental$pictureArgs<ExtArgs> = {}>(args?: Subset<T, Rental$pictureArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2988,13 +2082,15 @@ export namespace Prisma {
    * Fields of the Rental model
    */ 
   interface RentalFieldRefs {
-    readonly id: FieldRef<"Rental", 'Int'>
+    readonly id: FieldRef<"Rental", 'String'>
     readonly title: FieldRef<"Rental", 'String'>
     readonly nb_person: FieldRef<"Rental", 'Int'>
     readonly price: FieldRef<"Rental", 'Float'>
     readonly available_date: FieldRef<"Rental", 'DateTime'>
     readonly type: FieldRef<"Rental", 'Types'>
-    readonly userId: FieldRef<"Rental", 'Int'>
+    readonly userId: FieldRef<"Rental", 'String'>
+    readonly adressId: FieldRef<"Rental", 'String'>
+    readonly caracteristicId: FieldRef<"Rental", 'String'>
     readonly createdAt: FieldRef<"Rental", 'DateTime'>
     readonly updatedAt: FieldRef<"Rental", 'DateTime'>
   }
@@ -3009,6 +2105,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Rental
      */
     select?: RentalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3029,6 +2129,10 @@ export namespace Prisma {
      */
     select?: RentalSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: RentalInclude<ExtArgs> | null
@@ -3047,6 +2151,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Rental
      */
     select?: RentalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3097,6 +2205,10 @@ export namespace Prisma {
      */
     select?: RentalSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: RentalInclude<ExtArgs> | null
@@ -3146,6 +2258,10 @@ export namespace Prisma {
      */
     select?: RentalSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: RentalInclude<ExtArgs> | null
@@ -3190,6 +2306,10 @@ export namespace Prisma {
      */
     select?: RentalSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: RentalInclude<ExtArgs> | null
@@ -3220,6 +2340,10 @@ export namespace Prisma {
      */
     select?: RentalSelectCreateManyAndReturn<ExtArgs> | null
     /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
      * The data used to create many Rentals.
      */
     data: RentalCreateManyInput | RentalCreateManyInput[]
@@ -3238,6 +2362,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Rental
      */
     select?: RentalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3276,6 +2404,10 @@ export namespace Prisma {
      */
     select?: RentalSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: RentalInclude<ExtArgs> | null
@@ -3303,6 +2435,10 @@ export namespace Prisma {
      */
     select?: RentalSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: RentalInclude<ExtArgs> | null
@@ -3324,13 +2460,36 @@ export namespace Prisma {
   }
 
   /**
-   * Rental.Picture
+   * Rental.caracteristic
    */
-  export type Rental$PictureArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Rental$caracteristicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Caracteristic
+     */
+    select?: CaracteristicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CaracteristicInclude<ExtArgs> | null
+    where?: CaracteristicWhereInput
+  }
+
+  /**
+   * Rental.picture
+   */
+  export type Rental$pictureArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Picture
      */
     select?: PictureSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3344,46 +2503,6 @@ export namespace Prisma {
   }
 
   /**
-   * Rental.Caracteristic
-   */
-  export type Rental$CaracteristicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Caracteristic
-     */
-    select?: CaracteristicSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CaracteristicInclude<ExtArgs> | null
-    where?: CaracteristicWhereInput
-    orderBy?: CaracteristicOrderByWithRelationInput | CaracteristicOrderByWithRelationInput[]
-    cursor?: CaracteristicWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CaracteristicScalarFieldEnum | CaracteristicScalarFieldEnum[]
-  }
-
-  /**
-   * Rental.Adress
-   */
-  export type Rental$AdressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Adress
-     */
-    select?: AdressSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdressInclude<ExtArgs> | null
-    where?: AdressWhereInput
-    orderBy?: AdressOrderByWithRelationInput | AdressOrderByWithRelationInput[]
-    cursor?: AdressWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AdressScalarFieldEnum | AdressScalarFieldEnum[]
-  }
-
-  /**
    * Rental without action
    */
   export type RentalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3392,9 +2511,1019 @@ export namespace Prisma {
      */
     select?: RentalSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: RentalInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Address
+   */
+
+  export type AggregateAddress = {
+    _count: AddressCountAggregateOutputType | null
+    _min: AddressMinAggregateOutputType | null
+    _max: AddressMaxAggregateOutputType | null
+  }
+
+  export type AddressMinAggregateOutputType = {
+    id: string | null
+    city: string | null
+    country: string | null
+    street: string | null
+    zip_code: string | null
+  }
+
+  export type AddressMaxAggregateOutputType = {
+    id: string | null
+    city: string | null
+    country: string | null
+    street: string | null
+    zip_code: string | null
+  }
+
+  export type AddressCountAggregateOutputType = {
+    id: number
+    city: number
+    country: number
+    street: number
+    zip_code: number
+    _all: number
+  }
+
+
+  export type AddressMinAggregateInputType = {
+    id?: true
+    city?: true
+    country?: true
+    street?: true
+    zip_code?: true
+  }
+
+  export type AddressMaxAggregateInputType = {
+    id?: true
+    city?: true
+    country?: true
+    street?: true
+    zip_code?: true
+  }
+
+  export type AddressCountAggregateInputType = {
+    id?: true
+    city?: true
+    country?: true
+    street?: true
+    zip_code?: true
+    _all?: true
+  }
+
+  export type AddressAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Address to aggregate.
+     */
+    where?: AddressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Addresses to fetch.
+     */
+    orderBy?: AddressOrderByWithRelationInput | AddressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AddressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Addresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Addresses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Addresses
+    **/
+    _count?: true | AddressCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AddressMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AddressMaxAggregateInputType
+  }
+
+  export type GetAddressAggregateType<T extends AddressAggregateArgs> = {
+        [P in keyof T & keyof AggregateAddress]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAddress[P]>
+      : GetScalarType<T[P], AggregateAddress[P]>
+  }
+
+
+
+
+  export type AddressGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AddressWhereInput
+    orderBy?: AddressOrderByWithAggregationInput | AddressOrderByWithAggregationInput[]
+    by: AddressScalarFieldEnum[] | AddressScalarFieldEnum
+    having?: AddressScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AddressCountAggregateInputType | true
+    _min?: AddressMinAggregateInputType
+    _max?: AddressMaxAggregateInputType
+  }
+
+  export type AddressGroupByOutputType = {
+    id: string
+    city: string
+    country: string
+    street: string
+    zip_code: string
+    _count: AddressCountAggregateOutputType | null
+    _min: AddressMinAggregateOutputType | null
+    _max: AddressMaxAggregateOutputType | null
+  }
+
+  type GetAddressGroupByPayload<T extends AddressGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AddressGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AddressGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AddressGroupByOutputType[P]>
+            : GetScalarType<T[P], AddressGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AddressSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    city?: boolean
+    country?: boolean
+    street?: boolean
+    zip_code?: boolean
+    rental?: boolean | Address$rentalArgs<ExtArgs>
+    _count?: boolean | AddressCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["address"]>
+
+  export type AddressSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    city?: boolean
+    country?: boolean
+    street?: boolean
+    zip_code?: boolean
+  }, ExtArgs["result"]["address"]>
+
+  export type AddressSelectScalar = {
+    id?: boolean
+    city?: boolean
+    country?: boolean
+    street?: boolean
+    zip_code?: boolean
+  }
+
+  export type AddressOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "city" | "country" | "street" | "zip_code", ExtArgs["result"]["address"]>
+  export type AddressInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    rental?: boolean | Address$rentalArgs<ExtArgs>
+    _count?: boolean | AddressCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AddressIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $AddressPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Address"
+    objects: {
+      rental: Prisma.$RentalPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      city: string
+      country: string
+      street: string
+      zip_code: string
+    }, ExtArgs["result"]["address"]>
+    composites: {}
+  }
+
+  type AddressGetPayload<S extends boolean | null | undefined | AddressDefaultArgs> = $Result.GetResult<Prisma.$AddressPayload, S>
+
+  type AddressCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<AddressFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
+      select?: AddressCountAggregateInputType | true
+    }
+
+  export interface AddressDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Address'], meta: { name: 'Address' } }
+    /**
+     * Find zero or one Address that matches the filter.
+     * @param {AddressFindUniqueArgs} args - Arguments to find a Address
+     * @example
+     * // Get one Address
+     * const address = await prisma.address.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AddressFindUniqueArgs>(args: SelectSubset<T, AddressFindUniqueArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Address that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {AddressFindUniqueOrThrowArgs} args - Arguments to find a Address
+     * @example
+     * // Get one Address
+     * const address = await prisma.address.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AddressFindUniqueOrThrowArgs>(args: SelectSubset<T, AddressFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Address that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressFindFirstArgs} args - Arguments to find a Address
+     * @example
+     * // Get one Address
+     * const address = await prisma.address.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AddressFindFirstArgs>(args?: SelectSubset<T, AddressFindFirstArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Address that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressFindFirstOrThrowArgs} args - Arguments to find a Address
+     * @example
+     * // Get one Address
+     * const address = await prisma.address.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AddressFindFirstOrThrowArgs>(args?: SelectSubset<T, AddressFindFirstOrThrowArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Addresses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Addresses
+     * const addresses = await prisma.address.findMany()
+     * 
+     * // Get first 10 Addresses
+     * const addresses = await prisma.address.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const addressWithIdOnly = await prisma.address.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AddressFindManyArgs>(args?: SelectSubset<T, AddressFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Address.
+     * @param {AddressCreateArgs} args - Arguments to create a Address.
+     * @example
+     * // Create one Address
+     * const Address = await prisma.address.create({
+     *   data: {
+     *     // ... data to create a Address
+     *   }
+     * })
+     * 
+     */
+    create<T extends AddressCreateArgs>(args: SelectSubset<T, AddressCreateArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Addresses.
+     * @param {AddressCreateManyArgs} args - Arguments to create many Addresses.
+     * @example
+     * // Create many Addresses
+     * const address = await prisma.address.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AddressCreateManyArgs>(args?: SelectSubset<T, AddressCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Addresses and returns the data saved in the database.
+     * @param {AddressCreateManyAndReturnArgs} args - Arguments to create many Addresses.
+     * @example
+     * // Create many Addresses
+     * const address = await prisma.address.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Addresses and only return the `id`
+     * const addressWithIdOnly = await prisma.address.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AddressCreateManyAndReturnArgs>(args?: SelectSubset<T, AddressCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Address.
+     * @param {AddressDeleteArgs} args - Arguments to delete one Address.
+     * @example
+     * // Delete one Address
+     * const Address = await prisma.address.delete({
+     *   where: {
+     *     // ... filter to delete one Address
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AddressDeleteArgs>(args: SelectSubset<T, AddressDeleteArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Address.
+     * @param {AddressUpdateArgs} args - Arguments to update one Address.
+     * @example
+     * // Update one Address
+     * const address = await prisma.address.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AddressUpdateArgs>(args: SelectSubset<T, AddressUpdateArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Addresses.
+     * @param {AddressDeleteManyArgs} args - Arguments to filter Addresses to delete.
+     * @example
+     * // Delete a few Addresses
+     * const { count } = await prisma.address.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AddressDeleteManyArgs>(args?: SelectSubset<T, AddressDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Addresses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Addresses
+     * const address = await prisma.address.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AddressUpdateManyArgs>(args: SelectSubset<T, AddressUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Address.
+     * @param {AddressUpsertArgs} args - Arguments to update or create a Address.
+     * @example
+     * // Update or create a Address
+     * const address = await prisma.address.upsert({
+     *   create: {
+     *     // ... data to create a Address
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Address we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AddressUpsertArgs>(args: SelectSubset<T, AddressUpsertArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Addresses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressCountArgs} args - Arguments to filter Addresses to count.
+     * @example
+     * // Count the number of Addresses
+     * const count = await prisma.address.count({
+     *   where: {
+     *     // ... the filter for the Addresses we want to count
+     *   }
+     * })
+    **/
+    count<T extends AddressCountArgs>(
+      args?: Subset<T, AddressCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AddressCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Address.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AddressAggregateArgs>(args: Subset<T, AddressAggregateArgs>): Prisma.PrismaPromise<GetAddressAggregateType<T>>
+
+    /**
+     * Group by Address.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AddressGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AddressGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AddressGroupByArgs['orderBy'] }
+        : { orderBy?: AddressGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AddressGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAddressGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Address model
+   */
+  readonly fields: AddressFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Address.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AddressClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    rental<T extends Address$rentalArgs<ExtArgs> = {}>(args?: Subset<T, Address$rentalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Address model
+   */ 
+  interface AddressFieldRefs {
+    readonly id: FieldRef<"Address", 'String'>
+    readonly city: FieldRef<"Address", 'String'>
+    readonly country: FieldRef<"Address", 'String'>
+    readonly street: FieldRef<"Address", 'String'>
+    readonly zip_code: FieldRef<"Address", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Address findUnique
+   */
+  export type AddressFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter, which Address to fetch.
+     */
+    where: AddressWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Address findUniqueOrThrow
+   */
+  export type AddressFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter, which Address to fetch.
+     */
+    where: AddressWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Address findFirst
+   */
+  export type AddressFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter, which Address to fetch.
+     */
+    where?: AddressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Addresses to fetch.
+     */
+    orderBy?: AddressOrderByWithRelationInput | AddressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Addresses.
+     */
+    cursor?: AddressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Addresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Addresses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Addresses.
+     */
+    distinct?: AddressScalarFieldEnum | AddressScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Address findFirstOrThrow
+   */
+  export type AddressFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter, which Address to fetch.
+     */
+    where?: AddressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Addresses to fetch.
+     */
+    orderBy?: AddressOrderByWithRelationInput | AddressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Addresses.
+     */
+    cursor?: AddressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Addresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Addresses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Addresses.
+     */
+    distinct?: AddressScalarFieldEnum | AddressScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Address findMany
+   */
+  export type AddressFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter, which Addresses to fetch.
+     */
+    where?: AddressWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Addresses to fetch.
+     */
+    orderBy?: AddressOrderByWithRelationInput | AddressOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Addresses.
+     */
+    cursor?: AddressWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Addresses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Addresses.
+     */
+    skip?: number
+    distinct?: AddressScalarFieldEnum | AddressScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Address create
+   */
+  export type AddressCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Address.
+     */
+    data: XOR<AddressCreateInput, AddressUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Address createMany
+   */
+  export type AddressCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Addresses.
+     */
+    data: AddressCreateManyInput | AddressCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Address createManyAndReturn
+   */
+  export type AddressCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * The data used to create many Addresses.
+     */
+    data: AddressCreateManyInput | AddressCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Address update
+   */
+  export type AddressUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Address.
+     */
+    data: XOR<AddressUpdateInput, AddressUncheckedUpdateInput>
+    /**
+     * Choose, which Address to update.
+     */
+    where: AddressWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Address updateMany
+   */
+  export type AddressUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Addresses.
+     */
+    data: XOR<AddressUpdateManyMutationInput, AddressUncheckedUpdateManyInput>
+    /**
+     * Filter which Addresses to update
+     */
+    where?: AddressWhereInput
+  }
+
+  /**
+   * Address upsert
+   */
+  export type AddressUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Address to update in case it exists.
+     */
+    where: AddressWhereUniqueInput
+    /**
+     * In case the Address found by the `where` argument doesn't exist, create a new Address with this data.
+     */
+    create: XOR<AddressCreateInput, AddressUncheckedCreateInput>
+    /**
+     * In case the Address was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AddressUpdateInput, AddressUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Address delete
+   */
+  export type AddressDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
+    /**
+     * Filter which Address to delete.
+     */
+    where: AddressWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Address deleteMany
+   */
+  export type AddressDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Addresses to delete
+     */
+    where?: AddressWhereInput
+  }
+
+  /**
+   * Address.rental
+   */
+  export type Address$rentalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rental
+     */
+    select?: RentalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalInclude<ExtArgs> | null
+    where?: RentalWhereInput
+    orderBy?: RentalOrderByWithRelationInput | RentalOrderByWithRelationInput[]
+    cursor?: RentalWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RentalScalarFieldEnum | RentalScalarFieldEnum[]
+  }
+
+  /**
+   * Address without action
+   */
+  export type AddressDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Address
+     */
+    select?: AddressSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Address
+     */
+    omit?: AddressOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AddressInclude<ExtArgs> | null
   }
 
 
@@ -3411,33 +3540,27 @@ export namespace Prisma {
   }
 
   export type CaracteristicAvgAggregateOutputType = {
-    id: number | null
     nb_bedroom: number | null
     nb_bathroom: number | null
-    rentalId: number | null
   }
 
   export type CaracteristicSumAggregateOutputType = {
-    id: number | null
     nb_bedroom: number | null
     nb_bathroom: number | null
-    rentalId: number | null
   }
 
   export type CaracteristicMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     nb_bedroom: number | null
     nb_bathroom: number | null
     description: string | null
-    rentalId: number | null
   }
 
   export type CaracteristicMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     nb_bedroom: number | null
     nb_bathroom: number | null
     description: string | null
-    rentalId: number | null
   }
 
   export type CaracteristicCountAggregateOutputType = {
@@ -3445,23 +3568,18 @@ export namespace Prisma {
     nb_bedroom: number
     nb_bathroom: number
     description: number
-    rentalId: number
     _all: number
   }
 
 
   export type CaracteristicAvgAggregateInputType = {
-    id?: true
     nb_bedroom?: true
     nb_bathroom?: true
-    rentalId?: true
   }
 
   export type CaracteristicSumAggregateInputType = {
-    id?: true
     nb_bedroom?: true
     nb_bathroom?: true
-    rentalId?: true
   }
 
   export type CaracteristicMinAggregateInputType = {
@@ -3469,7 +3587,6 @@ export namespace Prisma {
     nb_bedroom?: true
     nb_bathroom?: true
     description?: true
-    rentalId?: true
   }
 
   export type CaracteristicMaxAggregateInputType = {
@@ -3477,7 +3594,6 @@ export namespace Prisma {
     nb_bedroom?: true
     nb_bathroom?: true
     description?: true
-    rentalId?: true
   }
 
   export type CaracteristicCountAggregateInputType = {
@@ -3485,7 +3601,6 @@ export namespace Prisma {
     nb_bedroom?: true
     nb_bathroom?: true
     description?: true
-    rentalId?: true
     _all?: true
   }
 
@@ -3576,11 +3691,10 @@ export namespace Prisma {
   }
 
   export type CaracteristicGroupByOutputType = {
-    id: number
-    nb_bedroom: number
+    id: string
+    nb_bedroom: number | null
     nb_bathroom: number
     description: string
-    rentalId: number
     _count: CaracteristicCountAggregateOutputType | null
     _avg: CaracteristicAvgAggregateOutputType | null
     _sum: CaracteristicSumAggregateOutputType | null
@@ -3607,8 +3721,8 @@ export namespace Prisma {
     nb_bedroom?: boolean
     nb_bathroom?: boolean
     description?: boolean
-    rentalId?: boolean
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
+    rental?: boolean | Caracteristic$rentalArgs<ExtArgs>
+    _count?: boolean | CaracteristicCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["caracteristic"]>
 
   export type CaracteristicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3616,8 +3730,6 @@ export namespace Prisma {
     nb_bedroom?: boolean
     nb_bathroom?: boolean
     description?: boolean
-    rentalId?: boolean
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["caracteristic"]>
 
   export type CaracteristicSelectScalar = {
@@ -3625,27 +3737,25 @@ export namespace Prisma {
     nb_bedroom?: boolean
     nb_bathroom?: boolean
     description?: boolean
-    rentalId?: boolean
   }
 
+  export type CaracteristicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nb_bedroom" | "nb_bathroom" | "description", ExtArgs["result"]["caracteristic"]>
   export type CaracteristicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
+    rental?: boolean | Caracteristic$rentalArgs<ExtArgs>
+    _count?: boolean | CaracteristicCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type CaracteristicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }
+  export type CaracteristicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $CaracteristicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Caracteristic"
     objects: {
-      rental: Prisma.$RentalPayload<ExtArgs>
+      rental: Prisma.$RentalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      nb_bedroom: number
+      id: string
+      nb_bedroom: number | null
       nb_bathroom: number
       description: string
-      rentalId: number
     }, ExtArgs["result"]["caracteristic"]>
     composites: {}
   }
@@ -3653,11 +3763,11 @@ export namespace Prisma {
   type CaracteristicGetPayload<S extends boolean | null | undefined | CaracteristicDefaultArgs> = $Result.GetResult<Prisma.$CaracteristicPayload, S>
 
   type CaracteristicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<CaracteristicFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
+    Omit<CaracteristicFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
       select?: CaracteristicCountAggregateInputType | true
     }
 
-  export interface CaracteristicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface CaracteristicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Caracteristic'], meta: { name: 'Caracteristic' } }
     /**
      * Find zero or one Caracteristic that matches the filter.
@@ -3670,7 +3780,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends CaracteristicFindUniqueArgs>(args: SelectSubset<T, CaracteristicFindUniqueArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends CaracteristicFindUniqueArgs>(args: SelectSubset<T, CaracteristicFindUniqueArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find one Caracteristic that matches the filter or throw an error with `error.code='P2025'` 
@@ -3684,7 +3794,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends CaracteristicFindUniqueOrThrowArgs>(args: SelectSubset<T, CaracteristicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends CaracteristicFindUniqueOrThrowArgs>(args: SelectSubset<T, CaracteristicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find the first Caracteristic that matches the filter.
@@ -3699,7 +3809,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends CaracteristicFindFirstArgs>(args?: SelectSubset<T, CaracteristicFindFirstArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends CaracteristicFindFirstArgs>(args?: SelectSubset<T, CaracteristicFindFirstArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find the first Caracteristic that matches the filter or
@@ -3715,7 +3825,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends CaracteristicFindFirstOrThrowArgs>(args?: SelectSubset<T, CaracteristicFindFirstOrThrowArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends CaracteristicFindFirstOrThrowArgs>(args?: SelectSubset<T, CaracteristicFindFirstOrThrowArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find zero or more Caracteristics that matches the filter.
@@ -3733,7 +3843,7 @@ export namespace Prisma {
      * const caracteristicWithIdOnly = await prisma.caracteristic.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends CaracteristicFindManyArgs>(args?: SelectSubset<T, CaracteristicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends CaracteristicFindManyArgs>(args?: SelectSubset<T, CaracteristicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findMany", ClientOptions>>
 
     /**
      * Create a Caracteristic.
@@ -3747,7 +3857,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends CaracteristicCreateArgs>(args: SelectSubset<T, CaracteristicCreateArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends CaracteristicCreateArgs>(args: SelectSubset<T, CaracteristicCreateArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Create many Caracteristics.
@@ -3785,7 +3895,7 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends CaracteristicCreateManyAndReturnArgs>(args?: SelectSubset<T, CaracteristicCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends CaracteristicCreateManyAndReturnArgs>(args?: SelectSubset<T, CaracteristicCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
 
     /**
      * Delete a Caracteristic.
@@ -3799,7 +3909,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends CaracteristicDeleteArgs>(args: SelectSubset<T, CaracteristicDeleteArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends CaracteristicDeleteArgs>(args: SelectSubset<T, CaracteristicDeleteArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Update one Caracteristic.
@@ -3816,7 +3926,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends CaracteristicUpdateArgs>(args: SelectSubset<T, CaracteristicUpdateArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends CaracteristicUpdateArgs>(args: SelectSubset<T, CaracteristicUpdateArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Delete zero or more Caracteristics.
@@ -3868,7 +3978,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends CaracteristicUpsertArgs>(args: SelectSubset<T, CaracteristicUpsertArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends CaracteristicUpsertArgs>(args: SelectSubset<T, CaracteristicUpsertArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
 
 
     /**
@@ -4008,9 +4118,9 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__CaracteristicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__CaracteristicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    rental<T extends RentalDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RentalDefaultArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    rental<T extends Caracteristic$rentalArgs<ExtArgs> = {}>(args?: Subset<T, Caracteristic$rentalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4040,11 +4150,10 @@ export namespace Prisma {
    * Fields of the Caracteristic model
    */ 
   interface CaracteristicFieldRefs {
-    readonly id: FieldRef<"Caracteristic", 'Int'>
+    readonly id: FieldRef<"Caracteristic", 'String'>
     readonly nb_bedroom: FieldRef<"Caracteristic", 'Int'>
     readonly nb_bathroom: FieldRef<"Caracteristic", 'Int'>
     readonly description: FieldRef<"Caracteristic", 'String'>
-    readonly rentalId: FieldRef<"Caracteristic", 'Int'>
   }
     
 
@@ -4057,6 +4166,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Caracteristic
      */
     select?: CaracteristicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -4077,6 +4190,10 @@ export namespace Prisma {
      */
     select?: CaracteristicSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: CaracteristicInclude<ExtArgs> | null
@@ -4095,6 +4212,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Caracteristic
      */
     select?: CaracteristicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -4145,6 +4266,10 @@ export namespace Prisma {
      */
     select?: CaracteristicSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: CaracteristicInclude<ExtArgs> | null
@@ -4194,6 +4319,10 @@ export namespace Prisma {
      */
     select?: CaracteristicSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: CaracteristicInclude<ExtArgs> | null
@@ -4238,6 +4367,10 @@ export namespace Prisma {
      */
     select?: CaracteristicSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: CaracteristicInclude<ExtArgs> | null
@@ -4268,14 +4401,14 @@ export namespace Prisma {
      */
     select?: CaracteristicSelectCreateManyAndReturn<ExtArgs> | null
     /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
+    /**
      * The data used to create many Caracteristics.
      */
     data: CaracteristicCreateManyInput | CaracteristicCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CaracteristicIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4286,6 +4419,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Caracteristic
      */
     select?: CaracteristicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -4324,6 +4461,10 @@ export namespace Prisma {
      */
     select?: CaracteristicSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: CaracteristicInclude<ExtArgs> | null
@@ -4351,6 +4492,10 @@ export namespace Prisma {
      */
     select?: CaracteristicSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: CaracteristicInclude<ExtArgs> | null
@@ -4372,6 +4517,30 @@ export namespace Prisma {
   }
 
   /**
+   * Caracteristic.rental
+   */
+  export type Caracteristic$rentalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Rental
+     */
+    select?: RentalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalInclude<ExtArgs> | null
+    where?: RentalWhereInput
+    orderBy?: RentalOrderByWithRelationInput | RentalOrderByWithRelationInput[]
+    cursor?: RentalWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RentalScalarFieldEnum | RentalScalarFieldEnum[]
+  }
+
+  /**
    * Caracteristic without action
    */
   export type CaracteristicDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4379,6 +4548,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Caracteristic
      */
     select?: CaracteristicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Caracteristic
+     */
+    omit?: CaracteristicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -4392,32 +4565,20 @@ export namespace Prisma {
 
   export type AggregatePicture = {
     _count: PictureCountAggregateOutputType | null
-    _avg: PictureAvgAggregateOutputType | null
-    _sum: PictureSumAggregateOutputType | null
     _min: PictureMinAggregateOutputType | null
     _max: PictureMaxAggregateOutputType | null
   }
 
-  export type PictureAvgAggregateOutputType = {
-    id: number | null
-    rentalId: number | null
-  }
-
-  export type PictureSumAggregateOutputType = {
-    id: number | null
-    rentalId: number | null
-  }
-
   export type PictureMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     url: string | null
-    rentalId: number | null
+    rentalId: string | null
   }
 
   export type PictureMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     url: string | null
-    rentalId: number | null
+    rentalId: string | null
   }
 
   export type PictureCountAggregateOutputType = {
@@ -4427,16 +4588,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type PictureAvgAggregateInputType = {
-    id?: true
-    rentalId?: true
-  }
-
-  export type PictureSumAggregateInputType = {
-    id?: true
-    rentalId?: true
-  }
 
   export type PictureMinAggregateInputType = {
     id?: true
@@ -4495,18 +4646,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: PictureAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PictureSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: PictureMinAggregateInputType
@@ -4537,19 +4676,15 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: PictureCountAggregateInputType | true
-    _avg?: PictureAvgAggregateInputType
-    _sum?: PictureSumAggregateInputType
     _min?: PictureMinAggregateInputType
     _max?: PictureMaxAggregateInputType
   }
 
   export type PictureGroupByOutputType = {
-    id: number
+    id: string
     url: string
-    rentalId: number
+    rentalId: string
     _count: PictureCountAggregateOutputType | null
-    _avg: PictureAvgAggregateOutputType | null
-    _sum: PictureSumAggregateOutputType | null
     _min: PictureMinAggregateOutputType | null
     _max: PictureMaxAggregateOutputType | null
   }
@@ -4588,6 +4723,7 @@ export namespace Prisma {
     rentalId?: boolean
   }
 
+  export type PictureOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "url" | "rentalId", ExtArgs["result"]["picture"]>
   export type PictureInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     rental?: boolean | RentalDefaultArgs<ExtArgs>
   }
@@ -4601,9 +4737,9 @@ export namespace Prisma {
       rental: Prisma.$RentalPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       url: string
-      rentalId: number
+      rentalId: string
     }, ExtArgs["result"]["picture"]>
     composites: {}
   }
@@ -4611,11 +4747,11 @@ export namespace Prisma {
   type PictureGetPayload<S extends boolean | null | undefined | PictureDefaultArgs> = $Result.GetResult<Prisma.$PicturePayload, S>
 
   type PictureCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<PictureFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
+    Omit<PictureFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
       select?: PictureCountAggregateInputType | true
     }
 
-  export interface PictureDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface PictureDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Picture'], meta: { name: 'Picture' } }
     /**
      * Find zero or one Picture that matches the filter.
@@ -4628,7 +4764,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends PictureFindUniqueArgs>(args: SelectSubset<T, PictureFindUniqueArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends PictureFindUniqueArgs>(args: SelectSubset<T, PictureFindUniqueArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find one Picture that matches the filter or throw an error with `error.code='P2025'` 
@@ -4642,7 +4778,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends PictureFindUniqueOrThrowArgs>(args: SelectSubset<T, PictureFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends PictureFindUniqueOrThrowArgs>(args: SelectSubset<T, PictureFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find the first Picture that matches the filter.
@@ -4657,7 +4793,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends PictureFindFirstArgs>(args?: SelectSubset<T, PictureFindFirstArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends PictureFindFirstArgs>(args?: SelectSubset<T, PictureFindFirstArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find the first Picture that matches the filter or
@@ -4673,7 +4809,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends PictureFindFirstOrThrowArgs>(args?: SelectSubset<T, PictureFindFirstOrThrowArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends PictureFindFirstOrThrowArgs>(args?: SelectSubset<T, PictureFindFirstOrThrowArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find zero or more Pictures that matches the filter.
@@ -4691,7 +4827,7 @@ export namespace Prisma {
      * const pictureWithIdOnly = await prisma.picture.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends PictureFindManyArgs>(args?: SelectSubset<T, PictureFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findMany">>
+    findMany<T extends PictureFindManyArgs>(args?: SelectSubset<T, PictureFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findMany", ClientOptions>>
 
     /**
      * Create a Picture.
@@ -4705,7 +4841,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends PictureCreateArgs>(args: SelectSubset<T, PictureCreateArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends PictureCreateArgs>(args: SelectSubset<T, PictureCreateArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Create many Pictures.
@@ -4743,7 +4879,7 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends PictureCreateManyAndReturnArgs>(args?: SelectSubset<T, PictureCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends PictureCreateManyAndReturnArgs>(args?: SelectSubset<T, PictureCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
 
     /**
      * Delete a Picture.
@@ -4757,7 +4893,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends PictureDeleteArgs>(args: SelectSubset<T, PictureDeleteArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends PictureDeleteArgs>(args: SelectSubset<T, PictureDeleteArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Update one Picture.
@@ -4774,7 +4910,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends PictureUpdateArgs>(args: SelectSubset<T, PictureUpdateArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends PictureUpdateArgs>(args: SelectSubset<T, PictureUpdateArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Delete zero or more Pictures.
@@ -4826,7 +4962,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends PictureUpsertArgs>(args: SelectSubset<T, PictureUpsertArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends PictureUpsertArgs>(args: SelectSubset<T, PictureUpsertArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
 
 
     /**
@@ -4966,9 +5102,9 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__PictureClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__PictureClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    rental<T extends RentalDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RentalDefaultArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    rental<T extends RentalDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RentalDefaultArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4998,9 +5134,9 @@ export namespace Prisma {
    * Fields of the Picture model
    */ 
   interface PictureFieldRefs {
-    readonly id: FieldRef<"Picture", 'Int'>
+    readonly id: FieldRef<"Picture", 'String'>
     readonly url: FieldRef<"Picture", 'String'>
-    readonly rentalId: FieldRef<"Picture", 'Int'>
+    readonly rentalId: FieldRef<"Picture", 'String'>
   }
     
 
@@ -5013,6 +5149,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Picture
      */
     select?: PictureSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -5033,6 +5173,10 @@ export namespace Prisma {
      */
     select?: PictureSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: PictureInclude<ExtArgs> | null
@@ -5051,6 +5195,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Picture
      */
     select?: PictureSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -5101,6 +5249,10 @@ export namespace Prisma {
      */
     select?: PictureSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: PictureInclude<ExtArgs> | null
@@ -5150,6 +5302,10 @@ export namespace Prisma {
      */
     select?: PictureSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: PictureInclude<ExtArgs> | null
@@ -5194,6 +5350,10 @@ export namespace Prisma {
      */
     select?: PictureSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: PictureInclude<ExtArgs> | null
@@ -5224,6 +5384,10 @@ export namespace Prisma {
      */
     select?: PictureSelectCreateManyAndReturn<ExtArgs> | null
     /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
+    /**
      * The data used to create many Pictures.
      */
     data: PictureCreateManyInput | PictureCreateManyInput[]
@@ -5242,6 +5406,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Picture
      */
     select?: PictureSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -5280,6 +5448,10 @@ export namespace Prisma {
      */
     select?: PictureSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: PictureInclude<ExtArgs> | null
@@ -5306,6 +5478,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Picture
      */
     select?: PictureSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -5336,6 +5512,10 @@ export namespace Prisma {
      */
     select?: PictureSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Picture
+     */
+    omit?: PictureOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: PictureInclude<ExtArgs> | null
@@ -5348,22 +5528,12 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
 
-  export type UserAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type UserSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type UserMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     email: string | null
     name: string | null
     password: string | null
@@ -5375,7 +5545,7 @@ export namespace Prisma {
   }
 
   export type UserMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     email: string | null
     name: string | null
     password: string | null
@@ -5399,14 +5569,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type UserAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type UserSumAggregateInputType = {
-    id?: true
-  }
 
   export type UserMinAggregateInputType = {
     id?: true
@@ -5483,18 +5645,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: UserAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -5525,14 +5675,12 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
-    _avg?: UserAvgAggregateInputType
-    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
 
   export type UserGroupByOutputType = {
-    id: number
+    id: string
     email: string
     name: string
     password: string
@@ -5542,8 +5690,6 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -5600,6 +5746,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "about_me" | "phone_number" | "user_type" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Rental?: boolean | User$RentalArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -5612,7 +5759,7 @@ export namespace Prisma {
       Rental: Prisma.$RentalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       email: string
       name: string
       password: string
@@ -5628,11 +5775,11 @@ export namespace Prisma {
   type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
   type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'relationLoadStrategy'> & {
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
       select?: UserCountAggregateInputType | true
     }
 
-  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
     /**
      * Find zero or one User that matches the filter.
@@ -5645,7 +5792,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find one User that matches the filter or throw an error with `error.code='P2025'` 
@@ -5659,7 +5806,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find the first User that matches the filter.
@@ -5674,7 +5821,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find the first User that matches the filter or
@@ -5690,7 +5837,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find zero or more Users that matches the filter.
@@ -5708,7 +5855,7 @@ export namespace Prisma {
      * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", ClientOptions>>
 
     /**
      * Create a User.
@@ -5722,7 +5869,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Create many Users.
@@ -5760,7 +5907,7 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
 
     /**
      * Delete a User.
@@ -5774,7 +5921,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Update one User.
@@ -5791,7 +5938,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Delete zero or more Users.
@@ -5843,7 +5990,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
 
 
     /**
@@ -5983,9 +6130,9 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Rental<T extends User$RentalArgs<ExtArgs> = {}>(args?: Subset<T, User$RentalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findMany"> | Null>
+    Rental<T extends User$RentalArgs<ExtArgs> = {}>(args?: Subset<T, User$RentalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6015,7 +6162,7 @@ export namespace Prisma {
    * Fields of the User model
    */ 
   interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'Int'>
+    readonly id: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
@@ -6037,6 +6184,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
@@ -6056,6 +6207,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
@@ -6074,6 +6229,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -6124,6 +6283,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
@@ -6173,6 +6336,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
@@ -6217,6 +6384,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
@@ -6247,6 +6418,10 @@ export namespace Prisma {
      */
     select?: UserSelectCreateManyAndReturn<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
@@ -6261,6 +6436,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -6299,6 +6478,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
@@ -6325,6 +6508,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -6355,6 +6542,10 @@ export namespace Prisma {
      */
     select?: RentalSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Rental
+     */
+    omit?: RentalOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: RentalInclude<ExtArgs> | null
@@ -6374,6 +6565,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -6395,16 +6590,21 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const AdressScalarFieldEnum: {
+  export const RentalScalarFieldEnum: {
     id: 'id',
-    city: 'city',
-    country: 'country',
-    street: 'street',
-    zip_code: 'zip_code',
-    rentalId: 'rentalId'
+    title: 'title',
+    nb_person: 'nb_person',
+    price: 'price',
+    available_date: 'available_date',
+    type: 'type',
+    userId: 'userId',
+    adressId: 'adressId',
+    caracteristicId: 'caracteristicId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
-  export type AdressScalarFieldEnum = (typeof AdressScalarFieldEnum)[keyof typeof AdressScalarFieldEnum]
+  export type RentalScalarFieldEnum = (typeof RentalScalarFieldEnum)[keyof typeof RentalScalarFieldEnum]
 
 
   export const RelationLoadStrategy: {
@@ -6415,27 +6615,22 @@ export namespace Prisma {
   export type RelationLoadStrategy = (typeof RelationLoadStrategy)[keyof typeof RelationLoadStrategy]
 
 
-  export const RentalScalarFieldEnum: {
+  export const AddressScalarFieldEnum: {
     id: 'id',
-    title: 'title',
-    nb_person: 'nb_person',
-    price: 'price',
-    available_date: 'available_date',
-    type: 'type',
-    userId: 'userId',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    city: 'city',
+    country: 'country',
+    street: 'street',
+    zip_code: 'zip_code'
   };
 
-  export type RentalScalarFieldEnum = (typeof RentalScalarFieldEnum)[keyof typeof RentalScalarFieldEnum]
+  export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
 
 
   export const CaracteristicScalarFieldEnum: {
     id: 'id',
     nb_bedroom: 'nb_bedroom',
     nb_bathroom: 'nb_bathroom',
-    description: 'description',
-    rentalId: 'rentalId'
+    description: 'description'
   };
 
   export type CaracteristicScalarFieldEnum = (typeof CaracteristicScalarFieldEnum)[keyof typeof CaracteristicScalarFieldEnum]
@@ -6495,20 +6690,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -6519,6 +6700,20 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -6581,85 +6776,25 @@ export namespace Prisma {
    */
 
 
-  export type AdressWhereInput = {
-    AND?: AdressWhereInput | AdressWhereInput[]
-    OR?: AdressWhereInput[]
-    NOT?: AdressWhereInput | AdressWhereInput[]
-    id?: IntFilter<"Adress"> | number
-    city?: StringFilter<"Adress"> | string
-    country?: StringFilter<"Adress"> | string
-    street?: StringFilter<"Adress"> | string
-    zip_code?: StringFilter<"Adress"> | string
-    rentalId?: IntFilter<"Adress"> | number
-    rental?: XOR<RentalScalarRelationFilter, RentalWhereInput>
-  }
-
-  export type AdressOrderByWithRelationInput = {
-    id?: SortOrder
-    city?: SortOrder
-    country?: SortOrder
-    street?: SortOrder
-    zip_code?: SortOrder
-    rentalId?: SortOrder
-    rental?: RentalOrderByWithRelationInput
-  }
-
-  export type AdressWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: AdressWhereInput | AdressWhereInput[]
-    OR?: AdressWhereInput[]
-    NOT?: AdressWhereInput | AdressWhereInput[]
-    city?: StringFilter<"Adress"> | string
-    country?: StringFilter<"Adress"> | string
-    street?: StringFilter<"Adress"> | string
-    zip_code?: StringFilter<"Adress"> | string
-    rentalId?: IntFilter<"Adress"> | number
-    rental?: XOR<RentalScalarRelationFilter, RentalWhereInput>
-  }, "id">
-
-  export type AdressOrderByWithAggregationInput = {
-    id?: SortOrder
-    city?: SortOrder
-    country?: SortOrder
-    street?: SortOrder
-    zip_code?: SortOrder
-    rentalId?: SortOrder
-    _count?: AdressCountOrderByAggregateInput
-    _avg?: AdressAvgOrderByAggregateInput
-    _max?: AdressMaxOrderByAggregateInput
-    _min?: AdressMinOrderByAggregateInput
-    _sum?: AdressSumOrderByAggregateInput
-  }
-
-  export type AdressScalarWhereWithAggregatesInput = {
-    AND?: AdressScalarWhereWithAggregatesInput | AdressScalarWhereWithAggregatesInput[]
-    OR?: AdressScalarWhereWithAggregatesInput[]
-    NOT?: AdressScalarWhereWithAggregatesInput | AdressScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Adress"> | number
-    city?: StringWithAggregatesFilter<"Adress"> | string
-    country?: StringWithAggregatesFilter<"Adress"> | string
-    street?: StringWithAggregatesFilter<"Adress"> | string
-    zip_code?: StringWithAggregatesFilter<"Adress"> | string
-    rentalId?: IntWithAggregatesFilter<"Adress"> | number
-  }
-
   export type RentalWhereInput = {
     AND?: RentalWhereInput | RentalWhereInput[]
     OR?: RentalWhereInput[]
     NOT?: RentalWhereInput | RentalWhereInput[]
-    id?: IntFilter<"Rental"> | number
+    id?: StringFilter<"Rental"> | string
     title?: StringFilter<"Rental"> | string
     nb_person?: IntFilter<"Rental"> | number
     price?: FloatFilter<"Rental"> | number
     available_date?: DateTimeFilter<"Rental"> | Date | string
     type?: EnumTypesFilter<"Rental"> | $Enums.Types
-    userId?: IntFilter<"Rental"> | number
+    userId?: StringFilter<"Rental"> | string
+    adressId?: StringFilter<"Rental"> | string
+    caracteristicId?: StringNullableFilter<"Rental"> | string | null
     createdAt?: DateTimeFilter<"Rental"> | Date | string
     updatedAt?: DateTimeFilter<"Rental"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    Picture?: PictureListRelationFilter
-    Caracteristic?: CaracteristicListRelationFilter
-    Adress?: AdressListRelationFilter
+    caracteristic?: XOR<CaracteristicNullableScalarRelationFilter, CaracteristicWhereInput> | null
+    address?: XOR<AddressScalarRelationFilter, AddressWhereInput>
+    picture?: PictureListRelationFilter
   }
 
   export type RentalOrderByWithRelationInput = {
@@ -6670,16 +6805,20 @@ export namespace Prisma {
     available_date?: SortOrder
     type?: SortOrder
     userId?: SortOrder
+    adressId?: SortOrder
+    caracteristicId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    Picture?: PictureOrderByRelationAggregateInput
-    Caracteristic?: CaracteristicOrderByRelationAggregateInput
-    Adress?: AdressOrderByRelationAggregateInput
+    caracteristic?: CaracteristicOrderByWithRelationInput
+    address?: AddressOrderByWithRelationInput
+    picture?: PictureOrderByRelationAggregateInput
   }
 
   export type RentalWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
+    adressId?: string
+    caracteristicId?: string
     AND?: RentalWhereInput | RentalWhereInput[]
     OR?: RentalWhereInput[]
     NOT?: RentalWhereInput | RentalWhereInput[]
@@ -6688,14 +6827,14 @@ export namespace Prisma {
     price?: FloatFilter<"Rental"> | number
     available_date?: DateTimeFilter<"Rental"> | Date | string
     type?: EnumTypesFilter<"Rental"> | $Enums.Types
-    userId?: IntFilter<"Rental"> | number
+    userId?: StringFilter<"Rental"> | string
     createdAt?: DateTimeFilter<"Rental"> | Date | string
     updatedAt?: DateTimeFilter<"Rental"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    Picture?: PictureListRelationFilter
-    Caracteristic?: CaracteristicListRelationFilter
-    Adress?: AdressListRelationFilter
-  }, "id">
+    caracteristic?: XOR<CaracteristicNullableScalarRelationFilter, CaracteristicWhereInput> | null
+    address?: XOR<AddressScalarRelationFilter, AddressWhereInput>
+    picture?: PictureListRelationFilter
+  }, "id" | "adressId" | "caracteristicId">
 
   export type RentalOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6705,6 +6844,8 @@ export namespace Prisma {
     available_date?: SortOrder
     type?: SortOrder
     userId?: SortOrder
+    adressId?: SortOrder
+    caracteristicId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: RentalCountOrderByAggregateInput
@@ -6718,56 +6859,109 @@ export namespace Prisma {
     AND?: RentalScalarWhereWithAggregatesInput | RentalScalarWhereWithAggregatesInput[]
     OR?: RentalScalarWhereWithAggregatesInput[]
     NOT?: RentalScalarWhereWithAggregatesInput | RentalScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Rental"> | number
+    id?: StringWithAggregatesFilter<"Rental"> | string
     title?: StringWithAggregatesFilter<"Rental"> | string
     nb_person?: IntWithAggregatesFilter<"Rental"> | number
     price?: FloatWithAggregatesFilter<"Rental"> | number
     available_date?: DateTimeWithAggregatesFilter<"Rental"> | Date | string
     type?: EnumTypesWithAggregatesFilter<"Rental"> | $Enums.Types
-    userId?: IntWithAggregatesFilter<"Rental"> | number
+    userId?: StringWithAggregatesFilter<"Rental"> | string
+    adressId?: StringWithAggregatesFilter<"Rental"> | string
+    caracteristicId?: StringNullableWithAggregatesFilter<"Rental"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Rental"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Rental"> | Date | string
+  }
+
+  export type AddressWhereInput = {
+    AND?: AddressWhereInput | AddressWhereInput[]
+    OR?: AddressWhereInput[]
+    NOT?: AddressWhereInput | AddressWhereInput[]
+    id?: StringFilter<"Address"> | string
+    city?: StringFilter<"Address"> | string
+    country?: StringFilter<"Address"> | string
+    street?: StringFilter<"Address"> | string
+    zip_code?: StringFilter<"Address"> | string
+    rental?: RentalListRelationFilter
+  }
+
+  export type AddressOrderByWithRelationInput = {
+    id?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    street?: SortOrder
+    zip_code?: SortOrder
+    rental?: RentalOrderByRelationAggregateInput
+  }
+
+  export type AddressWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AddressWhereInput | AddressWhereInput[]
+    OR?: AddressWhereInput[]
+    NOT?: AddressWhereInput | AddressWhereInput[]
+    city?: StringFilter<"Address"> | string
+    country?: StringFilter<"Address"> | string
+    street?: StringFilter<"Address"> | string
+    zip_code?: StringFilter<"Address"> | string
+    rental?: RentalListRelationFilter
+  }, "id">
+
+  export type AddressOrderByWithAggregationInput = {
+    id?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    street?: SortOrder
+    zip_code?: SortOrder
+    _count?: AddressCountOrderByAggregateInput
+    _max?: AddressMaxOrderByAggregateInput
+    _min?: AddressMinOrderByAggregateInput
+  }
+
+  export type AddressScalarWhereWithAggregatesInput = {
+    AND?: AddressScalarWhereWithAggregatesInput | AddressScalarWhereWithAggregatesInput[]
+    OR?: AddressScalarWhereWithAggregatesInput[]
+    NOT?: AddressScalarWhereWithAggregatesInput | AddressScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Address"> | string
+    city?: StringWithAggregatesFilter<"Address"> | string
+    country?: StringWithAggregatesFilter<"Address"> | string
+    street?: StringWithAggregatesFilter<"Address"> | string
+    zip_code?: StringWithAggregatesFilter<"Address"> | string
   }
 
   export type CaracteristicWhereInput = {
     AND?: CaracteristicWhereInput | CaracteristicWhereInput[]
     OR?: CaracteristicWhereInput[]
     NOT?: CaracteristicWhereInput | CaracteristicWhereInput[]
-    id?: IntFilter<"Caracteristic"> | number
-    nb_bedroom?: IntFilter<"Caracteristic"> | number
+    id?: StringFilter<"Caracteristic"> | string
+    nb_bedroom?: IntNullableFilter<"Caracteristic"> | number | null
     nb_bathroom?: IntFilter<"Caracteristic"> | number
     description?: StringFilter<"Caracteristic"> | string
-    rentalId?: IntFilter<"Caracteristic"> | number
-    rental?: XOR<RentalScalarRelationFilter, RentalWhereInput>
+    rental?: RentalListRelationFilter
   }
 
   export type CaracteristicOrderByWithRelationInput = {
     id?: SortOrder
-    nb_bedroom?: SortOrder
+    nb_bedroom?: SortOrderInput | SortOrder
     nb_bathroom?: SortOrder
     description?: SortOrder
-    rentalId?: SortOrder
-    rental?: RentalOrderByWithRelationInput
+    rental?: RentalOrderByRelationAggregateInput
   }
 
   export type CaracteristicWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: CaracteristicWhereInput | CaracteristicWhereInput[]
     OR?: CaracteristicWhereInput[]
     NOT?: CaracteristicWhereInput | CaracteristicWhereInput[]
-    nb_bedroom?: IntFilter<"Caracteristic"> | number
+    nb_bedroom?: IntNullableFilter<"Caracteristic"> | number | null
     nb_bathroom?: IntFilter<"Caracteristic"> | number
     description?: StringFilter<"Caracteristic"> | string
-    rentalId?: IntFilter<"Caracteristic"> | number
-    rental?: XOR<RentalScalarRelationFilter, RentalWhereInput>
+    rental?: RentalListRelationFilter
   }, "id">
 
   export type CaracteristicOrderByWithAggregationInput = {
     id?: SortOrder
-    nb_bedroom?: SortOrder
+    nb_bedroom?: SortOrderInput | SortOrder
     nb_bathroom?: SortOrder
     description?: SortOrder
-    rentalId?: SortOrder
     _count?: CaracteristicCountOrderByAggregateInput
     _avg?: CaracteristicAvgOrderByAggregateInput
     _max?: CaracteristicMaxOrderByAggregateInput
@@ -6779,20 +6973,19 @@ export namespace Prisma {
     AND?: CaracteristicScalarWhereWithAggregatesInput | CaracteristicScalarWhereWithAggregatesInput[]
     OR?: CaracteristicScalarWhereWithAggregatesInput[]
     NOT?: CaracteristicScalarWhereWithAggregatesInput | CaracteristicScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Caracteristic"> | number
-    nb_bedroom?: IntWithAggregatesFilter<"Caracteristic"> | number
+    id?: StringWithAggregatesFilter<"Caracteristic"> | string
+    nb_bedroom?: IntNullableWithAggregatesFilter<"Caracteristic"> | number | null
     nb_bathroom?: IntWithAggregatesFilter<"Caracteristic"> | number
     description?: StringWithAggregatesFilter<"Caracteristic"> | string
-    rentalId?: IntWithAggregatesFilter<"Caracteristic"> | number
   }
 
   export type PictureWhereInput = {
     AND?: PictureWhereInput | PictureWhereInput[]
     OR?: PictureWhereInput[]
     NOT?: PictureWhereInput | PictureWhereInput[]
-    id?: IntFilter<"Picture"> | number
+    id?: StringFilter<"Picture"> | string
     url?: StringFilter<"Picture"> | string
-    rentalId?: IntFilter<"Picture"> | number
+    rentalId?: StringFilter<"Picture"> | string
     rental?: XOR<RentalScalarRelationFilter, RentalWhereInput>
   }
 
@@ -6804,12 +6997,12 @@ export namespace Prisma {
   }
 
   export type PictureWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: PictureWhereInput | PictureWhereInput[]
     OR?: PictureWhereInput[]
     NOT?: PictureWhereInput | PictureWhereInput[]
     url?: StringFilter<"Picture"> | string
-    rentalId?: IntFilter<"Picture"> | number
+    rentalId?: StringFilter<"Picture"> | string
     rental?: XOR<RentalScalarRelationFilter, RentalWhereInput>
   }, "id">
 
@@ -6818,26 +7011,24 @@ export namespace Prisma {
     url?: SortOrder
     rentalId?: SortOrder
     _count?: PictureCountOrderByAggregateInput
-    _avg?: PictureAvgOrderByAggregateInput
     _max?: PictureMaxOrderByAggregateInput
     _min?: PictureMinOrderByAggregateInput
-    _sum?: PictureSumOrderByAggregateInput
   }
 
   export type PictureScalarWhereWithAggregatesInput = {
     AND?: PictureScalarWhereWithAggregatesInput | PictureScalarWhereWithAggregatesInput[]
     OR?: PictureScalarWhereWithAggregatesInput[]
     NOT?: PictureScalarWhereWithAggregatesInput | PictureScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Picture"> | number
+    id?: StringWithAggregatesFilter<"Picture"> | string
     url?: StringWithAggregatesFilter<"Picture"> | string
-    rentalId?: IntWithAggregatesFilter<"Picture"> | number
+    rentalId?: StringWithAggregatesFilter<"Picture"> | string
   }
 
   export type UserWhereInput = {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    id?: IntFilter<"User"> | number
+    id?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
@@ -6863,7 +7054,7 @@ export namespace Prisma {
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     email?: string
     phone_number?: string
     AND?: UserWhereInput | UserWhereInput[]
@@ -6889,17 +7080,15 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
-    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
-    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
     AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"User"> | number
+    id?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
@@ -6910,66 +7099,8 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
-  export type AdressCreateInput = {
-    city: string
-    country: string
-    street: string
-    zip_code: string
-    rental: RentalCreateNestedOneWithoutAdressInput
-  }
-
-  export type AdressUncheckedCreateInput = {
-    id?: number
-    city: string
-    country: string
-    street: string
-    zip_code: string
-    rentalId: number
-  }
-
-  export type AdressUpdateInput = {
-    city?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    street?: StringFieldUpdateOperationsInput | string
-    zip_code?: StringFieldUpdateOperationsInput | string
-    rental?: RentalUpdateOneRequiredWithoutAdressNestedInput
-  }
-
-  export type AdressUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    city?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    street?: StringFieldUpdateOperationsInput | string
-    zip_code?: StringFieldUpdateOperationsInput | string
-    rentalId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type AdressCreateManyInput = {
-    id?: number
-    city: string
-    country: string
-    street: string
-    zip_code: string
-    rentalId: number
-  }
-
-  export type AdressUpdateManyMutationInput = {
-    city?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    street?: StringFieldUpdateOperationsInput | string
-    zip_code?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AdressUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    city?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    street?: StringFieldUpdateOperationsInput | string
-    zip_code?: StringFieldUpdateOperationsInput | string
-    rentalId?: IntFieldUpdateOperationsInput | number
-  }
-
   export type RentalCreateInput = {
+    id?: string
     title: string
     nb_person: number
     price: number
@@ -6978,27 +7109,28 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutRentalInput
-    Picture?: PictureCreateNestedManyWithoutRentalInput
-    Caracteristic?: CaracteristicCreateNestedManyWithoutRentalInput
-    Adress?: AdressCreateNestedManyWithoutRentalInput
+    caracteristic?: CaracteristicCreateNestedOneWithoutRentalInput
+    address: AddressCreateNestedOneWithoutRentalInput
+    picture?: PictureCreateNestedManyWithoutRentalInput
   }
 
   export type RentalUncheckedCreateInput = {
-    id?: number
+    id?: string
     title: string
     nb_person: number
     price: number
     available_date: Date | string
     type: $Enums.Types
-    userId: number
+    userId: string
+    adressId: string
+    caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    Picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
-    Caracteristic?: CaracteristicUncheckedCreateNestedManyWithoutRentalInput
-    Adress?: AdressUncheckedCreateNestedManyWithoutRentalInput
+    picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
   }
 
   export type RentalUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
@@ -7007,39 +7139,42 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutRentalNestedInput
-    Picture?: PictureUpdateManyWithoutRentalNestedInput
-    Caracteristic?: CaracteristicUpdateManyWithoutRentalNestedInput
-    Adress?: AdressUpdateManyWithoutRentalNestedInput
+    caracteristic?: CaracteristicUpdateOneWithoutRentalNestedInput
+    address?: AddressUpdateOneRequiredWithoutRentalNestedInput
+    picture?: PictureUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    adressId?: StringFieldUpdateOperationsInput | string
+    caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
-    Caracteristic?: CaracteristicUncheckedUpdateManyWithoutRentalNestedInput
-    Adress?: AdressUncheckedUpdateManyWithoutRentalNestedInput
+    picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalCreateManyInput = {
-    id?: number
+    id?: string
     title: string
     nb_person: number
     price: number
     available_date: Date | string
     type: $Enums.Types
-    userId: number
+    userId: string
+    adressId: string
+    caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type RentalUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
@@ -7050,108 +7185,175 @@ export namespace Prisma {
   }
 
   export type RentalUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    adressId?: StringFieldUpdateOperationsInput | string
+    caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AddressCreateInput = {
+    id?: string
+    city: string
+    country: string
+    street: string
+    zip_code: string
+    rental?: RentalCreateNestedManyWithoutAddressInput
+  }
+
+  export type AddressUncheckedCreateInput = {
+    id?: string
+    city: string
+    country: string
+    street: string
+    zip_code: string
+    rental?: RentalUncheckedCreateNestedManyWithoutAddressInput
+  }
+
+  export type AddressUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    zip_code?: StringFieldUpdateOperationsInput | string
+    rental?: RentalUpdateManyWithoutAddressNestedInput
+  }
+
+  export type AddressUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    zip_code?: StringFieldUpdateOperationsInput | string
+    rental?: RentalUncheckedUpdateManyWithoutAddressNestedInput
+  }
+
+  export type AddressCreateManyInput = {
+    id?: string
+    city: string
+    country: string
+    street: string
+    zip_code: string
+  }
+
+  export type AddressUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    zip_code?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AddressUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    zip_code?: StringFieldUpdateOperationsInput | string
+  }
+
   export type CaracteristicCreateInput = {
-    nb_bedroom: number
+    id?: string
+    nb_bedroom?: number | null
     nb_bathroom: number
     description: string
-    rental: RentalCreateNestedOneWithoutCaracteristicInput
+    rental?: RentalCreateNestedManyWithoutCaracteristicInput
   }
 
   export type CaracteristicUncheckedCreateInput = {
-    id?: number
-    nb_bedroom: number
+    id?: string
+    nb_bedroom?: number | null
     nb_bathroom: number
     description: string
-    rentalId: number
+    rental?: RentalUncheckedCreateNestedManyWithoutCaracteristicInput
   }
 
   export type CaracteristicUpdateInput = {
-    nb_bedroom?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    nb_bedroom?: NullableIntFieldUpdateOperationsInput | number | null
     nb_bathroom?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
-    rental?: RentalUpdateOneRequiredWithoutCaracteristicNestedInput
+    rental?: RentalUpdateManyWithoutCaracteristicNestedInput
   }
 
   export type CaracteristicUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nb_bedroom?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    nb_bedroom?: NullableIntFieldUpdateOperationsInput | number | null
     nb_bathroom?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
-    rentalId?: IntFieldUpdateOperationsInput | number
+    rental?: RentalUncheckedUpdateManyWithoutCaracteristicNestedInput
   }
 
   export type CaracteristicCreateManyInput = {
-    id?: number
-    nb_bedroom: number
+    id?: string
+    nb_bedroom?: number | null
     nb_bathroom: number
     description: string
-    rentalId: number
   }
 
   export type CaracteristicUpdateManyMutationInput = {
-    nb_bedroom?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    nb_bedroom?: NullableIntFieldUpdateOperationsInput | number | null
     nb_bathroom?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
   }
 
   export type CaracteristicUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nb_bedroom?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    nb_bedroom?: NullableIntFieldUpdateOperationsInput | number | null
     nb_bathroom?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
-    rentalId?: IntFieldUpdateOperationsInput | number
   }
 
   export type PictureCreateInput = {
+    id?: string
     url: string
     rental: RentalCreateNestedOneWithoutPictureInput
   }
 
   export type PictureUncheckedCreateInput = {
-    id?: number
+    id?: string
     url: string
-    rentalId: number
+    rentalId: string
   }
 
   export type PictureUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     rental?: RentalUpdateOneRequiredWithoutPictureNestedInput
   }
 
   export type PictureUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
-    rentalId?: IntFieldUpdateOperationsInput | number
+    rentalId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PictureCreateManyInput = {
-    id?: number
+    id?: string
     url: string
-    rentalId: number
+    rentalId: string
   }
 
   export type PictureUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
   }
 
   export type PictureUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
-    rentalId?: IntFieldUpdateOperationsInput | number
+    rentalId?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserCreateInput = {
+    id?: string
     email: string
     name: string
     password: string
@@ -7164,7 +7366,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedCreateInput = {
-    id?: number
+    id?: string
     email: string
     name: string
     password: string
@@ -7177,6 +7379,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -7189,7 +7392,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -7202,7 +7405,7 @@ export namespace Prisma {
   }
 
   export type UserCreateManyInput = {
-    id?: number
+    id?: string
     email: string
     name: string
     password: string
@@ -7214,6 +7417,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -7225,7 +7429,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -7234,17 +7438,6 @@ export namespace Prisma {
     user_type?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -7262,49 +7455,7 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type RentalScalarRelationFilter = {
-    is?: RentalWhereInput
-    isNot?: RentalWhereInput
-  }
-
-  export type AdressCountOrderByAggregateInput = {
-    id?: SortOrder
-    city?: SortOrder
-    country?: SortOrder
-    street?: SortOrder
-    zip_code?: SortOrder
-    rentalId?: SortOrder
-  }
-
-  export type AdressAvgOrderByAggregateInput = {
-    id?: SortOrder
-    rentalId?: SortOrder
-  }
-
-  export type AdressMaxOrderByAggregateInput = {
-    id?: SortOrder
-    city?: SortOrder
-    country?: SortOrder
-    street?: SortOrder
-    zip_code?: SortOrder
-    rentalId?: SortOrder
-  }
-
-  export type AdressMinOrderByAggregateInput = {
-    id?: SortOrder
-    city?: SortOrder
-    country?: SortOrder
-    street?: SortOrder
-    zip_code?: SortOrder
-    rentalId?: SortOrder
-  }
-
-  export type AdressSumOrderByAggregateInput = {
-    id?: SortOrder
-    rentalId?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+  export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -7312,30 +7463,7 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -7367,9 +7495,34 @@ export namespace Prisma {
     not?: NestedEnumTypesFilter<$PrismaModel> | $Enums.Types
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
+  }
+
+  export type CaracteristicNullableScalarRelationFilter = {
+    is?: CaracteristicWhereInput | null
+    isNot?: CaracteristicWhereInput | null
+  }
+
+  export type AddressScalarRelationFilter = {
+    is?: AddressWhereInput
+    isNot?: AddressWhereInput
   }
 
   export type PictureListRelationFilter = {
@@ -7378,27 +7531,12 @@ export namespace Prisma {
     none?: PictureWhereInput
   }
 
-  export type CaracteristicListRelationFilter = {
-    every?: CaracteristicWhereInput
-    some?: CaracteristicWhereInput
-    none?: CaracteristicWhereInput
-  }
-
-  export type AdressListRelationFilter = {
-    every?: AdressWhereInput
-    some?: AdressWhereInput
-    none?: AdressWhereInput
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type PictureOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type CaracteristicOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type AdressOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -7410,15 +7548,15 @@ export namespace Prisma {
     available_date?: SortOrder
     type?: SortOrder
     userId?: SortOrder
+    adressId?: SortOrder
+    caracteristicId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type RentalAvgOrderByAggregateInput = {
-    id?: SortOrder
     nb_person?: SortOrder
     price?: SortOrder
-    userId?: SortOrder
   }
 
   export type RentalMaxOrderByAggregateInput = {
@@ -7429,6 +7567,8 @@ export namespace Prisma {
     available_date?: SortOrder
     type?: SortOrder
     userId?: SortOrder
+    adressId?: SortOrder
+    caracteristicId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7441,15 +7581,49 @@ export namespace Prisma {
     available_date?: SortOrder
     type?: SortOrder
     userId?: SortOrder
+    adressId?: SortOrder
+    caracteristicId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type RentalSumOrderByAggregateInput = {
-    id?: SortOrder
     nb_person?: SortOrder
     price?: SortOrder
-    userId?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -7492,19 +7666,79 @@ export namespace Prisma {
     _max?: NestedEnumTypesFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type RentalListRelationFilter = {
+    every?: RentalWhereInput
+    some?: RentalWhereInput
+    none?: RentalWhereInput
+  }
+
+  export type RentalOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AddressCountOrderByAggregateInput = {
+    id?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    street?: SortOrder
+    zip_code?: SortOrder
+  }
+
+  export type AddressMaxOrderByAggregateInput = {
+    id?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    street?: SortOrder
+    zip_code?: SortOrder
+  }
+
+  export type AddressMinOrderByAggregateInput = {
+    id?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    street?: SortOrder
+    zip_code?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type CaracteristicCountOrderByAggregateInput = {
     id?: SortOrder
     nb_bedroom?: SortOrder
     nb_bathroom?: SortOrder
     description?: SortOrder
-    rentalId?: SortOrder
   }
 
   export type CaracteristicAvgOrderByAggregateInput = {
-    id?: SortOrder
     nb_bedroom?: SortOrder
     nb_bathroom?: SortOrder
-    rentalId?: SortOrder
   }
 
   export type CaracteristicMaxOrderByAggregateInput = {
@@ -7512,7 +7746,6 @@ export namespace Prisma {
     nb_bedroom?: SortOrder
     nb_bathroom?: SortOrder
     description?: SortOrder
-    rentalId?: SortOrder
   }
 
   export type CaracteristicMinOrderByAggregateInput = {
@@ -7520,24 +7753,37 @@ export namespace Prisma {
     nb_bedroom?: SortOrder
     nb_bathroom?: SortOrder
     description?: SortOrder
-    rentalId?: SortOrder
   }
 
   export type CaracteristicSumOrderByAggregateInput = {
-    id?: SortOrder
     nb_bedroom?: SortOrder
     nb_bathroom?: SortOrder
-    rentalId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type RentalScalarRelationFilter = {
+    is?: RentalWhereInput
+    isNot?: RentalWhereInput
   }
 
   export type PictureCountOrderByAggregateInput = {
     id?: SortOrder
     url?: SortOrder
-    rentalId?: SortOrder
-  }
-
-  export type PictureAvgOrderByAggregateInput = {
-    id?: SortOrder
     rentalId?: SortOrder
   }
 
@@ -7553,46 +7799,11 @@ export namespace Prisma {
     rentalId?: SortOrder
   }
 
-  export type PictureSumOrderByAggregateInput = {
-    id?: SortOrder
-    rentalId?: SortOrder
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type EnumUserTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.UserType | EnumUserTypeFieldRefInput<$PrismaModel>
     in?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
     notIn?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumUserTypeFilter<$PrismaModel> | $Enums.UserType
-  }
-
-  export type RentalListRelationFilter = {
-    every?: RentalWhereInput
-    some?: RentalWhereInput
-    none?: RentalWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
-  export type RentalOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -7605,10 +7816,6 @@ export namespace Prisma {
     user_type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type UserAvgOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -7635,28 +7842,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type UserSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type EnumUserTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.UserType | EnumUserTypeFieldRefInput<$PrismaModel>
     in?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
@@ -7667,36 +7852,22 @@ export namespace Prisma {
     _max?: NestedEnumUserTypeFilter<$PrismaModel>
   }
 
-  export type RentalCreateNestedOneWithoutAdressInput = {
-    create?: XOR<RentalCreateWithoutAdressInput, RentalUncheckedCreateWithoutAdressInput>
-    connectOrCreate?: RentalCreateOrConnectWithoutAdressInput
-    connect?: RentalWhereUniqueInput
-  }
-
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
-  export type RentalUpdateOneRequiredWithoutAdressNestedInput = {
-    create?: XOR<RentalCreateWithoutAdressInput, RentalUncheckedCreateWithoutAdressInput>
-    connectOrCreate?: RentalCreateOrConnectWithoutAdressInput
-    upsert?: RentalUpsertWithoutAdressInput
-    connect?: RentalWhereUniqueInput
-    update?: XOR<XOR<RentalUpdateToOneWithWhereWithoutAdressInput, RentalUpdateWithoutAdressInput>, RentalUncheckedUpdateWithoutAdressInput>
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type UserCreateNestedOneWithoutRentalInput = {
     create?: XOR<UserCreateWithoutRentalInput, UserUncheckedCreateWithoutRentalInput>
     connectOrCreate?: UserCreateOrConnectWithoutRentalInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type CaracteristicCreateNestedOneWithoutRentalInput = {
+    create?: XOR<CaracteristicCreateWithoutRentalInput, CaracteristicUncheckedCreateWithoutRentalInput>
+    connectOrCreate?: CaracteristicCreateOrConnectWithoutRentalInput
+    connect?: CaracteristicWhereUniqueInput
+  }
+
+  export type AddressCreateNestedOneWithoutRentalInput = {
+    create?: XOR<AddressCreateWithoutRentalInput, AddressUncheckedCreateWithoutRentalInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutRentalInput
+    connect?: AddressWhereUniqueInput
   }
 
   export type PictureCreateNestedManyWithoutRentalInput = {
@@ -7706,20 +7877,6 @@ export namespace Prisma {
     connect?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
   }
 
-  export type CaracteristicCreateNestedManyWithoutRentalInput = {
-    create?: XOR<CaracteristicCreateWithoutRentalInput, CaracteristicUncheckedCreateWithoutRentalInput> | CaracteristicCreateWithoutRentalInput[] | CaracteristicUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: CaracteristicCreateOrConnectWithoutRentalInput | CaracteristicCreateOrConnectWithoutRentalInput[]
-    createMany?: CaracteristicCreateManyRentalInputEnvelope
-    connect?: CaracteristicWhereUniqueInput | CaracteristicWhereUniqueInput[]
-  }
-
-  export type AdressCreateNestedManyWithoutRentalInput = {
-    create?: XOR<AdressCreateWithoutRentalInput, AdressUncheckedCreateWithoutRentalInput> | AdressCreateWithoutRentalInput[] | AdressUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: AdressCreateOrConnectWithoutRentalInput | AdressCreateOrConnectWithoutRentalInput[]
-    createMany?: AdressCreateManyRentalInputEnvelope
-    connect?: AdressWhereUniqueInput | AdressWhereUniqueInput[]
-  }
-
   export type PictureUncheckedCreateNestedManyWithoutRentalInput = {
     create?: XOR<PictureCreateWithoutRentalInput, PictureUncheckedCreateWithoutRentalInput> | PictureCreateWithoutRentalInput[] | PictureUncheckedCreateWithoutRentalInput[]
     connectOrCreate?: PictureCreateOrConnectWithoutRentalInput | PictureCreateOrConnectWithoutRentalInput[]
@@ -7727,18 +7884,16 @@ export namespace Prisma {
     connect?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
   }
 
-  export type CaracteristicUncheckedCreateNestedManyWithoutRentalInput = {
-    create?: XOR<CaracteristicCreateWithoutRentalInput, CaracteristicUncheckedCreateWithoutRentalInput> | CaracteristicCreateWithoutRentalInput[] | CaracteristicUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: CaracteristicCreateOrConnectWithoutRentalInput | CaracteristicCreateOrConnectWithoutRentalInput[]
-    createMany?: CaracteristicCreateManyRentalInputEnvelope
-    connect?: CaracteristicWhereUniqueInput | CaracteristicWhereUniqueInput[]
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
-  export type AdressUncheckedCreateNestedManyWithoutRentalInput = {
-    create?: XOR<AdressCreateWithoutRentalInput, AdressUncheckedCreateWithoutRentalInput> | AdressCreateWithoutRentalInput[] | AdressUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: AdressCreateOrConnectWithoutRentalInput | AdressCreateOrConnectWithoutRentalInput[]
-    createMany?: AdressCreateManyRentalInputEnvelope
-    connect?: AdressWhereUniqueInput | AdressWhereUniqueInput[]
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -7765,6 +7920,24 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRentalInput, UserUpdateWithoutRentalInput>, UserUncheckedUpdateWithoutRentalInput>
   }
 
+  export type CaracteristicUpdateOneWithoutRentalNestedInput = {
+    create?: XOR<CaracteristicCreateWithoutRentalInput, CaracteristicUncheckedCreateWithoutRentalInput>
+    connectOrCreate?: CaracteristicCreateOrConnectWithoutRentalInput
+    upsert?: CaracteristicUpsertWithoutRentalInput
+    disconnect?: CaracteristicWhereInput | boolean
+    delete?: CaracteristicWhereInput | boolean
+    connect?: CaracteristicWhereUniqueInput
+    update?: XOR<XOR<CaracteristicUpdateToOneWithWhereWithoutRentalInput, CaracteristicUpdateWithoutRentalInput>, CaracteristicUncheckedUpdateWithoutRentalInput>
+  }
+
+  export type AddressUpdateOneRequiredWithoutRentalNestedInput = {
+    create?: XOR<AddressCreateWithoutRentalInput, AddressUncheckedCreateWithoutRentalInput>
+    connectOrCreate?: AddressCreateOrConnectWithoutRentalInput
+    upsert?: AddressUpsertWithoutRentalInput
+    connect?: AddressWhereUniqueInput
+    update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutRentalInput, AddressUpdateWithoutRentalInput>, AddressUncheckedUpdateWithoutRentalInput>
+  }
+
   export type PictureUpdateManyWithoutRentalNestedInput = {
     create?: XOR<PictureCreateWithoutRentalInput, PictureUncheckedCreateWithoutRentalInput> | PictureCreateWithoutRentalInput[] | PictureUncheckedCreateWithoutRentalInput[]
     connectOrCreate?: PictureCreateOrConnectWithoutRentalInput | PictureCreateOrConnectWithoutRentalInput[]
@@ -7779,32 +7952,8 @@ export namespace Prisma {
     deleteMany?: PictureScalarWhereInput | PictureScalarWhereInput[]
   }
 
-  export type CaracteristicUpdateManyWithoutRentalNestedInput = {
-    create?: XOR<CaracteristicCreateWithoutRentalInput, CaracteristicUncheckedCreateWithoutRentalInput> | CaracteristicCreateWithoutRentalInput[] | CaracteristicUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: CaracteristicCreateOrConnectWithoutRentalInput | CaracteristicCreateOrConnectWithoutRentalInput[]
-    upsert?: CaracteristicUpsertWithWhereUniqueWithoutRentalInput | CaracteristicUpsertWithWhereUniqueWithoutRentalInput[]
-    createMany?: CaracteristicCreateManyRentalInputEnvelope
-    set?: CaracteristicWhereUniqueInput | CaracteristicWhereUniqueInput[]
-    disconnect?: CaracteristicWhereUniqueInput | CaracteristicWhereUniqueInput[]
-    delete?: CaracteristicWhereUniqueInput | CaracteristicWhereUniqueInput[]
-    connect?: CaracteristicWhereUniqueInput | CaracteristicWhereUniqueInput[]
-    update?: CaracteristicUpdateWithWhereUniqueWithoutRentalInput | CaracteristicUpdateWithWhereUniqueWithoutRentalInput[]
-    updateMany?: CaracteristicUpdateManyWithWhereWithoutRentalInput | CaracteristicUpdateManyWithWhereWithoutRentalInput[]
-    deleteMany?: CaracteristicScalarWhereInput | CaracteristicScalarWhereInput[]
-  }
-
-  export type AdressUpdateManyWithoutRentalNestedInput = {
-    create?: XOR<AdressCreateWithoutRentalInput, AdressUncheckedCreateWithoutRentalInput> | AdressCreateWithoutRentalInput[] | AdressUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: AdressCreateOrConnectWithoutRentalInput | AdressCreateOrConnectWithoutRentalInput[]
-    upsert?: AdressUpsertWithWhereUniqueWithoutRentalInput | AdressUpsertWithWhereUniqueWithoutRentalInput[]
-    createMany?: AdressCreateManyRentalInputEnvelope
-    set?: AdressWhereUniqueInput | AdressWhereUniqueInput[]
-    disconnect?: AdressWhereUniqueInput | AdressWhereUniqueInput[]
-    delete?: AdressWhereUniqueInput | AdressWhereUniqueInput[]
-    connect?: AdressWhereUniqueInput | AdressWhereUniqueInput[]
-    update?: AdressUpdateWithWhereUniqueWithoutRentalInput | AdressUpdateWithWhereUniqueWithoutRentalInput[]
-    updateMany?: AdressUpdateManyWithWhereWithoutRentalInput | AdressUpdateManyWithWhereWithoutRentalInput[]
-    deleteMany?: AdressScalarWhereInput | AdressScalarWhereInput[]
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type PictureUncheckedUpdateManyWithoutRentalNestedInput = {
@@ -7821,46 +7970,96 @@ export namespace Prisma {
     deleteMany?: PictureScalarWhereInput | PictureScalarWhereInput[]
   }
 
-  export type CaracteristicUncheckedUpdateManyWithoutRentalNestedInput = {
-    create?: XOR<CaracteristicCreateWithoutRentalInput, CaracteristicUncheckedCreateWithoutRentalInput> | CaracteristicCreateWithoutRentalInput[] | CaracteristicUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: CaracteristicCreateOrConnectWithoutRentalInput | CaracteristicCreateOrConnectWithoutRentalInput[]
-    upsert?: CaracteristicUpsertWithWhereUniqueWithoutRentalInput | CaracteristicUpsertWithWhereUniqueWithoutRentalInput[]
-    createMany?: CaracteristicCreateManyRentalInputEnvelope
-    set?: CaracteristicWhereUniqueInput | CaracteristicWhereUniqueInput[]
-    disconnect?: CaracteristicWhereUniqueInput | CaracteristicWhereUniqueInput[]
-    delete?: CaracteristicWhereUniqueInput | CaracteristicWhereUniqueInput[]
-    connect?: CaracteristicWhereUniqueInput | CaracteristicWhereUniqueInput[]
-    update?: CaracteristicUpdateWithWhereUniqueWithoutRentalInput | CaracteristicUpdateWithWhereUniqueWithoutRentalInput[]
-    updateMany?: CaracteristicUpdateManyWithWhereWithoutRentalInput | CaracteristicUpdateManyWithWhereWithoutRentalInput[]
-    deleteMany?: CaracteristicScalarWhereInput | CaracteristicScalarWhereInput[]
+  export type RentalCreateNestedManyWithoutAddressInput = {
+    create?: XOR<RentalCreateWithoutAddressInput, RentalUncheckedCreateWithoutAddressInput> | RentalCreateWithoutAddressInput[] | RentalUncheckedCreateWithoutAddressInput[]
+    connectOrCreate?: RentalCreateOrConnectWithoutAddressInput | RentalCreateOrConnectWithoutAddressInput[]
+    createMany?: RentalCreateManyAddressInputEnvelope
+    connect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
   }
 
-  export type AdressUncheckedUpdateManyWithoutRentalNestedInput = {
-    create?: XOR<AdressCreateWithoutRentalInput, AdressUncheckedCreateWithoutRentalInput> | AdressCreateWithoutRentalInput[] | AdressUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: AdressCreateOrConnectWithoutRentalInput | AdressCreateOrConnectWithoutRentalInput[]
-    upsert?: AdressUpsertWithWhereUniqueWithoutRentalInput | AdressUpsertWithWhereUniqueWithoutRentalInput[]
-    createMany?: AdressCreateManyRentalInputEnvelope
-    set?: AdressWhereUniqueInput | AdressWhereUniqueInput[]
-    disconnect?: AdressWhereUniqueInput | AdressWhereUniqueInput[]
-    delete?: AdressWhereUniqueInput | AdressWhereUniqueInput[]
-    connect?: AdressWhereUniqueInput | AdressWhereUniqueInput[]
-    update?: AdressUpdateWithWhereUniqueWithoutRentalInput | AdressUpdateWithWhereUniqueWithoutRentalInput[]
-    updateMany?: AdressUpdateManyWithWhereWithoutRentalInput | AdressUpdateManyWithWhereWithoutRentalInput[]
-    deleteMany?: AdressScalarWhereInput | AdressScalarWhereInput[]
+  export type RentalUncheckedCreateNestedManyWithoutAddressInput = {
+    create?: XOR<RentalCreateWithoutAddressInput, RentalUncheckedCreateWithoutAddressInput> | RentalCreateWithoutAddressInput[] | RentalUncheckedCreateWithoutAddressInput[]
+    connectOrCreate?: RentalCreateOrConnectWithoutAddressInput | RentalCreateOrConnectWithoutAddressInput[]
+    createMany?: RentalCreateManyAddressInputEnvelope
+    connect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
   }
 
-  export type RentalCreateNestedOneWithoutCaracteristicInput = {
-    create?: XOR<RentalCreateWithoutCaracteristicInput, RentalUncheckedCreateWithoutCaracteristicInput>
-    connectOrCreate?: RentalCreateOrConnectWithoutCaracteristicInput
-    connect?: RentalWhereUniqueInput
+  export type RentalUpdateManyWithoutAddressNestedInput = {
+    create?: XOR<RentalCreateWithoutAddressInput, RentalUncheckedCreateWithoutAddressInput> | RentalCreateWithoutAddressInput[] | RentalUncheckedCreateWithoutAddressInput[]
+    connectOrCreate?: RentalCreateOrConnectWithoutAddressInput | RentalCreateOrConnectWithoutAddressInput[]
+    upsert?: RentalUpsertWithWhereUniqueWithoutAddressInput | RentalUpsertWithWhereUniqueWithoutAddressInput[]
+    createMany?: RentalCreateManyAddressInputEnvelope
+    set?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    disconnect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    delete?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    connect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    update?: RentalUpdateWithWhereUniqueWithoutAddressInput | RentalUpdateWithWhereUniqueWithoutAddressInput[]
+    updateMany?: RentalUpdateManyWithWhereWithoutAddressInput | RentalUpdateManyWithWhereWithoutAddressInput[]
+    deleteMany?: RentalScalarWhereInput | RentalScalarWhereInput[]
   }
 
-  export type RentalUpdateOneRequiredWithoutCaracteristicNestedInput = {
-    create?: XOR<RentalCreateWithoutCaracteristicInput, RentalUncheckedCreateWithoutCaracteristicInput>
-    connectOrCreate?: RentalCreateOrConnectWithoutCaracteristicInput
-    upsert?: RentalUpsertWithoutCaracteristicInput
-    connect?: RentalWhereUniqueInput
-    update?: XOR<XOR<RentalUpdateToOneWithWhereWithoutCaracteristicInput, RentalUpdateWithoutCaracteristicInput>, RentalUncheckedUpdateWithoutCaracteristicInput>
+  export type RentalUncheckedUpdateManyWithoutAddressNestedInput = {
+    create?: XOR<RentalCreateWithoutAddressInput, RentalUncheckedCreateWithoutAddressInput> | RentalCreateWithoutAddressInput[] | RentalUncheckedCreateWithoutAddressInput[]
+    connectOrCreate?: RentalCreateOrConnectWithoutAddressInput | RentalCreateOrConnectWithoutAddressInput[]
+    upsert?: RentalUpsertWithWhereUniqueWithoutAddressInput | RentalUpsertWithWhereUniqueWithoutAddressInput[]
+    createMany?: RentalCreateManyAddressInputEnvelope
+    set?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    disconnect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    delete?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    connect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    update?: RentalUpdateWithWhereUniqueWithoutAddressInput | RentalUpdateWithWhereUniqueWithoutAddressInput[]
+    updateMany?: RentalUpdateManyWithWhereWithoutAddressInput | RentalUpdateManyWithWhereWithoutAddressInput[]
+    deleteMany?: RentalScalarWhereInput | RentalScalarWhereInput[]
+  }
+
+  export type RentalCreateNestedManyWithoutCaracteristicInput = {
+    create?: XOR<RentalCreateWithoutCaracteristicInput, RentalUncheckedCreateWithoutCaracteristicInput> | RentalCreateWithoutCaracteristicInput[] | RentalUncheckedCreateWithoutCaracteristicInput[]
+    connectOrCreate?: RentalCreateOrConnectWithoutCaracteristicInput | RentalCreateOrConnectWithoutCaracteristicInput[]
+    createMany?: RentalCreateManyCaracteristicInputEnvelope
+    connect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+  }
+
+  export type RentalUncheckedCreateNestedManyWithoutCaracteristicInput = {
+    create?: XOR<RentalCreateWithoutCaracteristicInput, RentalUncheckedCreateWithoutCaracteristicInput> | RentalCreateWithoutCaracteristicInput[] | RentalUncheckedCreateWithoutCaracteristicInput[]
+    connectOrCreate?: RentalCreateOrConnectWithoutCaracteristicInput | RentalCreateOrConnectWithoutCaracteristicInput[]
+    createMany?: RentalCreateManyCaracteristicInputEnvelope
+    connect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type RentalUpdateManyWithoutCaracteristicNestedInput = {
+    create?: XOR<RentalCreateWithoutCaracteristicInput, RentalUncheckedCreateWithoutCaracteristicInput> | RentalCreateWithoutCaracteristicInput[] | RentalUncheckedCreateWithoutCaracteristicInput[]
+    connectOrCreate?: RentalCreateOrConnectWithoutCaracteristicInput | RentalCreateOrConnectWithoutCaracteristicInput[]
+    upsert?: RentalUpsertWithWhereUniqueWithoutCaracteristicInput | RentalUpsertWithWhereUniqueWithoutCaracteristicInput[]
+    createMany?: RentalCreateManyCaracteristicInputEnvelope
+    set?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    disconnect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    delete?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    connect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    update?: RentalUpdateWithWhereUniqueWithoutCaracteristicInput | RentalUpdateWithWhereUniqueWithoutCaracteristicInput[]
+    updateMany?: RentalUpdateManyWithWhereWithoutCaracteristicInput | RentalUpdateManyWithWhereWithoutCaracteristicInput[]
+    deleteMany?: RentalScalarWhereInput | RentalScalarWhereInput[]
+  }
+
+  export type RentalUncheckedUpdateManyWithoutCaracteristicNestedInput = {
+    create?: XOR<RentalCreateWithoutCaracteristicInput, RentalUncheckedCreateWithoutCaracteristicInput> | RentalCreateWithoutCaracteristicInput[] | RentalUncheckedCreateWithoutCaracteristicInput[]
+    connectOrCreate?: RentalCreateOrConnectWithoutCaracteristicInput | RentalCreateOrConnectWithoutCaracteristicInput[]
+    upsert?: RentalUpsertWithWhereUniqueWithoutCaracteristicInput | RentalUpsertWithWhereUniqueWithoutCaracteristicInput[]
+    createMany?: RentalCreateManyCaracteristicInputEnvelope
+    set?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    disconnect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    delete?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    connect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
+    update?: RentalUpdateWithWhereUniqueWithoutCaracteristicInput | RentalUpdateWithWhereUniqueWithoutCaracteristicInput[]
+    updateMany?: RentalUpdateManyWithWhereWithoutCaracteristicInput | RentalUpdateManyWithWhereWithoutCaracteristicInput[]
+    deleteMany?: RentalScalarWhereInput | RentalScalarWhereInput[]
   }
 
   export type RentalCreateNestedOneWithoutPictureInput = {
@@ -7889,10 +8088,6 @@ export namespace Prisma {
     connectOrCreate?: RentalCreateOrConnectWithoutUserInput | RentalCreateOrConnectWithoutUserInput[]
     createMany?: RentalCreateManyUserInputEnvelope
     connect?: RentalWhereUniqueInput | RentalWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type EnumUserTypeFieldUpdateOperationsInput = {
@@ -7927,17 +8122,6 @@ export namespace Prisma {
     deleteMany?: RentalScalarWhereInput | RentalScalarWhereInput[]
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -7952,7 +8136,7 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+  export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -7960,12 +8144,7 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedFloatFilter<$PrismaModel = never> = {
@@ -7977,6 +8156,38 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedEnumTypesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Types | EnumTypesFieldRefInput<$PrismaModel>
+    in?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
+    not?: NestedEnumTypesFilter<$PrismaModel> | $Enums.Types
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -7996,22 +8207,20 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedEnumTypesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Types | EnumTypesFieldRefInput<$PrismaModel>
-    in?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Types[] | ListEnumTypesFieldRefInput<$PrismaModel>
-    not?: NestedEnumTypesFilter<$PrismaModel> | $Enums.Types
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -8054,27 +8263,6 @@ export namespace Prisma {
     _max?: NestedEnumTypesFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedEnumUserTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.UserType | EnumUserTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumUserTypeFilter<$PrismaModel> | $Enums.UserType
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8103,6 +8291,40 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumUserTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserType | EnumUserTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserTypeFilter<$PrismaModel> | $Enums.UserType
+  }
+
   export type NestedEnumUserTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.UserType | EnumUserTypeFieldRefInput<$PrismaModel>
     in?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
@@ -8113,77 +8335,8 @@ export namespace Prisma {
     _max?: NestedEnumUserTypeFilter<$PrismaModel>
   }
 
-  export type RentalCreateWithoutAdressInput = {
-    title: string
-    nb_person: number
-    price: number
-    available_date: Date | string
-    type: $Enums.Types
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutRentalInput
-    Picture?: PictureCreateNestedManyWithoutRentalInput
-    Caracteristic?: CaracteristicCreateNestedManyWithoutRentalInput
-  }
-
-  export type RentalUncheckedCreateWithoutAdressInput = {
-    id?: number
-    title: string
-    nb_person: number
-    price: number
-    available_date: Date | string
-    type: $Enums.Types
-    userId: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    Picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
-    Caracteristic?: CaracteristicUncheckedCreateNestedManyWithoutRentalInput
-  }
-
-  export type RentalCreateOrConnectWithoutAdressInput = {
-    where: RentalWhereUniqueInput
-    create: XOR<RentalCreateWithoutAdressInput, RentalUncheckedCreateWithoutAdressInput>
-  }
-
-  export type RentalUpsertWithoutAdressInput = {
-    update: XOR<RentalUpdateWithoutAdressInput, RentalUncheckedUpdateWithoutAdressInput>
-    create: XOR<RentalCreateWithoutAdressInput, RentalUncheckedCreateWithoutAdressInput>
-    where?: RentalWhereInput
-  }
-
-  export type RentalUpdateToOneWithWhereWithoutAdressInput = {
-    where?: RentalWhereInput
-    data: XOR<RentalUpdateWithoutAdressInput, RentalUncheckedUpdateWithoutAdressInput>
-  }
-
-  export type RentalUpdateWithoutAdressInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    nb_person?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutRentalNestedInput
-    Picture?: PictureUpdateManyWithoutRentalNestedInput
-    Caracteristic?: CaracteristicUpdateManyWithoutRentalNestedInput
-  }
-
-  export type RentalUncheckedUpdateWithoutAdressInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    nb_person?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
-    Caracteristic?: CaracteristicUncheckedUpdateManyWithoutRentalNestedInput
-  }
-
   export type UserCreateWithoutRentalInput = {
+    id?: string
     email: string
     name: string
     password: string
@@ -8195,7 +8348,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedCreateWithoutRentalInput = {
-    id?: number
+    id?: string
     email: string
     name: string
     password: string
@@ -8211,12 +8364,53 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutRentalInput, UserUncheckedCreateWithoutRentalInput>
   }
 
+  export type CaracteristicCreateWithoutRentalInput = {
+    id?: string
+    nb_bedroom?: number | null
+    nb_bathroom: number
+    description: string
+  }
+
+  export type CaracteristicUncheckedCreateWithoutRentalInput = {
+    id?: string
+    nb_bedroom?: number | null
+    nb_bathroom: number
+    description: string
+  }
+
+  export type CaracteristicCreateOrConnectWithoutRentalInput = {
+    where: CaracteristicWhereUniqueInput
+    create: XOR<CaracteristicCreateWithoutRentalInput, CaracteristicUncheckedCreateWithoutRentalInput>
+  }
+
+  export type AddressCreateWithoutRentalInput = {
+    id?: string
+    city: string
+    country: string
+    street: string
+    zip_code: string
+  }
+
+  export type AddressUncheckedCreateWithoutRentalInput = {
+    id?: string
+    city: string
+    country: string
+    street: string
+    zip_code: string
+  }
+
+  export type AddressCreateOrConnectWithoutRentalInput = {
+    where: AddressWhereUniqueInput
+    create: XOR<AddressCreateWithoutRentalInput, AddressUncheckedCreateWithoutRentalInput>
+  }
+
   export type PictureCreateWithoutRentalInput = {
+    id?: string
     url: string
   }
 
   export type PictureUncheckedCreateWithoutRentalInput = {
-    id?: number
+    id?: string
     url: string
   }
 
@@ -8227,54 +8421,6 @@ export namespace Prisma {
 
   export type PictureCreateManyRentalInputEnvelope = {
     data: PictureCreateManyRentalInput | PictureCreateManyRentalInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CaracteristicCreateWithoutRentalInput = {
-    nb_bedroom: number
-    nb_bathroom: number
-    description: string
-  }
-
-  export type CaracteristicUncheckedCreateWithoutRentalInput = {
-    id?: number
-    nb_bedroom: number
-    nb_bathroom: number
-    description: string
-  }
-
-  export type CaracteristicCreateOrConnectWithoutRentalInput = {
-    where: CaracteristicWhereUniqueInput
-    create: XOR<CaracteristicCreateWithoutRentalInput, CaracteristicUncheckedCreateWithoutRentalInput>
-  }
-
-  export type CaracteristicCreateManyRentalInputEnvelope = {
-    data: CaracteristicCreateManyRentalInput | CaracteristicCreateManyRentalInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AdressCreateWithoutRentalInput = {
-    city: string
-    country: string
-    street: string
-    zip_code: string
-  }
-
-  export type AdressUncheckedCreateWithoutRentalInput = {
-    id?: number
-    city: string
-    country: string
-    street: string
-    zip_code: string
-  }
-
-  export type AdressCreateOrConnectWithoutRentalInput = {
-    where: AdressWhereUniqueInput
-    create: XOR<AdressCreateWithoutRentalInput, AdressUncheckedCreateWithoutRentalInput>
-  }
-
-  export type AdressCreateManyRentalInputEnvelope = {
-    data: AdressCreateManyRentalInput | AdressCreateManyRentalInput[]
     skipDuplicates?: boolean
   }
 
@@ -8290,6 +8436,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutRentalInput = {
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -8301,7 +8448,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedUpdateWithoutRentalInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -8310,6 +8457,58 @@ export namespace Prisma {
     user_type?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CaracteristicUpsertWithoutRentalInput = {
+    update: XOR<CaracteristicUpdateWithoutRentalInput, CaracteristicUncheckedUpdateWithoutRentalInput>
+    create: XOR<CaracteristicCreateWithoutRentalInput, CaracteristicUncheckedCreateWithoutRentalInput>
+    where?: CaracteristicWhereInput
+  }
+
+  export type CaracteristicUpdateToOneWithWhereWithoutRentalInput = {
+    where?: CaracteristicWhereInput
+    data: XOR<CaracteristicUpdateWithoutRentalInput, CaracteristicUncheckedUpdateWithoutRentalInput>
+  }
+
+  export type CaracteristicUpdateWithoutRentalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nb_bedroom?: NullableIntFieldUpdateOperationsInput | number | null
+    nb_bathroom?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CaracteristicUncheckedUpdateWithoutRentalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nb_bedroom?: NullableIntFieldUpdateOperationsInput | number | null
+    nb_bathroom?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AddressUpsertWithoutRentalInput = {
+    update: XOR<AddressUpdateWithoutRentalInput, AddressUncheckedUpdateWithoutRentalInput>
+    create: XOR<AddressCreateWithoutRentalInput, AddressUncheckedCreateWithoutRentalInput>
+    where?: AddressWhereInput
+  }
+
+  export type AddressUpdateToOneWithWhereWithoutRentalInput = {
+    where?: AddressWhereInput
+    data: XOR<AddressUpdateWithoutRentalInput, AddressUncheckedUpdateWithoutRentalInput>
+  }
+
+  export type AddressUpdateWithoutRentalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    zip_code?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AddressUncheckedUpdateWithoutRentalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    street?: StringFieldUpdateOperationsInput | string
+    zip_code?: StringFieldUpdateOperationsInput | string
   }
 
   export type PictureUpsertWithWhereUniqueWithoutRentalInput = {
@@ -8332,67 +8531,13 @@ export namespace Prisma {
     AND?: PictureScalarWhereInput | PictureScalarWhereInput[]
     OR?: PictureScalarWhereInput[]
     NOT?: PictureScalarWhereInput | PictureScalarWhereInput[]
-    id?: IntFilter<"Picture"> | number
+    id?: StringFilter<"Picture"> | string
     url?: StringFilter<"Picture"> | string
-    rentalId?: IntFilter<"Picture"> | number
+    rentalId?: StringFilter<"Picture"> | string
   }
 
-  export type CaracteristicUpsertWithWhereUniqueWithoutRentalInput = {
-    where: CaracteristicWhereUniqueInput
-    update: XOR<CaracteristicUpdateWithoutRentalInput, CaracteristicUncheckedUpdateWithoutRentalInput>
-    create: XOR<CaracteristicCreateWithoutRentalInput, CaracteristicUncheckedCreateWithoutRentalInput>
-  }
-
-  export type CaracteristicUpdateWithWhereUniqueWithoutRentalInput = {
-    where: CaracteristicWhereUniqueInput
-    data: XOR<CaracteristicUpdateWithoutRentalInput, CaracteristicUncheckedUpdateWithoutRentalInput>
-  }
-
-  export type CaracteristicUpdateManyWithWhereWithoutRentalInput = {
-    where: CaracteristicScalarWhereInput
-    data: XOR<CaracteristicUpdateManyMutationInput, CaracteristicUncheckedUpdateManyWithoutRentalInput>
-  }
-
-  export type CaracteristicScalarWhereInput = {
-    AND?: CaracteristicScalarWhereInput | CaracteristicScalarWhereInput[]
-    OR?: CaracteristicScalarWhereInput[]
-    NOT?: CaracteristicScalarWhereInput | CaracteristicScalarWhereInput[]
-    id?: IntFilter<"Caracteristic"> | number
-    nb_bedroom?: IntFilter<"Caracteristic"> | number
-    nb_bathroom?: IntFilter<"Caracteristic"> | number
-    description?: StringFilter<"Caracteristic"> | string
-    rentalId?: IntFilter<"Caracteristic"> | number
-  }
-
-  export type AdressUpsertWithWhereUniqueWithoutRentalInput = {
-    where: AdressWhereUniqueInput
-    update: XOR<AdressUpdateWithoutRentalInput, AdressUncheckedUpdateWithoutRentalInput>
-    create: XOR<AdressCreateWithoutRentalInput, AdressUncheckedCreateWithoutRentalInput>
-  }
-
-  export type AdressUpdateWithWhereUniqueWithoutRentalInput = {
-    where: AdressWhereUniqueInput
-    data: XOR<AdressUpdateWithoutRentalInput, AdressUncheckedUpdateWithoutRentalInput>
-  }
-
-  export type AdressUpdateManyWithWhereWithoutRentalInput = {
-    where: AdressScalarWhereInput
-    data: XOR<AdressUpdateManyMutationInput, AdressUncheckedUpdateManyWithoutRentalInput>
-  }
-
-  export type AdressScalarWhereInput = {
-    AND?: AdressScalarWhereInput | AdressScalarWhereInput[]
-    OR?: AdressScalarWhereInput[]
-    NOT?: AdressScalarWhereInput | AdressScalarWhereInput[]
-    id?: IntFilter<"Adress"> | number
-    city?: StringFilter<"Adress"> | string
-    country?: StringFilter<"Adress"> | string
-    street?: StringFilter<"Adress"> | string
-    zip_code?: StringFilter<"Adress"> | string
-    rentalId?: IntFilter<"Adress"> | number
-  }
-
-  export type RentalCreateWithoutCaracteristicInput = {
+  export type RentalCreateWithoutAddressInput = {
+    id?: string
     title: string
     nb_person: number
     price: number
@@ -8401,22 +8546,93 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutRentalInput
-    Picture?: PictureCreateNestedManyWithoutRentalInput
-    Adress?: AdressCreateNestedManyWithoutRentalInput
+    caracteristic?: CaracteristicCreateNestedOneWithoutRentalInput
+    picture?: PictureCreateNestedManyWithoutRentalInput
   }
 
-  export type RentalUncheckedCreateWithoutCaracteristicInput = {
-    id?: number
+  export type RentalUncheckedCreateWithoutAddressInput = {
+    id?: string
     title: string
     nb_person: number
     price: number
     available_date: Date | string
     type: $Enums.Types
-    userId: number
+    userId: string
+    caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    Picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
-    Adress?: AdressUncheckedCreateNestedManyWithoutRentalInput
+    picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
+  }
+
+  export type RentalCreateOrConnectWithoutAddressInput = {
+    where: RentalWhereUniqueInput
+    create: XOR<RentalCreateWithoutAddressInput, RentalUncheckedCreateWithoutAddressInput>
+  }
+
+  export type RentalCreateManyAddressInputEnvelope = {
+    data: RentalCreateManyAddressInput | RentalCreateManyAddressInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RentalUpsertWithWhereUniqueWithoutAddressInput = {
+    where: RentalWhereUniqueInput
+    update: XOR<RentalUpdateWithoutAddressInput, RentalUncheckedUpdateWithoutAddressInput>
+    create: XOR<RentalCreateWithoutAddressInput, RentalUncheckedCreateWithoutAddressInput>
+  }
+
+  export type RentalUpdateWithWhereUniqueWithoutAddressInput = {
+    where: RentalWhereUniqueInput
+    data: XOR<RentalUpdateWithoutAddressInput, RentalUncheckedUpdateWithoutAddressInput>
+  }
+
+  export type RentalUpdateManyWithWhereWithoutAddressInput = {
+    where: RentalScalarWhereInput
+    data: XOR<RentalUpdateManyMutationInput, RentalUncheckedUpdateManyWithoutAddressInput>
+  }
+
+  export type RentalScalarWhereInput = {
+    AND?: RentalScalarWhereInput | RentalScalarWhereInput[]
+    OR?: RentalScalarWhereInput[]
+    NOT?: RentalScalarWhereInput | RentalScalarWhereInput[]
+    id?: StringFilter<"Rental"> | string
+    title?: StringFilter<"Rental"> | string
+    nb_person?: IntFilter<"Rental"> | number
+    price?: FloatFilter<"Rental"> | number
+    available_date?: DateTimeFilter<"Rental"> | Date | string
+    type?: EnumTypesFilter<"Rental"> | $Enums.Types
+    userId?: StringFilter<"Rental"> | string
+    adressId?: StringFilter<"Rental"> | string
+    caracteristicId?: StringNullableFilter<"Rental"> | string | null
+    createdAt?: DateTimeFilter<"Rental"> | Date | string
+    updatedAt?: DateTimeFilter<"Rental"> | Date | string
+  }
+
+  export type RentalCreateWithoutCaracteristicInput = {
+    id?: string
+    title: string
+    nb_person: number
+    price: number
+    available_date: Date | string
+    type: $Enums.Types
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutRentalInput
+    address: AddressCreateNestedOneWithoutRentalInput
+    picture?: PictureCreateNestedManyWithoutRentalInput
+  }
+
+  export type RentalUncheckedCreateWithoutCaracteristicInput = {
+    id?: string
+    title: string
+    nb_person: number
+    price: number
+    available_date: Date | string
+    type: $Enums.Types
+    userId: string
+    adressId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
   }
 
   export type RentalCreateOrConnectWithoutCaracteristicInput = {
@@ -8424,45 +8640,29 @@ export namespace Prisma {
     create: XOR<RentalCreateWithoutCaracteristicInput, RentalUncheckedCreateWithoutCaracteristicInput>
   }
 
-  export type RentalUpsertWithoutCaracteristicInput = {
-    update: XOR<RentalUpdateWithoutCaracteristicInput, RentalUncheckedUpdateWithoutCaracteristicInput>
-    create: XOR<RentalCreateWithoutCaracteristicInput, RentalUncheckedCreateWithoutCaracteristicInput>
-    where?: RentalWhereInput
+  export type RentalCreateManyCaracteristicInputEnvelope = {
+    data: RentalCreateManyCaracteristicInput | RentalCreateManyCaracteristicInput[]
+    skipDuplicates?: boolean
   }
 
-  export type RentalUpdateToOneWithWhereWithoutCaracteristicInput = {
-    where?: RentalWhereInput
+  export type RentalUpsertWithWhereUniqueWithoutCaracteristicInput = {
+    where: RentalWhereUniqueInput
+    update: XOR<RentalUpdateWithoutCaracteristicInput, RentalUncheckedUpdateWithoutCaracteristicInput>
+    create: XOR<RentalCreateWithoutCaracteristicInput, RentalUncheckedCreateWithoutCaracteristicInput>
+  }
+
+  export type RentalUpdateWithWhereUniqueWithoutCaracteristicInput = {
+    where: RentalWhereUniqueInput
     data: XOR<RentalUpdateWithoutCaracteristicInput, RentalUncheckedUpdateWithoutCaracteristicInput>
   }
 
-  export type RentalUpdateWithoutCaracteristicInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    nb_person?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutRentalNestedInput
-    Picture?: PictureUpdateManyWithoutRentalNestedInput
-    Adress?: AdressUpdateManyWithoutRentalNestedInput
-  }
-
-  export type RentalUncheckedUpdateWithoutCaracteristicInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    nb_person?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
-    Adress?: AdressUncheckedUpdateManyWithoutRentalNestedInput
+  export type RentalUpdateManyWithWhereWithoutCaracteristicInput = {
+    where: RentalScalarWhereInput
+    data: XOR<RentalUpdateManyMutationInput, RentalUncheckedUpdateManyWithoutCaracteristicInput>
   }
 
   export type RentalCreateWithoutPictureInput = {
+    id?: string
     title: string
     nb_person: number
     price: number
@@ -8471,22 +8671,22 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutRentalInput
-    Caracteristic?: CaracteristicCreateNestedManyWithoutRentalInput
-    Adress?: AdressCreateNestedManyWithoutRentalInput
+    caracteristic?: CaracteristicCreateNestedOneWithoutRentalInput
+    address: AddressCreateNestedOneWithoutRentalInput
   }
 
   export type RentalUncheckedCreateWithoutPictureInput = {
-    id?: number
+    id?: string
     title: string
     nb_person: number
     price: number
     available_date: Date | string
     type: $Enums.Types
-    userId: number
+    userId: string
+    adressId: string
+    caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    Caracteristic?: CaracteristicUncheckedCreateNestedManyWithoutRentalInput
-    Adress?: AdressUncheckedCreateNestedManyWithoutRentalInput
   }
 
   export type RentalCreateOrConnectWithoutPictureInput = {
@@ -8506,6 +8706,7 @@ export namespace Prisma {
   }
 
   export type RentalUpdateWithoutPictureInput = {
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
@@ -8514,25 +8715,26 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutRentalNestedInput
-    Caracteristic?: CaracteristicUpdateManyWithoutRentalNestedInput
-    Adress?: AdressUpdateManyWithoutRentalNestedInput
+    caracteristic?: CaracteristicUpdateOneWithoutRentalNestedInput
+    address?: AddressUpdateOneRequiredWithoutRentalNestedInput
   }
 
   export type RentalUncheckedUpdateWithoutPictureInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    adressId?: StringFieldUpdateOperationsInput | string
+    caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Caracteristic?: CaracteristicUncheckedUpdateManyWithoutRentalNestedInput
-    Adress?: AdressUncheckedUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalCreateWithoutUserInput = {
+    id?: string
     title: string
     nb_person: number
     price: number
@@ -8540,23 +8742,23 @@ export namespace Prisma {
     type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
-    Picture?: PictureCreateNestedManyWithoutRentalInput
-    Caracteristic?: CaracteristicCreateNestedManyWithoutRentalInput
-    Adress?: AdressCreateNestedManyWithoutRentalInput
+    caracteristic?: CaracteristicCreateNestedOneWithoutRentalInput
+    address: AddressCreateNestedOneWithoutRentalInput
+    picture?: PictureCreateNestedManyWithoutRentalInput
   }
 
   export type RentalUncheckedCreateWithoutUserInput = {
-    id?: number
+    id?: string
     title: string
     nb_person: number
     price: number
     available_date: Date | string
     type: $Enums.Types
+    adressId: string
+    caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    Picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
-    Caracteristic?: CaracteristicUncheckedCreateNestedManyWithoutRentalInput
-    Adress?: AdressUncheckedCreateNestedManyWithoutRentalInput
+    picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
   }
 
   export type RentalCreateOrConnectWithoutUserInput = {
@@ -8585,110 +8787,149 @@ export namespace Prisma {
     data: XOR<RentalUpdateManyMutationInput, RentalUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type RentalScalarWhereInput = {
-    AND?: RentalScalarWhereInput | RentalScalarWhereInput[]
-    OR?: RentalScalarWhereInput[]
-    NOT?: RentalScalarWhereInput | RentalScalarWhereInput[]
-    id?: IntFilter<"Rental"> | number
-    title?: StringFilter<"Rental"> | string
-    nb_person?: IntFilter<"Rental"> | number
-    price?: FloatFilter<"Rental"> | number
-    available_date?: DateTimeFilter<"Rental"> | Date | string
-    type?: EnumTypesFilter<"Rental"> | $Enums.Types
-    userId?: IntFilter<"Rental"> | number
-    createdAt?: DateTimeFilter<"Rental"> | Date | string
-    updatedAt?: DateTimeFilter<"Rental"> | Date | string
-  }
-
   export type PictureCreateManyRentalInput = {
-    id?: number
+    id?: string
     url: string
   }
 
-  export type CaracteristicCreateManyRentalInput = {
-    id?: number
-    nb_bedroom: number
-    nb_bathroom: number
-    description: string
-  }
-
-  export type AdressCreateManyRentalInput = {
-    id?: number
-    city: string
-    country: string
-    street: string
-    zip_code: string
-  }
-
   export type PictureUpdateWithoutRentalInput = {
+    id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
   }
 
   export type PictureUncheckedUpdateWithoutRentalInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
   }
 
   export type PictureUncheckedUpdateManyWithoutRentalInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CaracteristicUpdateWithoutRentalInput = {
-    nb_bedroom?: IntFieldUpdateOperationsInput | number
-    nb_bathroom?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type CaracteristicUncheckedUpdateWithoutRentalInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nb_bedroom?: IntFieldUpdateOperationsInput | number
-    nb_bathroom?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type CaracteristicUncheckedUpdateManyWithoutRentalInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    nb_bedroom?: IntFieldUpdateOperationsInput | number
-    nb_bathroom?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AdressUpdateWithoutRentalInput = {
-    city?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    street?: StringFieldUpdateOperationsInput | string
-    zip_code?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AdressUncheckedUpdateWithoutRentalInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    city?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    street?: StringFieldUpdateOperationsInput | string
-    zip_code?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type AdressUncheckedUpdateManyWithoutRentalInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    city?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    street?: StringFieldUpdateOperationsInput | string
-    zip_code?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type RentalCreateManyUserInput = {
-    id?: number
+  export type RentalCreateManyAddressInput = {
+    id?: string
     title: string
     nb_person: number
     price: number
     available_date: Date | string
     type: $Enums.Types
+    userId: string
+    caracteristicId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RentalUpdateWithoutAddressInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    nb_person?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutRentalNestedInput
+    caracteristic?: CaracteristicUpdateOneWithoutRentalNestedInput
+    picture?: PictureUpdateManyWithoutRentalNestedInput
+  }
+
+  export type RentalUncheckedUpdateWithoutAddressInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    nb_person?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
+    userId?: StringFieldUpdateOperationsInput | string
+    caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
+  }
+
+  export type RentalUncheckedUpdateManyWithoutAddressInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    nb_person?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
+    userId?: StringFieldUpdateOperationsInput | string
+    caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RentalCreateManyCaracteristicInput = {
+    id?: string
+    title: string
+    nb_person: number
+    price: number
+    available_date: Date | string
+    type: $Enums.Types
+    userId: string
+    adressId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RentalUpdateWithoutCaracteristicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    nb_person?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutRentalNestedInput
+    address?: AddressUpdateOneRequiredWithoutRentalNestedInput
+    picture?: PictureUpdateManyWithoutRentalNestedInput
+  }
+
+  export type RentalUncheckedUpdateWithoutCaracteristicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    nb_person?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
+    userId?: StringFieldUpdateOperationsInput | string
+    adressId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
+  }
+
+  export type RentalUncheckedUpdateManyWithoutCaracteristicInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    nb_person?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
+    userId?: StringFieldUpdateOperationsInput | string
+    adressId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RentalCreateManyUserInput = {
+    id?: string
+    title: string
+    nb_person: number
+    price: number
+    available_date: Date | string
+    type: $Enums.Types
+    adressId: string
+    caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type RentalUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
@@ -8696,32 +8937,34 @@ export namespace Prisma {
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Picture?: PictureUpdateManyWithoutRentalNestedInput
-    Caracteristic?: CaracteristicUpdateManyWithoutRentalNestedInput
-    Adress?: AdressUpdateManyWithoutRentalNestedInput
+    caracteristic?: CaracteristicUpdateOneWithoutRentalNestedInput
+    address?: AddressUpdateOneRequiredWithoutRentalNestedInput
+    picture?: PictureUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
+    adressId?: StringFieldUpdateOperationsInput | string
+    caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
-    Caracteristic?: CaracteristicUncheckedUpdateManyWithoutRentalNestedInput
-    Adress?: AdressUncheckedUpdateManyWithoutRentalNestedInput
+    picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     nb_person?: IntFieldUpdateOperationsInput | number
     price?: FloatFieldUpdateOperationsInput | number
     available_date?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
+    adressId?: StringFieldUpdateOperationsInput | string
+    caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

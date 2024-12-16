@@ -7,7 +7,7 @@ function Layout() {
     return (
         <section id="layout">
             <Navbar />
-            <section className="p-5">
+            <section className="mx-28 mt-14 ">
                 <Outlet/>
             </section>
             <Footer/>

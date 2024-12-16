@@ -1,9 +1,3 @@
-// This is your Prisma Adress.prisma file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -11,56 +5,54 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["prismaSchemaFolder", "relationJoins"]
+  previewFeatures = ["relationJoins", "omitApi"]
   output          = "./generated/prisma-client-js"
 }
 
-model Adress {
-  id       Int    @id @default(autoincrement())
+model Rental {
+  id              String         @id @default(uuid())
+  title           String
+  nb_person       Int
+  price           Float
+  available_date  DateTime
+  type            Types
+  userId          String
+  adressId        String         @unique
+  caracteristicId String?        @unique
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  caracteristic   Caracteristic? @relation(fields: [caracteristicId], references: [id], onDelete: Cascade)
+  address         Address        @relation(fields: [adressId], references: [id], onDelete: Cascade)
+  picture         Picture[]
+}
+
+model Address {
+  id       String   @id @default(uuid())
   city     String
   country  String
   street   String
   zip_code String
-  rentalId Int
-  rental   Rental @relation(fields: [rentalId], references: [id], onDelete: Cascade)
-}
-
-model Rental {
-  id             Int             @id @default(autoincrement())
-  title          String
-  nb_person      Int
-  price          Float
-  available_date DateTime
-  type           Types
-  userId         Int
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Picture        Picture[]
-  Caracteristic  Caracteristic[]
-  Adress         Adress[]
-
-  @@index([userId])
+  rental   Rental[]
 }
 
 model Caracteristic {
-  id          Int    @id @default(autoincrement())
-  nb_bedroom  Int
+  id          String   @id @default(uuid())
+  nb_bedroom  Int?
   nb_bathroom Int
   description String
-  rentalId    Int
-  rental      Rental @relation(fields: [rentalId], references: [id], onDelete: Cascade)
+  rental      Rental[]
 }
 
 model Picture {
-  id       Int    @id @default(autoincrement())
+  id       String @id @default(uuid())
   url      String
-  rentalId Int
+  rentalId String
   rental   Rental @relation(fields: [rentalId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
+  id           String   @id @default(uuid())
   email        String   @unique
   name         String
   password     String

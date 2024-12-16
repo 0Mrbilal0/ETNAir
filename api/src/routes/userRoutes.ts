@@ -1,5 +1,5 @@
 import { Router, Request } from 'express';
-import { getAllUsers, createUser, getUserById, updateUserById, loginUser, deleteUserById } from '../controller/UserController';
+import { getAllUsers, createUser, getUserById, updateUserById, loginUser, deleteUserById } from '../Controllers/UserController';
 
 export const userRouter = Router();
 const verifyToken = require('../middleware/authMiddleware');
