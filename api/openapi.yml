@@ -1,4 +1,4 @@
-openapi: 3.1.0
+swagger: "2.0"
 info:
   title: ETNAir
   description: Rental site
@@ -13,9 +13,18 @@ tags:
     description: user related route
   - name: rentals
     description: rentals related route
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
 paths:
-  /auth:
+  /users:
     get:
+      security:
+        - Bearer: []
       tags:
         - user
       description: All users
@@ -26,32 +35,58 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
+        401:
+          description: "Unauthorized access: token required !"
+  /auth/register:
     post:
       tags:
         - user
       description: create user
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
+      parameters:
+        - in: body
+          name: body
+          description: User object for registration
+          required: true
+          schema:
+            $ref: "#/components/schemas/User"
       responses:
-      201:
-        description: User created
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-  /auth/{id}:
-    parameters:
-      - name: id
-        in: path
-        description: User id
-        required: true
-        schema:
-          type: integer
+        201:
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: "Bad request: Invalid parameters !"
+        409:
+          description: "Conflict: Duplicate phone number or email !"
+  /auth/login:
+    post:
+      tags:
+        - user
+      description: create user
+      parameters:
+        - in: body
+          name: body
+          description: User object for registration
+          required: true
+          schema:
+            $ref: "#/components/schemas/Login"
+      responses:
+        200:
+          description: User connected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Login"
+        401:
+            description: Wrong password
+        404:
+            description: Wrong email
+  /user:
     get:
+      security:
+        - Bearer: []
       tags:
         - user
       description: a user
@@ -62,18 +97,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
-        404:
-          description: Return a not found error
+        401:
+          description: "Unauthorized access: token required !"
     put:
+      security:
+        - Bearer: []
       tags:
         - user
       description: Update user
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
+      parameters:
+        - in: body
+          name: body
+          description: User object for registration
+          required: true
+          schema:
+            $ref: "#/components/schemas/User"
       responses:
       200:
         description: User updated
@@ -82,6 +120,8 @@ paths:
             schema:
               $ref: "#/components/schemas/User"
     delete:
+      security:
+        - Bearer: []
       tags:
         - user
       description: a user
@@ -92,8 +132,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
-        404:
-          description: Return a not found error
+        401:
+          description: "Unauthorized access: token required !"
   /rentals:
     get:
       tags:
@@ -180,17 +220,33 @@ components:
     User:
       type: object
       properties:
-        id:
-          type: number
+        email:
+          type: string
         name:
           type: string
-        age:
-          type: number
+        password:
+          type: string
+        about_me:
+          type: string
+        phone_number:
+          type: string
       additionalProperties: false
       required:
-        - id
+        - email
         - name
-        - age
+        - password
+        - phone_number
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      additionalProperties: false
+      required:
+        - email
+        - password
     Advert:
       type: object
       properties:

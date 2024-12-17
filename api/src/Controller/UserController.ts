@@ -82,7 +82,7 @@ async function createUser(req: Request, res: Response) {
 
         // Send informations about the created user to the client
         logger.info("User Created");
-        res.status(200).json(createUser);
+        res.status(201).json(createUser);
 
     } catch (e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
