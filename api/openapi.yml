@@ -137,81 +137,96 @@ paths:
   /rentals:
     get:
       tags:
-        - ads
+        - rentals
       description: All ad
       responses:
         200:
-          description: Return all the ads of the database
+          description: Return all the rentals of the database
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Advert"
+                $ref: "#/components/schemas/Rental"
+  /rental:
     post:
+      security:
+        - Bearer: []
       tags:
-        - ads
-      description: create advert
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Advert"
+        - rentals
+      description: create rental
+      parameters:
+        - in: body
+          name: body
+          description: Rental object for creation
+          required: true
+          schema:
+            $ref: "#/components/schemas/Rental"
       responses:
-      201:
-        description: Advert created
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Advert"
-  /rentals/{id}:
+        201:
+          description: Rental created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Rental"
+        400:
+          description: "Bad request: Invalid parameters !"
+        401:
+          description: "Unauthorized access: token required !"
+  /rental/{id}:
     parameters:
       - name: id
         in: path
-        description: Ad id
+        description: The id of the rental
         required: true
         schema:
           type: integer
     get:
       tags:
-        - ads
-      description: an ad
+        - rentals
+      description: A rental
       responses:
         200:
-          description: Return an ad
+          description: Return a rental
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Advert"
+                $ref: "#/components/schemas/Rental"
         404:
-          description: Return a not found error
+          description: "Bad request: Rental not found !"
     put:
+      security:
+        - Bearer: []
       tags:
-        - ads
-      description: Update ad
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Advert"
+        - rentals
+      description: Update a rental
+      parameters:
+        - in: body
+          name: body
+          description: Rental object for the udpate
+          required: true
+          schema:
+            $ref: "#/components/schemas/Rental"
       responses:
-      200:
-        description: Advert updated
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Advert"
+        200:
+          description: Rental updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Rental"
+        400:
+          description: "Bad request: Invalid parameters !"
+        401:
+          description: "Unauthorized access: token required !"
     delete:
       tags:
-        - ads
-      description: an advert
+        - rentals
+      description: an rental
       responses:
         204:
-          description: Advert deleted
+          description: Rental deleted
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Advert"
+                $ref: "#/components/schemas/Rental"
         404:
           description: Return a not found error
 
@@ -247,17 +262,24 @@ components:
       required:
         - email
         - password
-    Advert:
+    Rental:
       type: object
       properties:
-        id:
-          type: number
         title:
           type: string
-        description:
+        nb_person:
+          type: integer
+        price:
+          type: integer
+        available_date:
+          type: string
+          format: date-time
+        type:
           type: string
       additionalProperties: false
       required:
-        - id
-        - name
-        - age
+        - title
+        - nb_person
+        - price
+        - available_date
+        - type
