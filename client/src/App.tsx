@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 import Layout from './Layout';
 import { Component } from 'react';
 import Home from "./Components/Home/Content.tsx";
+import Login from "./Components/Authentication/Login.tsx";
+import Register from "./Components/Authentication/Register.tsx";
 
 class App extends Component {
     render() {
@@ -13,6 +15,14 @@ class App extends Component {
                     {
                         path: '/',
                         element: <Home />
+                    },
+                    {
+                        path: '/register',
+                        element: <Register />
+                    },
+                    {
+                        path: '/login',
+                        element: <Login />
                     }
                 ]
             },
