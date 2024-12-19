@@ -1,24 +1,26 @@
 swagger: "2.0"
+
 info:
   title: ETNAir
-  description: Rental site
+  description: "A website to rent a place for a certain time."
   version: 0.0.1
 
 servers:
   - url: http://localhost:3000
-    description: Serveur de développement
+    description: "Development server"
 
 tags:
   - name: user
-    description: user related route
+    description: "Routes related to users."
   - name: rentals
-    description: rentals related route
+    description: "Routes related to rentals."
 
 securityDefinitions:
   Bearer:
     type: apiKey
     name: Authorization
     in: header
+    description: "`Write the token with the \"Bearer: \" prefix: \"Bearer MY_TOKEN\".`"
 
 paths:
   /users:
@@ -27,10 +29,10 @@ paths:
         - Bearer: []
       tags:
         - user
-      description: All users
+      description: "A list of all users."
       responses:
         200:
-          description: Return all the users of the database
+          description: "Return all the users of the database."
           content:
             application/json:
               schema:
@@ -41,17 +43,17 @@ paths:
     post:
       tags:
         - user
-      description: create user
+      description: "Create a new user"
       parameters:
         - in: body
           name: body
-          description: User object for registration
+          description: "User informations for the creation."
           required: true
           schema:
             $ref: "#/components/schemas/User"
       responses:
         201:
-          description: User created
+          description: "Return a message to confirm the creation."
           content:
             application/json:
               schema:
@@ -64,35 +66,35 @@ paths:
     post:
       tags:
         - user
-      description: create user
+      description: "Connect a user and generate a token."
       parameters:
         - in: body
           name: body
-          description: User object for registration
+          description: "User informations to log in."
           required: true
           schema:
             $ref: "#/components/schemas/Login"
       responses:
         200:
-          description: User connected
+          description: "Return a message to confirm the connection."
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Login"
         401:
-            description: Wrong password
+            description: "Bad request: Wrong password !"
         404:
-            description: Wrong email
+            description: "Bad request: Wrong email !"
   /user:
     get:
       security:
         - Bearer: []
       tags:
         - user
-      description: a user
+      description: "Return informations about the user connected."
       responses:
         200:
-          description: Return a user
+          description: "Return the user's informations."
           content:
             application/json:
               schema:
@@ -104,30 +106,32 @@ paths:
         - Bearer: []
       tags:
         - user
-      description: Update user
+      description: "Update the user."
       parameters:
         - in: body
           name: body
-          description: User object for registration
+          description: "User informations to update."
           required: true
           schema:
             $ref: "#/components/schemas/User"
       responses:
       200:
-        description: User updated
+        description: "Return a message to confirm the update."
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/User"
+      401:
+        description: "Unauthorized access: token required !"
     delete:
       security:
         - Bearer: []
       tags:
         - user
-      description: a user
+      description: "Delete the user."
       responses:
         204:
-          description: User deleted
+          description: "Return a message to confirm the deletion."
           content:
             application/json:
               schema:
@@ -138,10 +142,10 @@ paths:
     get:
       tags:
         - rentals
-      description: All ad
+      description: "A list of all rentals."
       responses:
         200:
-          description: Return all the rentals of the database
+          description: "Return all the rentals of the database."
           content:
             application/json:
               schema:
@@ -152,17 +156,17 @@ paths:
         - Bearer: []
       tags:
         - rentals
-      description: create rental
+      description: "Create a new rental."
       parameters:
         - in: body
           name: body
-          description: Rental object for creation
+          description: "Rental informations for the creation."
           required: true
           schema:
             $ref: "#/components/schemas/Rental"
       responses:
         201:
-          description: Rental created
+          description: "Return a message to confirm the creation."
           content:
             application/json:
               schema:
@@ -175,17 +179,17 @@ paths:
     parameters:
       - name: id
         in: path
-        description: The id of the rental
+        description: "The id of the rental."
         required: true
         schema:
           type: integer
     get:
       tags:
         - rentals
-      description: A rental
+      description: "Return informations about the selected rental."
       responses:
         200:
-          description: Return a rental
+          description: "Return the rental's informations."
           content:
             application/json:
               schema:
@@ -197,17 +201,17 @@ paths:
         - Bearer: []
       tags:
         - rentals
-      description: Update a rental
+      description: "Update a rental."
       parameters:
         - in: body
           name: body
-          description: Rental object for the udpate
+          description: "Rental informations to update."
           required: true
           schema:
             $ref: "#/components/schemas/Rental"
       responses:
         200:
-          description: Rental updated
+          description: "Return a message to confirm the update."
           content:
             application/json:
               schema:
@@ -219,16 +223,16 @@ paths:
     delete:
       tags:
         - rentals
-      description: an rental
+      description: "Delete the rental."
       responses:
         204:
-          description: Rental deleted
+          description: "Return a message to confirm the deletion."
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Rental"
         404:
-          description: Return a not found error
+          description: "Bad request: Rental not found !"
 
 components:
   schemas:
