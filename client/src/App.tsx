@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import Layout from './Layout';
 import { Component } from 'react';
-import Home from "./Components/Home/Content.tsx";
+import Home from './Components/Home/Content.tsx';
+import Rental from './Components/Rental/Content.tsx';
 
 class App extends Component {
     render() {
@@ -13,6 +14,10 @@ class App extends Component {
                     {
                         path: '/',
                         element: <Home />
+                    },
+                    {
+                        path: '/annonces/:id',
+                        element: <Rental />
                     }
                 ]
             },
