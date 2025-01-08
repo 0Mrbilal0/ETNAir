@@ -31,12 +31,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.0.1
- * Query Engine version: 5dbef10bdbfb579e07d35cc85fb1518d357cb99e
+ * Prisma Client JS version: 6.2.0
+ * Query Engine version: 4123509d24aa4dede1e864b46351bf2790323b69
  */
 Prisma.prismaVersion = {
-  client: "6.0.1",
-  engine: "5dbef10bdbfb579e07d35cc85fb1518d357cb99e"
+  client: "6.2.0",
+  engine: "4123509d24aa4dede1e864b46351bf2790323b69"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -184,7 +184,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\src\\Models\\generated\\prisma-client-js",
+      "value": "/Users/charmant/Documents/ETNA/CodeToWork/Semaine8/ETNAir/api/src/Models/generated/prisma-client-js",
       "fromEnvVar": null
     },
     "config": {
@@ -193,7 +193,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
@@ -201,21 +201,19 @@ const config = {
       "relationJoins",
       "omitApi"
     ],
-    "sourceFilePath": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\src\\Models\\schema.prisma",
+    "sourceFilePath": "/Users/charmant/Documents/ETNA/CodeToWork/Semaine8/ETNAir/api/src/Models/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../..",
-  "clientVersion": "6.0.1",
-  "engineVersion": "5dbef10bdbfb579e07d35cc85fb1518d357cb99e",
+  "clientVersion": "6.2.0",
+  "engineVersion": "4123509d24aa4dede1e864b46351bf2790323b69",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

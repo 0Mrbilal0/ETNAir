@@ -40,7 +40,7 @@ async function getAllUsers(req: Request, res: Response) {
 async function getUserById(req: CustomRequest, res: Response) {
     try {
         // Get the id from the request parameters
-        const userId = Number(req.userId);
+        const userId = req.userId;
 
         // Check if the user exists in the database
         const user = await prisma.user.findUnique({ where: { id: userId } });
@@ -138,7 +138,7 @@ async function loginUser(req: Request, res: Response) {
 async function updateUserById(req: CustomRequest, res: Response) {
     try {
         // Get the id from the request parameters
-        const id = Number(req.userId);
+        const id = req.userId;
 
         // Check if the user exists in the database
         if (await prisma.user.findUnique({ where: { id: id } }) === null) {
@@ -171,7 +171,7 @@ async function updateUserById(req: CustomRequest, res: Response) {
 async function deleteUserById(req: CustomRequest, res: Response) {
     try {
         // Get the id from the request parameters
-        const userId: number = Number(req.userId);
+        const userId = req.userId;
 
         // Check if the user exists in the database
         if (await prisma.user.findUnique({ where: { id: userId } }) === null) {

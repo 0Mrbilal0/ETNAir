@@ -35,7 +35,7 @@ export default function Example() {
         <header className="backdrop-blur-sm bg-transparent sticky top-0 border-b-2 shadow-sm z-40 ">
             <nav aria-label="Global" className="mx-auto flex items-center justify-between p-4 lg:px-8">
                 <div className="flex lg:flex-1">
-                    <a href="#" className="-m-1.5 p-1.5">
+                    <a href="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">Your Company</span>
                         <img
                             alt="logo light"
@@ -99,7 +99,7 @@ export default function Example() {
                         Company
                     </a>
                 </PopoverGroup>
-                <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:align-center gap-5">
+                <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center gap-5">
                     <a href="#" className="text-sm/6 font-semibold text-gray-900 text-lg align-text-bottom">
                         Log in
                     </a>

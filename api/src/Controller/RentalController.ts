@@ -1,7 +1,6 @@
 import {Request, Response} from 'express';
 import {PrismaClient, Rental, Prisma, Address, Caracteristic} from "../Models/generated/prisma-client-js";
 import logger from "../../logger";
-import { Advert, Prisma, PrismaClient } from "../Models/generated/prisma-client-js";
 
 const prisma = new PrismaClient()
 
@@ -41,10 +40,10 @@ async function getAllRentals(req: Request, res: Response) {
 async function getRentalsById(req: Request, res: Response) {
     try {
         // Get the id from the request parameters
-        const id = Number(req.params.id);
+        const id = req.params.id;
 
         // Check if the rental exists
-        const rental = await prisma.advert.findUnique({ where: { id: id } });
+        const rental = await prisma.rental.findUnique({ where: { id: id } });
         if (rental === null) {
             res.status(404).json({ message: "Rental Not Found" });
             return;
@@ -69,17 +68,29 @@ async function getRentalsById(req: Request, res: Response) {
 async function createRental(req: CustomRequest, res: Response) {
     try {
         // Get the rental's informations from the request body
-        const newRental: Advert = req.body;
-
-        newRental.userId = Number(req.userId);
+        const rental: Rental = req.body.rental;
+        const address: Address = req.body.adress;
+        const caracteristic: Caracteristic = req.body.caracteristic;
+        rental.userId = req.userId!;
 
         // Create the rental
-        const createRental: Advert = await prisma.advert.create({
-            data: newRental
+        const newCaracteristic: {id: string} = await prisma.caracteristic.create({
+            data: caracteristic
+        });
+
+        const newAddress: {id: string} = await prisma.address.create({
+            data: address
+        });
+        
+        rental.caracteristicId = newCaracteristic.id;
+        rental.adressId = newAddress.id;
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
+        const newRental: Rental = await prisma.rental.create({
+            data: { ...rental }
         });
 
         // Send informations about the created rental to the client
-        logger.info(createRental);
+        logger.info(newRental);
         res.status(201).json({ message: "Rental created" });
     } catch (e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
@@ -98,16 +109,16 @@ async function createRental(req: CustomRequest, res: Response) {
 async function updateRentalById(req: Request, res: Response) {
     try {
         // Get the id from the request parameters
-        const rentalId: number = Number(req.params.id);
+        const rentalId = req.params.id;
 
         // Check if the rental exists
-        if (await prisma.advert.findUnique({ where: { id: rentalId } }) === null) {
+        if (await prisma.rental.findUnique({ where: { id: rentalId } }) === null) {
             res.status(400).json({ message: "The rental was not found." });
             return;
         }
 
         // If the rental exists, update it
-        const rental = await prisma.advert.update({
+        const rental = await prisma.rental.update({
             where: { id: rentalId },
             data: req.body
         });
@@ -132,16 +143,16 @@ async function updateRentalById(req: Request, res: Response) {
 async function deleteRentalById(req: Request, res: Response) {
     try {
         // Get the id from the request parameters
-        const rentalId: number = Number(req.params.id);
+        const rentalId = req.params.id;
 
         // Check if the rental exists
-        if (await prisma.advert.findUnique({ where: { id: rentalId } }) === null) {
+        if (await prisma.rental.findUnique({ where: { id: rentalId } }) === null) {
             res.status(400).json({ message: "Bad Request" });
             return;
         }
 
         // If the rental exists, delete it
-        const deleteRental = await prisma.advert.delete({
+        const deleteRental = await prisma.rental.delete({
             where: { id: rentalId }
         });
 

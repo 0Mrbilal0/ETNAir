@@ -9,7 +9,8 @@ interface CustomRequest extends Request {
 const verifyToken = (req: CustomRequest, res: Response, next: NextFunction) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {
-        return res.status(401).json({message: 'Accès non autorisé : pas de token fourni.'});
+        res.status(401).json({message: 'Accès non autorisé : pas de token fourni.'});
+        return;
     }
 
     try {
@@ -18,8 +19,8 @@ const verifyToken = (req: CustomRequest, res: Response, next: NextFunction) => {
         next();
     } catch (err) {
         res.clearCookie('token');
-        return res.status(401).json({message: 'Token invalide ou expiré.'});
+        res.status(401).json({message: 'Token invalide ou expiré.'});
     }
 };
 
-module.exports = verifyToken;
+export {verifyToken};
