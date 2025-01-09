@@ -7,7 +7,7 @@ function RentalsList({rentals}: { rentals: RentalsDTO[] }) {
                 <div key={rental.id}
                      className="w-72 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href={`/annonces/${rental.id}`}>
-                        <img className="rounded-t-lg max-h-52 w-full object-none" src="/Logo_Lightmode.png" alt=""/>
+                        <img className="rounded-t-lg max-h-52 w-full object-none" src={rental.picture} alt=""/>
                     </a>
                     <div className="p-5">
                         <a href={`/annonces/${rental.id}`}>

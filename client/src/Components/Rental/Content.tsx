@@ -1,4 +1,4 @@
-import { SetStateAction, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { get } from "../../axios/Requests.ts";
 import { RentalsDTO } from "../../@types/RentalsDTO.ts";
 import { useParams } from "react-router";
@@ -38,13 +38,13 @@ function Home() {
         <div className="mx-8 col-span-2 flex row-span-2 gap-5 flex-col">
           <img
             className="rounded-t-lg max-h-52 w-full object-none"
-            src="/Logo_Lightmode.png"
+            src={ rental.picture }
             alt=""
           />
           <h1 className="font-bold text-5xl text-center">{rental.title}</h1>
           <Separator />
           <p>{rental.caracteristic.description}</p>
-          <div className="bg-gray-400 p-5 rounded grid gap-y-3">
+          <div className="bg-gray-800 p-5 rounded grid gap-y-3 text-white">
             <h1 className="font-bold text-3xl text-center">Informations</h1>
             <Separator />
             <div className="flex flex-wrap flex-row justify-around gap-2">
@@ -56,14 +56,14 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col col-span-2 lg:col-span-1 grid gap-y-3 gap-5 mx-8 p-5 rounded bg-gray-400">
+        <div className="flex flex-col col-span-2 lg:col-span-1 grid gap-y-3 gap-5 mx-8 p-5 rounded bg-gray-800 text-white">
           <h1 className="font-bold text-3xl text-center">Reservation</h1>
           <Separator />
           <div className="flex flex-wrap flex-col gap-2">
             <div className="flex flex-wrap justify-between align-center">
               <label>Nombre de personnes (1-{rental.nb_person}):</label>
               <input
-                className="rounded px-1 py-0"
+                className="rounded px-1 py-0 text-black"
                 type="number"
                 id="nbPerson"
                 min="1"
@@ -73,7 +73,7 @@ function Home() {
             <div className="flex flex-wrap justify-between align-center">
               <label>Nombre de nuit:</label>
               <input
-                className="rounded px-1 py-0"
+                className="rounded px-1 py-0 text-black"
                 type="number"
                 value={nbNight}
                 id="nbNight"

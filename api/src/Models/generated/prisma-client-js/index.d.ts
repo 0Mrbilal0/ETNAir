@@ -29,11 +29,6 @@ export type Address = $Result.DefaultSelection<Prisma.$AddressPayload>
  */
 export type Caracteristic = $Result.DefaultSelection<Prisma.$CaracteristicPayload>
 /**
- * Model Picture
- * 
- */
-export type Picture = $Result.DefaultSelection<Prisma.$PicturePayload>
-/**
  * Model User
  * 
  */
@@ -224,16 +219,6 @@ export class PrismaClient<
     * ```
     */
   get caracteristic(): Prisma.CaracteristicDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.picture`: Exposes CRUD operations for the **Picture** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Pictures
-    * const pictures = await prisma.picture.findMany()
-    * ```
-    */
-  get picture(): Prisma.PictureDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -687,7 +672,6 @@ export namespace Prisma {
     Rental: 'Rental',
     Address: 'Address',
     Caracteristic: 'Caracteristic',
-    Picture: 'Picture',
     User: 'User'
   };
 
@@ -704,7 +688,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "rental" | "address" | "caracteristic" | "picture" | "user"
+      modelProps: "rental" | "address" | "caracteristic" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -930,80 +914,6 @@ export namespace Prisma {
           }
         }
       }
-      Picture: {
-        payload: Prisma.$PicturePayload<ExtArgs>
-        fields: Prisma.PictureFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PictureFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PictureFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload>
-          }
-          findFirst: {
-            args: Prisma.PictureFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PictureFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload>
-          }
-          findMany: {
-            args: Prisma.PictureFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload>[]
-          }
-          create: {
-            args: Prisma.PictureCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload>
-          }
-          createMany: {
-            args: Prisma.PictureCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.PictureCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload>[]
-          }
-          delete: {
-            args: Prisma.PictureDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload>
-          }
-          update: {
-            args: Prisma.PictureUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload>
-          }
-          deleteMany: {
-            args: Prisma.PictureDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PictureUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.PictureUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload>[]
-          }
-          upsert: {
-            args: Prisma.PictureUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PicturePayload>
-          }
-          aggregate: {
-            args: Prisma.PictureAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePicture>
-          }
-          groupBy: {
-            args: Prisma.PictureGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PictureGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PictureCountArgs<ExtArgs>
-            result: $Utils.Optional<PictureCountAggregateOutputType> | number
-          }
-        }
-      }
       User: {
         payload: Prisma.$UserPayload<ExtArgs>
         fields: Prisma.UserFieldRefs
@@ -1165,7 +1075,6 @@ export namespace Prisma {
     rental?: RentalOmit
     address?: AddressOmit
     caracteristic?: CaracteristicOmit
-    picture?: PictureOmit
     user?: UserOmit
   }
 
@@ -1254,37 +1163,6 @@ export namespace Prisma {
   /**
    * Count Types
    */
-
-
-  /**
-   * Count Type RentalCountOutputType
-   */
-
-  export type RentalCountOutputType = {
-    picture: number
-  }
-
-  export type RentalCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    picture?: boolean | RentalCountOutputTypeCountPictureArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * RentalCountOutputType without action
-   */
-  export type RentalCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RentalCountOutputType
-     */
-    select?: RentalCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * RentalCountOutputType without action
-   */
-  export type RentalCountOutputTypeCountPictureArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PictureWhereInput
-  }
 
 
   /**
@@ -1418,6 +1296,7 @@ export namespace Prisma {
     caracteristicId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    picture: string | null
   }
 
   export type RentalMaxAggregateOutputType = {
@@ -1432,6 +1311,7 @@ export namespace Prisma {
     caracteristicId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    picture: string | null
   }
 
   export type RentalCountAggregateOutputType = {
@@ -1446,6 +1326,7 @@ export namespace Prisma {
     caracteristicId: number
     createdAt: number
     updatedAt: number
+    picture: number
     _all: number
   }
 
@@ -1472,6 +1353,7 @@ export namespace Prisma {
     caracteristicId?: true
     createdAt?: true
     updatedAt?: true
+    picture?: true
   }
 
   export type RentalMaxAggregateInputType = {
@@ -1486,6 +1368,7 @@ export namespace Prisma {
     caracteristicId?: true
     createdAt?: true
     updatedAt?: true
+    picture?: true
   }
 
   export type RentalCountAggregateInputType = {
@@ -1500,6 +1383,7 @@ export namespace Prisma {
     caracteristicId?: true
     createdAt?: true
     updatedAt?: true
+    picture?: true
     _all?: true
   }
 
@@ -1601,6 +1485,7 @@ export namespace Prisma {
     caracteristicId: string | null
     createdAt: Date
     updatedAt: Date
+    picture: string
     _count: RentalCountAggregateOutputType | null
     _avg: RentalAvgAggregateOutputType | null
     _sum: RentalSumAggregateOutputType | null
@@ -1634,11 +1519,10 @@ export namespace Prisma {
     caracteristicId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    picture?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     caracteristic?: boolean | Rental$caracteristicArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
-    picture?: boolean | Rental$pictureArgs<ExtArgs>
-    _count?: boolean | RentalCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["rental"]>
 
   export type RentalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1653,6 +1537,7 @@ export namespace Prisma {
     caracteristicId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    picture?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     caracteristic?: boolean | Rental$caracteristicArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
@@ -1670,6 +1555,7 @@ export namespace Prisma {
     caracteristicId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    picture?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     caracteristic?: boolean | Rental$caracteristicArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
@@ -1687,15 +1573,14 @@ export namespace Prisma {
     caracteristicId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    picture?: boolean
   }
 
-  export type RentalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "nb_person" | "price" | "available_date" | "type" | "userId" | "adressId" | "caracteristicId" | "createdAt" | "updatedAt", ExtArgs["result"]["rental"]>
+  export type RentalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "nb_person" | "price" | "available_date" | "type" | "userId" | "adressId" | "caracteristicId" | "createdAt" | "updatedAt" | "picture", ExtArgs["result"]["rental"]>
   export type RentalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     caracteristic?: boolean | Rental$caracteristicArgs<ExtArgs>
     address?: boolean | AddressDefaultArgs<ExtArgs>
-    picture?: boolean | Rental$pictureArgs<ExtArgs>
-    _count?: boolean | RentalCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RentalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -1714,7 +1599,6 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
       caracteristic: Prisma.$CaracteristicPayload<ExtArgs> | null
       address: Prisma.$AddressPayload<ExtArgs>
-      picture: Prisma.$PicturePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1728,6 +1612,7 @@ export namespace Prisma {
       caracteristicId: string | null
       createdAt: Date
       updatedAt: Date
+      picture: string
     }, ExtArgs["result"]["rental"]>
     composites: {}
   }
@@ -2125,7 +2010,6 @@ export namespace Prisma {
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     caracteristic<T extends Rental$caracteristicArgs<ExtArgs> = {}>(args?: Subset<T, Rental$caracteristicArgs<ExtArgs>>): Prisma__CaracteristicClient<$Result.GetResult<Prisma.$CaracteristicPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     address<T extends AddressDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AddressDefaultArgs<ExtArgs>>): Prisma__AddressClient<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
-    picture<T extends Rental$pictureArgs<ExtArgs> = {}>(args?: Subset<T, Rental$pictureArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2166,6 +2050,7 @@ export namespace Prisma {
     readonly caracteristicId: FieldRef<"Rental", 'String'>
     readonly createdAt: FieldRef<"Rental", 'DateTime'>
     readonly updatedAt: FieldRef<"Rental", 'DateTime'>
+    readonly picture: FieldRef<"Rental", 'String'>
   }
     
 
@@ -2575,30 +2460,6 @@ export namespace Prisma {
      */
     include?: CaracteristicInclude<ExtArgs> | null
     where?: CaracteristicWhereInput
-  }
-
-  /**
-   * Rental.picture
-   */
-  export type Rental$pictureArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-    where?: PictureWhereInput
-    orderBy?: PictureOrderByWithRelationInput | PictureOrderByWithRelationInput[]
-    cursor?: PictureWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PictureScalarFieldEnum | PictureScalarFieldEnum[]
   }
 
   /**
@@ -4780,1035 +4641,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Picture
-   */
-
-  export type AggregatePicture = {
-    _count: PictureCountAggregateOutputType | null
-    _min: PictureMinAggregateOutputType | null
-    _max: PictureMaxAggregateOutputType | null
-  }
-
-  export type PictureMinAggregateOutputType = {
-    id: string | null
-    url: string | null
-    rentalId: string | null
-  }
-
-  export type PictureMaxAggregateOutputType = {
-    id: string | null
-    url: string | null
-    rentalId: string | null
-  }
-
-  export type PictureCountAggregateOutputType = {
-    id: number
-    url: number
-    rentalId: number
-    _all: number
-  }
-
-
-  export type PictureMinAggregateInputType = {
-    id?: true
-    url?: true
-    rentalId?: true
-  }
-
-  export type PictureMaxAggregateInputType = {
-    id?: true
-    url?: true
-    rentalId?: true
-  }
-
-  export type PictureCountAggregateInputType = {
-    id?: true
-    url?: true
-    rentalId?: true
-    _all?: true
-  }
-
-  export type PictureAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Picture to aggregate.
-     */
-    where?: PictureWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Pictures to fetch.
-     */
-    orderBy?: PictureOrderByWithRelationInput | PictureOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PictureWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Pictures from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Pictures.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Pictures
-    **/
-    _count?: true | PictureCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PictureMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PictureMaxAggregateInputType
-  }
-
-  export type GetPictureAggregateType<T extends PictureAggregateArgs> = {
-        [P in keyof T & keyof AggregatePicture]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePicture[P]>
-      : GetScalarType<T[P], AggregatePicture[P]>
-  }
-
-
-
-
-  export type PictureGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PictureWhereInput
-    orderBy?: PictureOrderByWithAggregationInput | PictureOrderByWithAggregationInput[]
-    by: PictureScalarFieldEnum[] | PictureScalarFieldEnum
-    having?: PictureScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PictureCountAggregateInputType | true
-    _min?: PictureMinAggregateInputType
-    _max?: PictureMaxAggregateInputType
-  }
-
-  export type PictureGroupByOutputType = {
-    id: string
-    url: string
-    rentalId: string
-    _count: PictureCountAggregateOutputType | null
-    _min: PictureMinAggregateOutputType | null
-    _max: PictureMaxAggregateOutputType | null
-  }
-
-  type GetPictureGroupByPayload<T extends PictureGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PictureGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PictureGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PictureGroupByOutputType[P]>
-            : GetScalarType<T[P], PictureGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PictureSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    url?: boolean
-    rentalId?: boolean
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["picture"]>
-
-  export type PictureSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    url?: boolean
-    rentalId?: boolean
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["picture"]>
-
-  export type PictureSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    url?: boolean
-    rentalId?: boolean
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["picture"]>
-
-  export type PictureSelectScalar = {
-    id?: boolean
-    url?: boolean
-    rentalId?: boolean
-  }
-
-  export type PictureOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "url" | "rentalId", ExtArgs["result"]["picture"]>
-  export type PictureInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }
-  export type PictureIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }
-  export type PictureIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rental?: boolean | RentalDefaultArgs<ExtArgs>
-  }
-
-  export type $PicturePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Picture"
-    objects: {
-      rental: Prisma.$RentalPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      url: string
-      rentalId: string
-    }, ExtArgs["result"]["picture"]>
-    composites: {}
-  }
-
-  type PictureGetPayload<S extends boolean | null | undefined | PictureDefaultArgs> = $Result.GetResult<Prisma.$PicturePayload, S>
-
-  type PictureCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PictureFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
-      select?: PictureCountAggregateInputType | true
-    }
-
-  export interface PictureDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Picture'], meta: { name: 'Picture' } }
-    /**
-     * Find zero or one Picture that matches the filter.
-     * @param {PictureFindUniqueArgs} args - Arguments to find a Picture
-     * @example
-     * // Get one Picture
-     * const picture = await prisma.picture.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PictureFindUniqueArgs>(args: SelectSubset<T, PictureFindUniqueArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
-
-    /**
-     * Find one Picture that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PictureFindUniqueOrThrowArgs} args - Arguments to find a Picture
-     * @example
-     * // Get one Picture
-     * const picture = await prisma.picture.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PictureFindUniqueOrThrowArgs>(args: SelectSubset<T, PictureFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Find the first Picture that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PictureFindFirstArgs} args - Arguments to find a Picture
-     * @example
-     * // Get one Picture
-     * const picture = await prisma.picture.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PictureFindFirstArgs>(args?: SelectSubset<T, PictureFindFirstArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
-
-    /**
-     * Find the first Picture that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PictureFindFirstOrThrowArgs} args - Arguments to find a Picture
-     * @example
-     * // Get one Picture
-     * const picture = await prisma.picture.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PictureFindFirstOrThrowArgs>(args?: SelectSubset<T, PictureFindFirstOrThrowArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Find zero or more Pictures that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PictureFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Pictures
-     * const pictures = await prisma.picture.findMany()
-     * 
-     * // Get first 10 Pictures
-     * const pictures = await prisma.picture.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const pictureWithIdOnly = await prisma.picture.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PictureFindManyArgs>(args?: SelectSubset<T, PictureFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "findMany", ClientOptions>>
-
-    /**
-     * Create a Picture.
-     * @param {PictureCreateArgs} args - Arguments to create a Picture.
-     * @example
-     * // Create one Picture
-     * const Picture = await prisma.picture.create({
-     *   data: {
-     *     // ... data to create a Picture
-     *   }
-     * })
-     * 
-     */
-    create<T extends PictureCreateArgs>(args: SelectSubset<T, PictureCreateArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Create many Pictures.
-     * @param {PictureCreateManyArgs} args - Arguments to create many Pictures.
-     * @example
-     * // Create many Pictures
-     * const picture = await prisma.picture.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PictureCreateManyArgs>(args?: SelectSubset<T, PictureCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Pictures and returns the data saved in the database.
-     * @param {PictureCreateManyAndReturnArgs} args - Arguments to create many Pictures.
-     * @example
-     * // Create many Pictures
-     * const picture = await prisma.picture.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Pictures and only return the `id`
-     * const pictureWithIdOnly = await prisma.picture.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PictureCreateManyAndReturnArgs>(args?: SelectSubset<T, PictureCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
-
-    /**
-     * Delete a Picture.
-     * @param {PictureDeleteArgs} args - Arguments to delete one Picture.
-     * @example
-     * // Delete one Picture
-     * const Picture = await prisma.picture.delete({
-     *   where: {
-     *     // ... filter to delete one Picture
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PictureDeleteArgs>(args: SelectSubset<T, PictureDeleteArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Update one Picture.
-     * @param {PictureUpdateArgs} args - Arguments to update one Picture.
-     * @example
-     * // Update one Picture
-     * const picture = await prisma.picture.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PictureUpdateArgs>(args: SelectSubset<T, PictureUpdateArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Delete zero or more Pictures.
-     * @param {PictureDeleteManyArgs} args - Arguments to filter Pictures to delete.
-     * @example
-     * // Delete a few Pictures
-     * const { count } = await prisma.picture.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PictureDeleteManyArgs>(args?: SelectSubset<T, PictureDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Pictures.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PictureUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Pictures
-     * const picture = await prisma.picture.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PictureUpdateManyArgs>(args: SelectSubset<T, PictureUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Pictures and returns the data updated in the database.
-     * @param {PictureUpdateManyAndReturnArgs} args - Arguments to update many Pictures.
-     * @example
-     * // Update many Pictures
-     * const picture = await prisma.picture.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Pictures and only return the `id`
-     * const pictureWithIdOnly = await prisma.picture.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PictureUpdateManyAndReturnArgs>(args: SelectSubset<T, PictureUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
-
-    /**
-     * Create or update one Picture.
-     * @param {PictureUpsertArgs} args - Arguments to update or create a Picture.
-     * @example
-     * // Update or create a Picture
-     * const picture = await prisma.picture.upsert({
-     *   create: {
-     *     // ... data to create a Picture
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Picture we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PictureUpsertArgs>(args: SelectSubset<T, PictureUpsertArgs<ExtArgs>>): Prisma__PictureClient<$Result.GetResult<Prisma.$PicturePayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
-
-
-    /**
-     * Count the number of Pictures.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PictureCountArgs} args - Arguments to filter Pictures to count.
-     * @example
-     * // Count the number of Pictures
-     * const count = await prisma.picture.count({
-     *   where: {
-     *     // ... the filter for the Pictures we want to count
-     *   }
-     * })
-    **/
-    count<T extends PictureCountArgs>(
-      args?: Subset<T, PictureCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PictureCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Picture.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PictureAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PictureAggregateArgs>(args: Subset<T, PictureAggregateArgs>): Prisma.PrismaPromise<GetPictureAggregateType<T>>
-
-    /**
-     * Group by Picture.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PictureGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PictureGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PictureGroupByArgs['orderBy'] }
-        : { orderBy?: PictureGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PictureGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPictureGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Picture model
-   */
-  readonly fields: PictureFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Picture.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PictureClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    rental<T extends RentalDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RentalDefaultArgs<ExtArgs>>): Prisma__RentalClient<$Result.GetResult<Prisma.$RentalPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Picture model
-   */ 
-  interface PictureFieldRefs {
-    readonly id: FieldRef<"Picture", 'String'>
-    readonly url: FieldRef<"Picture", 'String'>
-    readonly rentalId: FieldRef<"Picture", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Picture findUnique
-   */
-  export type PictureFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-    /**
-     * Filter, which Picture to fetch.
-     */
-    where: PictureWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Picture findUniqueOrThrow
-   */
-  export type PictureFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-    /**
-     * Filter, which Picture to fetch.
-     */
-    where: PictureWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Picture findFirst
-   */
-  export type PictureFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-    /**
-     * Filter, which Picture to fetch.
-     */
-    where?: PictureWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Pictures to fetch.
-     */
-    orderBy?: PictureOrderByWithRelationInput | PictureOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Pictures.
-     */
-    cursor?: PictureWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Pictures from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Pictures.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Pictures.
-     */
-    distinct?: PictureScalarFieldEnum | PictureScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Picture findFirstOrThrow
-   */
-  export type PictureFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-    /**
-     * Filter, which Picture to fetch.
-     */
-    where?: PictureWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Pictures to fetch.
-     */
-    orderBy?: PictureOrderByWithRelationInput | PictureOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Pictures.
-     */
-    cursor?: PictureWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Pictures from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Pictures.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Pictures.
-     */
-    distinct?: PictureScalarFieldEnum | PictureScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Picture findMany
-   */
-  export type PictureFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-    /**
-     * Filter, which Pictures to fetch.
-     */
-    where?: PictureWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Pictures to fetch.
-     */
-    orderBy?: PictureOrderByWithRelationInput | PictureOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Pictures.
-     */
-    cursor?: PictureWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Pictures from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Pictures.
-     */
-    skip?: number
-    distinct?: PictureScalarFieldEnum | PictureScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Picture create
-   */
-  export type PictureCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Picture.
-     */
-    data: XOR<PictureCreateInput, PictureUncheckedCreateInput>
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Picture createMany
-   */
-  export type PictureCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Pictures.
-     */
-    data: PictureCreateManyInput | PictureCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Picture createManyAndReturn
-   */
-  export type PictureCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * The data used to create many Pictures.
-     */
-    data: PictureCreateManyInput | PictureCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Picture update
-   */
-  export type PictureUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Picture.
-     */
-    data: XOR<PictureUpdateInput, PictureUncheckedUpdateInput>
-    /**
-     * Choose, which Picture to update.
-     */
-    where: PictureWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Picture updateMany
-   */
-  export type PictureUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Pictures.
-     */
-    data: XOR<PictureUpdateManyMutationInput, PictureUncheckedUpdateManyInput>
-    /**
-     * Filter which Pictures to update
-     */
-    where?: PictureWhereInput
-  }
-
-  /**
-   * Picture updateManyAndReturn
-   */
-  export type PictureUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * The data used to update Pictures.
-     */
-    data: XOR<PictureUpdateManyMutationInput, PictureUncheckedUpdateManyInput>
-    /**
-     * Filter which Pictures to update
-     */
-    where?: PictureWhereInput
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Picture upsert
-   */
-  export type PictureUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Picture to update in case it exists.
-     */
-    where: PictureWhereUniqueInput
-    /**
-     * In case the Picture found by the `where` argument doesn't exist, create a new Picture with this data.
-     */
-    create: XOR<PictureCreateInput, PictureUncheckedCreateInput>
-    /**
-     * In case the Picture was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PictureUpdateInput, PictureUncheckedUpdateInput>
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Picture delete
-   */
-  export type PictureDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-    /**
-     * Filter which Picture to delete.
-     */
-    where: PictureWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Picture deleteMany
-   */
-  export type PictureDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Pictures to delete
-     */
-    where?: PictureWhereInput
-  }
-
-  /**
-   * Picture without action
-   */
-  export type PictureDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Picture
-     */
-    select?: PictureSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Picture
-     */
-    omit?: PictureOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PictureInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model User
    */
 
@@ -6952,7 +5784,8 @@ export namespace Prisma {
     adressId: 'adressId',
     caracteristicId: 'caracteristicId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    picture: 'picture'
   };
 
   export type RentalScalarFieldEnum = (typeof RentalScalarFieldEnum)[keyof typeof RentalScalarFieldEnum]
@@ -6985,15 +5818,6 @@ export namespace Prisma {
   };
 
   export type CaracteristicScalarFieldEnum = (typeof CaracteristicScalarFieldEnum)[keyof typeof CaracteristicScalarFieldEnum]
-
-
-  export const PictureScalarFieldEnum: {
-    id: 'id',
-    url: 'url',
-    rentalId: 'rentalId'
-  };
-
-  export type PictureScalarFieldEnum = (typeof PictureScalarFieldEnum)[keyof typeof PictureScalarFieldEnum]
 
 
   export const UserScalarFieldEnum: {
@@ -7142,10 +5966,10 @@ export namespace Prisma {
     caracteristicId?: StringNullableFilter<"Rental"> | string | null
     createdAt?: DateTimeFilter<"Rental"> | Date | string
     updatedAt?: DateTimeFilter<"Rental"> | Date | string
+    picture?: StringFilter<"Rental"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     caracteristic?: XOR<CaracteristicNullableScalarRelationFilter, CaracteristicWhereInput> | null
     address?: XOR<AddressScalarRelationFilter, AddressWhereInput>
-    picture?: PictureListRelationFilter
   }
 
   export type RentalOrderByWithRelationInput = {
@@ -7160,10 +5984,10 @@ export namespace Prisma {
     caracteristicId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    picture?: SortOrder
     user?: UserOrderByWithRelationInput
     caracteristic?: CaracteristicOrderByWithRelationInput
     address?: AddressOrderByWithRelationInput
-    picture?: PictureOrderByRelationAggregateInput
   }
 
   export type RentalWhereUniqueInput = Prisma.AtLeast<{
@@ -7181,10 +6005,10 @@ export namespace Prisma {
     userId?: StringFilter<"Rental"> | string
     createdAt?: DateTimeFilter<"Rental"> | Date | string
     updatedAt?: DateTimeFilter<"Rental"> | Date | string
+    picture?: StringFilter<"Rental"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     caracteristic?: XOR<CaracteristicNullableScalarRelationFilter, CaracteristicWhereInput> | null
     address?: XOR<AddressScalarRelationFilter, AddressWhereInput>
-    picture?: PictureListRelationFilter
   }, "id" | "adressId" | "caracteristicId">
 
   export type RentalOrderByWithAggregationInput = {
@@ -7199,6 +6023,7 @@ export namespace Prisma {
     caracteristicId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    picture?: SortOrder
     _count?: RentalCountOrderByAggregateInput
     _avg?: RentalAvgOrderByAggregateInput
     _max?: RentalMaxOrderByAggregateInput
@@ -7221,6 +6046,7 @@ export namespace Prisma {
     caracteristicId?: StringNullableWithAggregatesFilter<"Rental"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Rental"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Rental"> | Date | string
+    picture?: StringWithAggregatesFilter<"Rental"> | string
   }
 
   export type AddressWhereInput = {
@@ -7330,51 +6156,6 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Caracteristic"> | string
   }
 
-  export type PictureWhereInput = {
-    AND?: PictureWhereInput | PictureWhereInput[]
-    OR?: PictureWhereInput[]
-    NOT?: PictureWhereInput | PictureWhereInput[]
-    id?: StringFilter<"Picture"> | string
-    url?: StringFilter<"Picture"> | string
-    rentalId?: StringFilter<"Picture"> | string
-    rental?: XOR<RentalScalarRelationFilter, RentalWhereInput>
-  }
-
-  export type PictureOrderByWithRelationInput = {
-    id?: SortOrder
-    url?: SortOrder
-    rentalId?: SortOrder
-    rental?: RentalOrderByWithRelationInput
-  }
-
-  export type PictureWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: PictureWhereInput | PictureWhereInput[]
-    OR?: PictureWhereInput[]
-    NOT?: PictureWhereInput | PictureWhereInput[]
-    url?: StringFilter<"Picture"> | string
-    rentalId?: StringFilter<"Picture"> | string
-    rental?: XOR<RentalScalarRelationFilter, RentalWhereInput>
-  }, "id">
-
-  export type PictureOrderByWithAggregationInput = {
-    id?: SortOrder
-    url?: SortOrder
-    rentalId?: SortOrder
-    _count?: PictureCountOrderByAggregateInput
-    _max?: PictureMaxOrderByAggregateInput
-    _min?: PictureMinOrderByAggregateInput
-  }
-
-  export type PictureScalarWhereWithAggregatesInput = {
-    AND?: PictureScalarWhereWithAggregatesInput | PictureScalarWhereWithAggregatesInput[]
-    OR?: PictureScalarWhereWithAggregatesInput[]
-    NOT?: PictureScalarWhereWithAggregatesInput | PictureScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Picture"> | string
-    url?: StringWithAggregatesFilter<"Picture"> | string
-    rentalId?: StringWithAggregatesFilter<"Picture"> | string
-  }
-
   export type UserWhereInput = {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
@@ -7459,10 +6240,10 @@ export namespace Prisma {
     type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
+    picture: string
     user: UserCreateNestedOneWithoutRentalInput
     caracteristic?: CaracteristicCreateNestedOneWithoutRentalInput
     address: AddressCreateNestedOneWithoutRentalInput
-    picture?: PictureCreateNestedManyWithoutRentalInput
   }
 
   export type RentalUncheckedCreateInput = {
@@ -7477,7 +6258,7 @@ export namespace Prisma {
     caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
+    picture: string
   }
 
   export type RentalUpdateInput = {
@@ -7489,10 +6270,10 @@ export namespace Prisma {
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutRentalNestedInput
     caracteristic?: CaracteristicUpdateOneWithoutRentalNestedInput
     address?: AddressUpdateOneRequiredWithoutRentalNestedInput
-    picture?: PictureUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalUncheckedUpdateInput = {
@@ -7507,7 +6288,7 @@ export namespace Prisma {
     caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
   export type RentalCreateManyInput = {
@@ -7522,6 +6303,7 @@ export namespace Prisma {
     caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    picture: string
   }
 
   export type RentalUpdateManyMutationInput = {
@@ -7533,6 +6315,7 @@ export namespace Prisma {
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
   export type RentalUncheckedUpdateManyInput = {
@@ -7547,6 +6330,7 @@ export namespace Prisma {
     caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
   export type AddressCreateInput = {
@@ -7660,47 +6444,6 @@ export namespace Prisma {
     nb_bedroom?: NullableIntFieldUpdateOperationsInput | number | null
     nb_bathroom?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PictureCreateInput = {
-    id?: string
-    url: string
-    rental: RentalCreateNestedOneWithoutPictureInput
-  }
-
-  export type PictureUncheckedCreateInput = {
-    id?: string
-    url: string
-    rentalId: string
-  }
-
-  export type PictureUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    rental?: RentalUpdateOneRequiredWithoutPictureNestedInput
-  }
-
-  export type PictureUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    rentalId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PictureCreateManyInput = {
-    id?: string
-    url: string
-    rentalId: string
-  }
-
-  export type PictureUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PictureUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    rentalId?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserCreateInput = {
@@ -7876,19 +6619,9 @@ export namespace Prisma {
     isNot?: AddressWhereInput
   }
 
-  export type PictureListRelationFilter = {
-    every?: PictureWhereInput
-    some?: PictureWhereInput
-    none?: PictureWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type PictureOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type RentalCountOrderByAggregateInput = {
@@ -7903,6 +6636,7 @@ export namespace Prisma {
     caracteristicId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    picture?: SortOrder
   }
 
   export type RentalAvgOrderByAggregateInput = {
@@ -7922,6 +6656,7 @@ export namespace Prisma {
     caracteristicId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    picture?: SortOrder
   }
 
   export type RentalMinOrderByAggregateInput = {
@@ -7936,6 +6671,7 @@ export namespace Prisma {
     caracteristicId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    picture?: SortOrder
   }
 
   export type RentalSumOrderByAggregateInput = {
@@ -8127,29 +6863,6 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type RentalScalarRelationFilter = {
-    is?: RentalWhereInput
-    isNot?: RentalWhereInput
-  }
-
-  export type PictureCountOrderByAggregateInput = {
-    id?: SortOrder
-    url?: SortOrder
-    rentalId?: SortOrder
-  }
-
-  export type PictureMaxOrderByAggregateInput = {
-    id?: SortOrder
-    url?: SortOrder
-    rentalId?: SortOrder
-  }
-
-  export type PictureMinOrderByAggregateInput = {
-    id?: SortOrder
-    url?: SortOrder
-    rentalId?: SortOrder
-  }
-
   export type EnumUserTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.UserType | EnumUserTypeFieldRefInput<$PrismaModel>
     in?: $Enums.UserType[] | ListEnumUserTypeFieldRefInput<$PrismaModel>
@@ -8221,20 +6934,6 @@ export namespace Prisma {
     connect?: AddressWhereUniqueInput
   }
 
-  export type PictureCreateNestedManyWithoutRentalInput = {
-    create?: XOR<PictureCreateWithoutRentalInput, PictureUncheckedCreateWithoutRentalInput> | PictureCreateWithoutRentalInput[] | PictureUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: PictureCreateOrConnectWithoutRentalInput | PictureCreateOrConnectWithoutRentalInput[]
-    createMany?: PictureCreateManyRentalInputEnvelope
-    connect?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
-  }
-
-  export type PictureUncheckedCreateNestedManyWithoutRentalInput = {
-    create?: XOR<PictureCreateWithoutRentalInput, PictureUncheckedCreateWithoutRentalInput> | PictureCreateWithoutRentalInput[] | PictureUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: PictureCreateOrConnectWithoutRentalInput | PictureCreateOrConnectWithoutRentalInput[]
-    createMany?: PictureCreateManyRentalInputEnvelope
-    connect?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -8289,36 +6988,8 @@ export namespace Prisma {
     update?: XOR<XOR<AddressUpdateToOneWithWhereWithoutRentalInput, AddressUpdateWithoutRentalInput>, AddressUncheckedUpdateWithoutRentalInput>
   }
 
-  export type PictureUpdateManyWithoutRentalNestedInput = {
-    create?: XOR<PictureCreateWithoutRentalInput, PictureUncheckedCreateWithoutRentalInput> | PictureCreateWithoutRentalInput[] | PictureUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: PictureCreateOrConnectWithoutRentalInput | PictureCreateOrConnectWithoutRentalInput[]
-    upsert?: PictureUpsertWithWhereUniqueWithoutRentalInput | PictureUpsertWithWhereUniqueWithoutRentalInput[]
-    createMany?: PictureCreateManyRentalInputEnvelope
-    set?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
-    disconnect?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
-    delete?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
-    connect?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
-    update?: PictureUpdateWithWhereUniqueWithoutRentalInput | PictureUpdateWithWhereUniqueWithoutRentalInput[]
-    updateMany?: PictureUpdateManyWithWhereWithoutRentalInput | PictureUpdateManyWithWhereWithoutRentalInput[]
-    deleteMany?: PictureScalarWhereInput | PictureScalarWhereInput[]
-  }
-
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
-  }
-
-  export type PictureUncheckedUpdateManyWithoutRentalNestedInput = {
-    create?: XOR<PictureCreateWithoutRentalInput, PictureUncheckedCreateWithoutRentalInput> | PictureCreateWithoutRentalInput[] | PictureUncheckedCreateWithoutRentalInput[]
-    connectOrCreate?: PictureCreateOrConnectWithoutRentalInput | PictureCreateOrConnectWithoutRentalInput[]
-    upsert?: PictureUpsertWithWhereUniqueWithoutRentalInput | PictureUpsertWithWhereUniqueWithoutRentalInput[]
-    createMany?: PictureCreateManyRentalInputEnvelope
-    set?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
-    disconnect?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
-    delete?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
-    connect?: PictureWhereUniqueInput | PictureWhereUniqueInput[]
-    update?: PictureUpdateWithWhereUniqueWithoutRentalInput | PictureUpdateWithWhereUniqueWithoutRentalInput[]
-    updateMany?: PictureUpdateManyWithWhereWithoutRentalInput | PictureUpdateManyWithWhereWithoutRentalInput[]
-    deleteMany?: PictureScalarWhereInput | PictureScalarWhereInput[]
   }
 
   export type RentalCreateNestedManyWithoutAddressInput = {
@@ -8411,20 +7082,6 @@ export namespace Prisma {
     update?: RentalUpdateWithWhereUniqueWithoutCaracteristicInput | RentalUpdateWithWhereUniqueWithoutCaracteristicInput[]
     updateMany?: RentalUpdateManyWithWhereWithoutCaracteristicInput | RentalUpdateManyWithWhereWithoutCaracteristicInput[]
     deleteMany?: RentalScalarWhereInput | RentalScalarWhereInput[]
-  }
-
-  export type RentalCreateNestedOneWithoutPictureInput = {
-    create?: XOR<RentalCreateWithoutPictureInput, RentalUncheckedCreateWithoutPictureInput>
-    connectOrCreate?: RentalCreateOrConnectWithoutPictureInput
-    connect?: RentalWhereUniqueInput
-  }
-
-  export type RentalUpdateOneRequiredWithoutPictureNestedInput = {
-    create?: XOR<RentalCreateWithoutPictureInput, RentalUncheckedCreateWithoutPictureInput>
-    connectOrCreate?: RentalCreateOrConnectWithoutPictureInput
-    upsert?: RentalUpsertWithoutPictureInput
-    connect?: RentalWhereUniqueInput
-    update?: XOR<XOR<RentalUpdateToOneWithWhereWithoutPictureInput, RentalUpdateWithoutPictureInput>, RentalUncheckedUpdateWithoutPictureInput>
   }
 
   export type RentalCreateNestedManyWithoutUserInput = {
@@ -8755,26 +7412,6 @@ export namespace Prisma {
     create: XOR<AddressCreateWithoutRentalInput, AddressUncheckedCreateWithoutRentalInput>
   }
 
-  export type PictureCreateWithoutRentalInput = {
-    id?: string
-    url: string
-  }
-
-  export type PictureUncheckedCreateWithoutRentalInput = {
-    id?: string
-    url: string
-  }
-
-  export type PictureCreateOrConnectWithoutRentalInput = {
-    where: PictureWhereUniqueInput
-    create: XOR<PictureCreateWithoutRentalInput, PictureUncheckedCreateWithoutRentalInput>
-  }
-
-  export type PictureCreateManyRentalInputEnvelope = {
-    data: PictureCreateManyRentalInput | PictureCreateManyRentalInput[]
-    skipDuplicates?: boolean
-  }
-
   export type UserUpsertWithoutRentalInput = {
     update: XOR<UserUpdateWithoutRentalInput, UserUncheckedUpdateWithoutRentalInput>
     create: XOR<UserCreateWithoutRentalInput, UserUncheckedCreateWithoutRentalInput>
@@ -8862,31 +7499,6 @@ export namespace Prisma {
     zip_code?: StringFieldUpdateOperationsInput | string
   }
 
-  export type PictureUpsertWithWhereUniqueWithoutRentalInput = {
-    where: PictureWhereUniqueInput
-    update: XOR<PictureUpdateWithoutRentalInput, PictureUncheckedUpdateWithoutRentalInput>
-    create: XOR<PictureCreateWithoutRentalInput, PictureUncheckedCreateWithoutRentalInput>
-  }
-
-  export type PictureUpdateWithWhereUniqueWithoutRentalInput = {
-    where: PictureWhereUniqueInput
-    data: XOR<PictureUpdateWithoutRentalInput, PictureUncheckedUpdateWithoutRentalInput>
-  }
-
-  export type PictureUpdateManyWithWhereWithoutRentalInput = {
-    where: PictureScalarWhereInput
-    data: XOR<PictureUpdateManyMutationInput, PictureUncheckedUpdateManyWithoutRentalInput>
-  }
-
-  export type PictureScalarWhereInput = {
-    AND?: PictureScalarWhereInput | PictureScalarWhereInput[]
-    OR?: PictureScalarWhereInput[]
-    NOT?: PictureScalarWhereInput | PictureScalarWhereInput[]
-    id?: StringFilter<"Picture"> | string
-    url?: StringFilter<"Picture"> | string
-    rentalId?: StringFilter<"Picture"> | string
-  }
-
   export type RentalCreateWithoutAddressInput = {
     id?: string
     title: string
@@ -8896,9 +7508,9 @@ export namespace Prisma {
     type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
+    picture: string
     user: UserCreateNestedOneWithoutRentalInput
     caracteristic?: CaracteristicCreateNestedOneWithoutRentalInput
-    picture?: PictureCreateNestedManyWithoutRentalInput
   }
 
   export type RentalUncheckedCreateWithoutAddressInput = {
@@ -8912,7 +7524,7 @@ export namespace Prisma {
     caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
+    picture: string
   }
 
   export type RentalCreateOrConnectWithoutAddressInput = {
@@ -8956,6 +7568,7 @@ export namespace Prisma {
     caracteristicId?: StringNullableFilter<"Rental"> | string | null
     createdAt?: DateTimeFilter<"Rental"> | Date | string
     updatedAt?: DateTimeFilter<"Rental"> | Date | string
+    picture?: StringFilter<"Rental"> | string
   }
 
   export type RentalCreateWithoutCaracteristicInput = {
@@ -8967,9 +7580,9 @@ export namespace Prisma {
     type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
+    picture: string
     user: UserCreateNestedOneWithoutRentalInput
     address: AddressCreateNestedOneWithoutRentalInput
-    picture?: PictureCreateNestedManyWithoutRentalInput
   }
 
   export type RentalUncheckedCreateWithoutCaracteristicInput = {
@@ -8983,7 +7596,7 @@ export namespace Prisma {
     adressId: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
+    picture: string
   }
 
   export type RentalCreateOrConnectWithoutCaracteristicInput = {
@@ -9012,78 +7625,6 @@ export namespace Prisma {
     data: XOR<RentalUpdateManyMutationInput, RentalUncheckedUpdateManyWithoutCaracteristicInput>
   }
 
-  export type RentalCreateWithoutPictureInput = {
-    id?: string
-    title: string
-    nb_person: number
-    price: number
-    available_date: Date | string
-    type: $Enums.Types
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutRentalInput
-    caracteristic?: CaracteristicCreateNestedOneWithoutRentalInput
-    address: AddressCreateNestedOneWithoutRentalInput
-  }
-
-  export type RentalUncheckedCreateWithoutPictureInput = {
-    id?: string
-    title: string
-    nb_person: number
-    price: number
-    available_date: Date | string
-    type: $Enums.Types
-    userId: string
-    adressId: string
-    caracteristicId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type RentalCreateOrConnectWithoutPictureInput = {
-    where: RentalWhereUniqueInput
-    create: XOR<RentalCreateWithoutPictureInput, RentalUncheckedCreateWithoutPictureInput>
-  }
-
-  export type RentalUpsertWithoutPictureInput = {
-    update: XOR<RentalUpdateWithoutPictureInput, RentalUncheckedUpdateWithoutPictureInput>
-    create: XOR<RentalCreateWithoutPictureInput, RentalUncheckedCreateWithoutPictureInput>
-    where?: RentalWhereInput
-  }
-
-  export type RentalUpdateToOneWithWhereWithoutPictureInput = {
-    where?: RentalWhereInput
-    data: XOR<RentalUpdateWithoutPictureInput, RentalUncheckedUpdateWithoutPictureInput>
-  }
-
-  export type RentalUpdateWithoutPictureInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    nb_person?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutRentalNestedInput
-    caracteristic?: CaracteristicUpdateOneWithoutRentalNestedInput
-    address?: AddressUpdateOneRequiredWithoutRentalNestedInput
-  }
-
-  export type RentalUncheckedUpdateWithoutPictureInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    nb_person?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    available_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
-    userId?: StringFieldUpdateOperationsInput | string
-    adressId?: StringFieldUpdateOperationsInput | string
-    caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type RentalCreateWithoutUserInput = {
     id?: string
     title: string
@@ -9093,9 +7634,9 @@ export namespace Prisma {
     type: $Enums.Types
     createdAt?: Date | string
     updatedAt?: Date | string
+    picture: string
     caracteristic?: CaracteristicCreateNestedOneWithoutRentalInput
     address: AddressCreateNestedOneWithoutRentalInput
-    picture?: PictureCreateNestedManyWithoutRentalInput
   }
 
   export type RentalUncheckedCreateWithoutUserInput = {
@@ -9109,7 +7650,7 @@ export namespace Prisma {
     caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    picture?: PictureUncheckedCreateNestedManyWithoutRentalInput
+    picture: string
   }
 
   export type RentalCreateOrConnectWithoutUserInput = {
@@ -9138,26 +7679,6 @@ export namespace Prisma {
     data: XOR<RentalUpdateManyMutationInput, RentalUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type PictureCreateManyRentalInput = {
-    id?: string
-    url: string
-  }
-
-  export type PictureUpdateWithoutRentalInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PictureUncheckedUpdateWithoutRentalInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PictureUncheckedUpdateManyWithoutRentalInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
-
   export type RentalCreateManyAddressInput = {
     id?: string
     title: string
@@ -9169,6 +7690,7 @@ export namespace Prisma {
     caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    picture: string
   }
 
   export type RentalUpdateWithoutAddressInput = {
@@ -9180,9 +7702,9 @@ export namespace Prisma {
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutRentalNestedInput
     caracteristic?: CaracteristicUpdateOneWithoutRentalNestedInput
-    picture?: PictureUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalUncheckedUpdateWithoutAddressInput = {
@@ -9196,7 +7718,7 @@ export namespace Prisma {
     caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
   export type RentalUncheckedUpdateManyWithoutAddressInput = {
@@ -9210,6 +7732,7 @@ export namespace Prisma {
     caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
   export type RentalCreateManyCaracteristicInput = {
@@ -9223,6 +7746,7 @@ export namespace Prisma {
     adressId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    picture: string
   }
 
   export type RentalUpdateWithoutCaracteristicInput = {
@@ -9234,9 +7758,9 @@ export namespace Prisma {
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutRentalNestedInput
     address?: AddressUpdateOneRequiredWithoutRentalNestedInput
-    picture?: PictureUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalUncheckedUpdateWithoutCaracteristicInput = {
@@ -9250,7 +7774,7 @@ export namespace Prisma {
     adressId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
   export type RentalUncheckedUpdateManyWithoutCaracteristicInput = {
@@ -9264,6 +7788,7 @@ export namespace Prisma {
     adressId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
   export type RentalCreateManyUserInput = {
@@ -9277,6 +7802,7 @@ export namespace Prisma {
     caracteristicId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    picture: string
   }
 
   export type RentalUpdateWithoutUserInput = {
@@ -9288,9 +7814,9 @@ export namespace Prisma {
     type?: EnumTypesFieldUpdateOperationsInput | $Enums.Types
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: StringFieldUpdateOperationsInput | string
     caracteristic?: CaracteristicUpdateOneWithoutRentalNestedInput
     address?: AddressUpdateOneRequiredWithoutRentalNestedInput
-    picture?: PictureUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalUncheckedUpdateWithoutUserInput = {
@@ -9304,7 +7830,7 @@ export namespace Prisma {
     caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    picture?: PictureUncheckedUpdateManyWithoutRentalNestedInput
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
   export type RentalUncheckedUpdateManyWithoutUserInput = {
@@ -9318,6 +7844,7 @@ export namespace Prisma {
     caracteristicId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    picture?: StringFieldUpdateOperationsInput | string
   }
 
 

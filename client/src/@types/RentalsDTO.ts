@@ -7,6 +7,7 @@ interface RentalsDTO {
     type: Type;
     caracteristic: Caracteristic
     address: Address;
+    picture: string;
 }
 
 interface Caracteristic {

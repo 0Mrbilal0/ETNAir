@@ -24,7 +24,7 @@ model Rental {
   user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   caracteristic   Caracteristic? @relation(fields: [caracteristicId], references: [id], onDelete: Cascade)
   address         Address        @relation(fields: [adressId], references: [id], onDelete: Cascade)
-  picture         Picture[]
+  picture         String
 }
 
 model Address {
@@ -42,13 +42,6 @@ model Caracteristic {
   nb_bathroom Int
   description String
   rental      Rental[]
-}
-
-model Picture {
-  id       String @id @default(uuid())
-  url      String
-  rentalId String
-  rental   Rental @relation(fields: [rentalId], references: [id], onDelete: Cascade)
 }
 
 model User {

@@ -87,6 +87,7 @@ async function createUser(req: Request, res: Response) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
             if (e.code === 'P2002') {
                 res.status(409).json({ message: "Duplicate phone number or email" });
+                return;
             }
         }
         res.status(500).json({message: "Internal Server Error"});
@@ -145,6 +146,11 @@ async function updateUserById(req: CustomRequest, res: Response) {
             res.status(404).json({ message: "user not found" });
             return;
         }
+
+        // Hash the new user's password
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        req.body.password = hashedPassword;
 
         // If the user exists, update it
         const updatedUser = await prisma.user.update({
