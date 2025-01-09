@@ -90,7 +90,6 @@ async function createRental(req: CustomRequest, res: Response) {
         
         rental.caracteristicId = newCaracteristic.id;
         rental.adressId = newAddress.id;
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
         const newRental: Rental = await prisma.rental.create({
             data: { ...rental }
         });

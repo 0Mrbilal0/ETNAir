@@ -1,32 +1,13 @@
 import {useState} from 'react'
 import {
     Dialog,
-    DialogPanel,
-    Disclosure,
-    DisclosureButton,
-    DisclosurePanel,
-    Popover,
-    PopoverButton,
-    PopoverGroup,
-    PopoverPanel,
+    DialogPanel
 } from '@headlessui/react'
 import {
     // ArrowPathIcon,
     Bars3Icon,
-    ChartPieIcon,
-    CursorArrowRaysIcon,
-    FingerPrintIcon,
-    SquaresPlusIcon,
-    XMarkIcon,
+    XMarkIcon
 } from '@heroicons/react/24/outline'
-import {ChevronDownIcon} from '@heroicons/react/20/solid'
-
-const products = [
-    {name: 'House', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon},
-    {name: 'Castle', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon},
-    {name: 'Appartement', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon},
-    {name: 'Tiny-House', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon},
-]
 
 export default function Example() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
