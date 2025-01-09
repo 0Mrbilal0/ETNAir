@@ -17,12 +17,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.0.1
- * Query Engine version: 5dbef10bdbfb579e07d35cc85fb1518d357cb99e
+ * Prisma Client JS version: 6.2.0
+ * Query Engine version: 4123509d24aa4dede1e864b46351bf2790323b69
  */
 Prisma.prismaVersion = {
-  client: "6.0.1",
-  engine: "5dbef10bdbfb579e07d35cc85fb1518d357cb99e"
+  client: "6.2.0",
+  engine: "4123509d24aa4dede1e864b46351bf2790323b69"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -117,21 +117,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.AdressScalarFieldEnum = {
-  id: 'id',
-  city: 'city',
-  country: 'country',
-  street: 'street',
-  zip_code: 'zip_code',
-  advertId: 'advertId'
-};
-
-exports.Prisma.RelationLoadStrategy = {
-  query: 'query',
-  join: 'join'
-};
-
-exports.Prisma.AdvertScalarFieldEnum = {
+exports.Prisma.RentalScalarFieldEnum = {
   id: 'id',
   title: 'title',
   nb_person: 'nb_person',
@@ -139,22 +125,31 @@ exports.Prisma.AdvertScalarFieldEnum = {
   available_date: 'available_date',
   type: 'type',
   userId: 'userId',
+  adressId: 'adressId',
+  caracteristicId: 'caracteristicId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  picture: 'picture'
+};
+
+exports.Prisma.RelationLoadStrategy = {
+  query: 'query',
+  join: 'join'
+};
+
+exports.Prisma.AddressScalarFieldEnum = {
+  id: 'id',
+  city: 'city',
+  country: 'country',
+  street: 'street',
+  zip_code: 'zip_code'
 };
 
 exports.Prisma.CaracteristicScalarFieldEnum = {
   id: 'id',
   nb_bedroom: 'nb_bedroom',
   nb_bathroom: 'nb_bathroom',
-  description: 'description',
-  advertId: 'advertId'
-};
-
-exports.Prisma.PictureScalarFieldEnum = {
-  id: 'id',
-  url: 'url',
-  advertId: 'advertId'
+  description: 'description'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -196,10 +191,9 @@ exports.UserType = exports.$Enums.UserType = {
 };
 
 exports.Prisma.ModelName = {
-  Adress: 'Adress',
-  Advert: 'Advert',
+  Rental: 'Rental',
+  Address: 'Address',
   Caracteristic: 'Caracteristic',
-  Picture: 'Picture',
   User: 'User'
 };
 

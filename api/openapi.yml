@@ -1,207 +1,337 @@
-openapi: 3.1.0
+swagger: "2.0"
+
 info:
   title: ETNAir
-  description: Rental site
+  description: "A website to rent a place for a certain time."
   version: 0.0.1
 
 servers:
   - url: http://localhost:3000
-    description: Serveur de développement
+    description: "Development server"
 
 tags:
   - name: user
-    description: user related route
+    description: "Routes related to users."
   - name: rentals
-    description: rentals related route
+    description: "Routes related to rentals."
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: "`Write the token with the \"Bearer: \" prefix: \"Bearer MY_TOKEN\".`"
+
 paths:
-  /auth:
+  /users:
     get:
+      security:
+        - Bearer: []
       tags:
         - user
-      description: All users
+      description: "A list of all users."
       responses:
         200:
-          description: Return all the users of the database
+          description: "Return all the users of the database."
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
+        401:
+          description: "Unauthorized access: token required !"
+  /auth/register:
     post:
       tags:
         - user
-      description: create user
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
+      description: "Create a new user"
+      parameters:
+        - in: body
+          name: body
+          description: "User informations for the creation."
+          required: true
+          schema:
+            $ref: "#/components/schemas/User"
       responses:
-      201:
-        description: User created
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-  /auth/{id}:
-    parameters:
-      - name: id
-        in: path
-        description: User id
-        required: true
-        schema:
-          type: integer
-    get:
+        201:
+          description: "Return a message to confirm the creation."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: "Bad request: Invalid parameters !"
+        409:
+          description: "Conflict: Duplicate phone number or email !"
+  /auth/login:
+    post:
       tags:
         - user
-      description: a user
+      description: "Connect a user and generate a token."
+      parameters:
+        - in: body
+          name: body
+          description: "User informations to log in."
+          required: true
+          schema:
+            $ref: "#/components/schemas/Login"
       responses:
         200:
-          description: Return a user
+          description: "Return a message to confirm the connection."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Login"
+        401:
+            description: "Bad request: Wrong password !"
+        404:
+            description: "Bad request: Wrong email !"
+  /user:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - user
+      description: "Return informations about the user connected."
+      responses:
+        200:
+          description: "Return the user's informations."
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
-        404:
-          description: Return a not found error
+        401:
+          description: "Unauthorized access: token required !"
     put:
+      security:
+        - Bearer: []
       tags:
         - user
-      description: Update user
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
+      description: "Update the user."
+      parameters:
+        - in: body
+          name: body
+          description: "User informations to update."
+          required: true
+          schema:
+            $ref: "#/components/schemas/User"
       responses:
       200:
-        description: User updated
+        description: "Return a message to confirm the update."
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/User"
+      401:
+        description: "Unauthorized access: token required !"
     delete:
+      security:
+        - Bearer: []
       tags:
         - user
-      description: a user
+      description: "Delete the user."
       responses:
         204:
-          description: User deleted
+          description: "Return a message to confirm the deletion."
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
-        404:
-          description: Return a not found error
+        401:
+          description: "Unauthorized access: token required !"
   /rentals:
     get:
       tags:
-        - ads
-      description: All ad
+        - rentals
+      description: "A list of all rentals."
       responses:
         200:
-          description: Return all the ads of the database
+          description: "Return all the rentals of the database."
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Advert"
+                $ref: "#/components/schemas/Rental"
+  /rental:
     post:
+      security:
+        - Bearer: []
       tags:
-        - ads
-      description: create advert
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Advert"
+        - rentals
+      description: "Create a new rental."
+      parameters:
+        - in: body
+          name: body
+          description: "Rental informations for the creation."
+          required: true
+          schema:
+            $ref: "#/components/schemas/RentalDetails"
       responses:
-      201:
-        description: Advert created
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Advert"
-  /rentals/{id}:
+        201:
+          description: "Return a message to confirm the creation."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Rental"
+        400:
+          description: "Bad request: Invalid parameters !"
+        401:
+          description: "Unauthorized access: token required !"
+  /rental/{id}:
     parameters:
       - name: id
         in: path
-        description: Ad id
+        description: "The id of the rental."
         required: true
         schema:
           type: integer
     get:
       tags:
-        - ads
-      description: an ad
+        - rentals
+      description: "Return informations about the selected rental."
       responses:
         200:
-          description: Return an ad
+          description: "Return the rental's informations."
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Advert"
+                $ref: "#/components/schemas/RentalDetails"
         404:
-          description: Return a not found error
+          description: "Bad request: Rental not found !"
     put:
+      security:
+        - Bearer: []
       tags:
-        - ads
-      description: Update ad
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Advert"
+        - rentals
+      description: "Update a rental."
+      parameters:
+        - in: body
+          name: body
+          description: "Rental informations to update."
+          required: true
+          schema:
+            $ref: "#/components/schemas/Rental"
       responses:
-      200:
-        description: Advert updated
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Advert"
+        200:
+          description: "Return a message to confirm the update."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Rental"
+        400:
+          description: "Bad request: Invalid parameters !"
+        401:
+          description: "Unauthorized access: token required !"
     delete:
       tags:
-        - ads
-      description: an advert
+        - rentals
+      description: "Delete the rental."
       responses:
         204:
-          description: Advert deleted
+          description: "Return a message to confirm the deletion."
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Advert"
+                $ref: "#/components/schemas/Rental"
         404:
-          description: Return a not found error
+          description: "Bad request: Rental not found !"
 
 components:
   schemas:
     User:
       type: object
       properties:
-        id:
-          type: number
+        email:
+          type: string
         name:
           type: string
-        age:
-          type: number
+        password:
+          type: string
+        about_me:
+          type: string
+        phone_number:
+          type: string
       additionalProperties: false
       required:
-        - id
+        - email
         - name
-        - age
-    Advert:
+        - password
+        - phone_number
+    Login:
       type: object
       properties:
-        id:
-          type: number
-        title:
+        email:
           type: string
+        password:
+          type: string
+      additionalProperties: false
+      required:
+        - email
+        - password
+    Adress:
+      type: object
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        street:
+          type: string
+        zip_code:
+          type: string
+      additionalProperties: false
+      required:
+        - city
+        - country
+        - street
+        - zip_code
+    Caracteristic:
+      type: object
+      properties:
+        nb_bedroom:
+          type: number
+        nb_bathroom:
+          type: number
         description:
           type: string
       additionalProperties: false
       required:
-        - id
-        - name
-        - age
+        - nb_bedroom
+        - nb_bathroom
+        - description
+    Rental:
+      type: object
+      properties:
+        title:
+          type: string
+        nb_person:
+          type: integer
+        price:
+          type: integer
+        available_date:
+          type: string
+          format: date-time
+        type:
+          type: string
+        userId:
+          type: string
+      additionalProperties: false
+      required:
+        - title
+        - nb_person
+        - price
+        - available_date
+        - type
+        - userId
+    RentalDetails:
+      type: object
+      properties:
+        rental:
+          $ref: "#/components/schemas/Rental"
+        caracteristic:
+          $ref: "#/components/schemas/Caracteristic"
+        adress:
+          $ref: "#/components/schemas/Adress"
+      additionalProperties: false
+      required:
+        - address
+        - caracteristic
+        - rental

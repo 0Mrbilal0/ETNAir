@@ -4,49 +4,51 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="co">
-      <change afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/query_engine-windows.dll.node.tmp11240" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/query_engine-windows.dll.node.tmp20392" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/query_engine-windows.dll.node.tmp27568" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/migrations/20241206085238_add_advert_type_enum/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/migrations/20241206091627_add_index_advert/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/migrations/20241206101938_add_cascade_user_delete/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/Models/migrations/20241206102853_update_type_of_user_type/migration.sql" afterDir="false" />
+    <list default="true" id="8f78c760-9fb3-4856-8bb5-265c92c5b91a" name="Changes" comment="Update authMiddleware structure and add advanced search functionality.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Controller/AdvertController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Controller/AdvertController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Controller/UserController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Controller/UserController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/edge.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/edge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index-browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index-browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/wasm.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/generated/prisma-client-js/wasm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/Models/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/Models/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="itchir-b/etn-33-front" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "0Mrbilal0"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;0Mrbilal0&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:0Mrbilal0/ETNAir.git",
-    "accountId": "1e08b428-798b-4f63-a4e5-1d392c9b7356"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:0Mrbilal0/ETNAir.git&quot;,
+    &quot;accountId&quot;: &quot;1e08b428-798b-4f63-a4e5-1d392c9b7356&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;0Mrbilal0&quot;,
+    &quot;repository&quot;: &quot;ETNAir&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -61,26 +63,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "itchir-b/etn-17-db-prisma",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.dev.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;itchir-b/etn-36-navbar&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.11.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.10.2&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bilal/Documents/etna/ETNAir/api/@types&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.blarc.ai.commits.intellij.plugin.settings.AppSettingsConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\bilal\\Documents\\etna\\ETNAir\\api\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\bilal\Documents\etna\ETNAir\api\src\Models" />
-      <recent name="C:\Users\bilal\Documents\etna\ETNAir\api" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bilal\Documents\etna\ETNAir\api\@types" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -98,11 +125,11 @@
       <option name="presentableId" value="Default" />
       <updated>1733317279163</updated>
       <workItem from="1733317280472" duration="1539000" />
-      <workItem from="1733319194329" duration="14448000" />
-      <workItem from="1733385298802" duration="3294000" />
-      <workItem from="1733389897632" duration="3175000" />
-      <workItem from="1733394489866" duration="478000" />
-      <workItem from="1733473935561" duration="13149000" />
+      <workItem from="1733496342571" duration="3084000" />
+      <workItem from="1733733532526" duration="16605000" />
+      <workItem from="1734037111459" duration="1233000" />
+      <workItem from="1734077096096" duration="26009000" />
+      <workItem from="1734337179562" duration="7969000" />
     </task>
     <task id="LOCAL-00001" summary="co">
       <option name="closed" value="true" />
@@ -120,7 +147,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733317929442</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat(Navbar): :sparkles: Add Navbar without all routes">
+      <option name="closed" value="true" />
+      <created>1733828311864</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733828311864</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat(Navbar): :sparkles: Add Navbar without all routes">
+      <option name="closed" value="true" />
+      <created>1733828318516</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733828318516</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update authMiddleware structure and add advanced search functionality.">
+      <option name="closed" value="true" />
+      <created>1734352386565</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1734352386565</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +179,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="co" />
-    <option name="LAST_COMMIT_MESSAGE" value="co" />
+    <MESSAGE value="Update:  .gitignore" />
+    <MESSAGE value="feat(Navbar): :sparkles: Add Navbar without all routes" />
+    <MESSAGE value="Update authMiddleware structure and add advanced search functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update authMiddleware structure and add advanced search functionality." />
   </component>
 </project>
